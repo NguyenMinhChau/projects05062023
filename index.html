@@ -463,13 +463,28 @@
 			// informationElement.innerHTML = htmls;
 
 			//! Call API get data info
+			const fetchAPI = async ({ body, method = 'POST' }) => {
+				const response = await fetch(
+					'http://1.52.246.101:3006/portal-inf/portal-cpe/swap-ip-customer-invite',
+					{
+						method: method,
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(body),
+					},
+				);
+				const data = await response.json();
+				return data;
+			};
 
 			//! API submit
-			btn.addEventListener('click', async () => {
+			btn.addEventListener('click', async (e) => {
+				e.preventDefault();
 				const body = {
 					userAgent: window.navigator.userAgent,
-					macont: input1.value,
-					mac_client: input2.value,
+					fullName: input1.value,
+					phone: input2.value,
 				};
 				modalLoading.style.display = 'flex';
 				setTimeout(() => {
