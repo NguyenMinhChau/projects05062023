@@ -3,7 +3,13 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>FPT TELECOM</title>
+		<title>FPT Telecom</title>
+		<link rel="icon" href="./fpt-logo.png" type="image/png" />
+		<meta property="og:image" content="./fpt-logo.png" />
+		<meta
+			name="description"
+			content="FPT Telecom - Chuyển đổi thiết bị wifi thế hệ thứ 6 WIFI 6"
+		/>
 	</head>
 	<style>
 		body,
@@ -70,7 +76,7 @@
 		.middle_name_own {
 			text-align: center;
 			font-weight: bold;
-			font-size: 30px;
+			font-size: 25px;
 			color: #fff;
 			letter-spacing: 1px;
 		}
@@ -140,6 +146,15 @@
 			font-size: 20px;
 			font-weight: bold;
 			cursor: pointer;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.btn_container .link {
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			background-color: chocolate;
 		}
 
 		.modal-loading {
@@ -293,7 +308,7 @@
 
 			.middle_title,
 			.middle_name_own {
-				font-size: 18px;
+				font-size: 16px;
 			}
 
 			.middle_desc {
@@ -324,7 +339,7 @@
 
 			.middle_title,
 			.middle_name_own {
-				font-size: 23px;
+				font-size: 20px;
 			}
 
 			.middle_desc {
@@ -340,7 +355,7 @@
 
 			.middle_title,
 			.middle_name_own {
-				font-size: 15px;
+				font-size: 13px;
 			}
 
 			.middle_desc {
@@ -409,6 +424,7 @@
 					id="phone"
 				/>
 				<div class="btn_container">
+					<a href="http://auth.fpt.vn" class="btn link">Thoát</a>
 					<button id="button" class="btn">Gửi</button>
 				</div>
 			</div>
@@ -463,19 +479,27 @@
 			// informationElement.innerHTML = htmls;
 
 			//! Call API get data info
-			const fetchAPI = async ({ body, method = 'POST' }) => {
-				const response = await fetch(
-					'http://1.52.246.101:3006/portal-inf/portal-cpe/swap-ip-customer-invite',
-					{
-						method: method,
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify(body),
+			const fetchAPI = async ({
+				body = {},
+				method = 'POST',
+				url,
+				onSuccess = () => {},
+				onError = () => {},
+			}) => {
+				await fetch(url, {
+					method: method,
+					headers: {
+						'Content-Type': 'application/json',
 					},
-				);
-				const data = await response.json();
-				return data;
+					body: JSON.stringify(body),
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						onSuccess(res);
+					})
+					.catch((err) => {
+						onError(err);
+					});
 			};
 
 			//! API submit
@@ -487,12 +511,20 @@
 					phone: input2.value,
 				};
 				modalLoading.style.display = 'flex';
-				setTimeout(() => {
-					modalLoading.style.display = 'none';
-					input1.value = '';
-					input2.value = '';
-					console.log(body);
-				}, 5000);
+				await fetchAPI({
+					url: 'http://1.52.246.101:3006/portal-inf/portal-cpe/swap-ip-customer-invite',
+					body: body,
+					onSuccess: (res) => {
+						modalLoading.style.display = 'none';
+						input1.value = '';
+						input2.value = '';
+						alert('Gửi thông tin thành công!');
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Gửi thông tin thất bại!');
+					},
+				});
 			});
 		</script>
 	</body>
