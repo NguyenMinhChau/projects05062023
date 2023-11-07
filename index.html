@@ -24,6 +24,10 @@
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 
+		body::-webkit-scrollbar {
+			display: none;
+		}
+
 		.container {
 			width: 550px;
 			height: 100vh;
@@ -35,17 +39,19 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: center;
 			box-sizing: border-box;
+			gap: 10px;
 		}
 
 		.container-top {
-			flex: 3;
+			/* flex: 3; */
 			width: 100%;
 		}
 
 		.container-middle {
-			flex: 5;
+			/* flex: 5; */
+			padding-top: 15vh;
 			width: 100%;
 			display: flex;
 			align-items: center;
@@ -108,7 +114,7 @@
 		}
 
 		.container-bottom {
-			flex: 3;
+			/* flex: 3; */
 			width: 100%;
 			box-sizing: border-box;
 			display: flex;
@@ -308,26 +314,26 @@
 
 			.middle_title,
 			.middle_name_own {
-				font-size: 16px;
+				font-size: 13px;
 			}
 
 			.middle_desc {
-				font-size: 16px;
+				font-size: 11px;
 			}
 
 			.container-bottom input {
-				height: 30px;
-				font-size: 16px;
+				height: 20px;
+				font-size: 13px;
 			}
 
 			.container-bottom input::-webkit-input-placeholder {
-				font-size: 12px;
+				font-size: 10px;
 			}
 
 			.btn_container .btn {
 				width: 100px;
-				height: 25px;
-				font-size: 15px;
+				height: 20px;
+				font-size: 12px;
 			}
 		}
 
@@ -363,8 +369,8 @@
 			}
 
 			.container-bottom input {
-				height: 30px;
-				font-size: 16px;
+				height: 25px;
+				font-size: 14px;
 			}
 
 			.container-bottom input::-webkit-input-placeholder {
@@ -390,13 +396,15 @@
 					<span
 						class="middle_name_own"
 						id="name_own"
-						style="color: #ffdb58"
+						style="color: #ffdb58; font-weight: bold"
 						>Tên chủ hợp đồng</span
 					>
 					<div class="middle_desc">
 						<span style="margin-bottom: 10px"
 							><b>Số hợp đồng:</b>
-							<span id="number_contract" style="color: #ffdb58"
+							<span
+								id="number_contract"
+								style="color: #ffdb58; font-weight: bold"
 								>DAAAB7374</span
 							></span
 						>
@@ -408,9 +416,11 @@
 						<p>Thời gian thực hiện 01/11/2023 đến 30/11/2023</p>
 						<p>
 							FPT Telecom chưa liên lạc được với Quý khách từ số
-							tổng đài <span>024 7300 2222</span> Quý khách vui
-							lòng để lại số điện thoại liên lạc để Nhân viên FPT
-							hướng dẫn thực hiện hoặc liên hệ tổng đài
+							tổng đài
+							<span>024 7300 2222</span>
+							Quý khách vui lòng để lại số điện thoại liên lạc để
+							Nhân viên FPT hướng dẫn thực hiện hoặc liên hệ tổng
+							đài
 							<span>19006600</span>
 						</p>
 						<p>Xin cảm ơn!</p>
