@@ -393,7 +393,7 @@
 					<div class="middle_desc">
 						<span style="margin-bottom: 10px"
 							><b>Số hợp đồng:</b>
-							<span id="number_contract">số hợp đồng</span></span
+							<span id="number_contract">DAAAB7374</span></span
 						>
 						<p>
 							FPT Telecom trân trọng thông báo. Anh chị là Khách
@@ -453,12 +453,12 @@
 			const name_own = document.getElementById('name_own');
 			const number_contract = document.getElementById('number_contract');
 
-			const urlParams = new URLSearchParams(window.location.search);
-			const macont = urlParams.get('macont');
-			const mac_client = urlParams.get('mac_client');
+			// const urlParams = new URLSearchParams(window.location.search);
+			// const macont = urlParams.get('macont');
+			// const mac_client = urlParams.get('mac_client');
 
-			name_own.innerText = macont;
-			number_contract.innerText = mac_client;
+			// name_own.innerText = macont;
+			// number_contract.innerText = mac_client;
 
 			//! HANDLE ERROR WHEN MA CONTRACT IS NOT EXIST
 			const htmls = `
@@ -509,6 +509,7 @@
 					userAgent: window.navigator.userAgent,
 					fullName: input1.value,
 					phone: input2.value,
+					contract_code: number_contract.textContent,
 				};
 				modalLoading.style.display = 'flex';
 				await fetchAPI({
