@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>FPT Telecom</title>
-		<link rel="icon" href="./fpt-logo.png" type="image/png" />
+		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
 		<meta property="og:image" content="./fpt-logo.png" />
 		<meta
 			name="description"
@@ -387,13 +387,18 @@
 					<span class="middle_title"
 						>Kính chào Quý Khách với Khách Hàng</span
 					>
-					<span class="middle_name_own" id="name_own"
+					<span
+						class="middle_name_own"
+						id="name_own"
+						style="color: #ffdb58"
 						>Tên chủ hợp đồng</span
 					>
 					<div class="middle_desc">
 						<span style="margin-bottom: 10px"
 							><b>Số hợp đồng:</b>
-							<span id="number_contract">DAAAB7374</span></span
+							<span id="number_contract" style="color: #ffdb58"
+								>DAAAB7374</span
+							></span
 						>
 						<p>
 							FPT Telecom trân trọng thông báo. Anh chị là Khách
@@ -424,7 +429,7 @@
 					id="phone"
 				/>
 				<div class="btn_container">
-					<a href="http://auth.fpt.vn" class="btn link">Thoát</a>
+					<button id="link" class="btn link">Thoát</button>
 					<button id="button" class="btn">Gửi</button>
 				</div>
 			</div>
@@ -452,6 +457,15 @@
 
 			const name_own = document.getElementById('name_own');
 			const number_contract = document.getElementById('number_contract');
+
+			document
+				.getElementById('link')
+				.addEventListener('click', function () {
+					var newPageUrl = 'http://auth.fpt.vn';
+
+					// Redirect to the new page
+					window.location.href = newPageUrl;
+				});
 
 			// const urlParams = new URLSearchParams(window.location.search);
 			// const macont = urlParams.get('macont');
