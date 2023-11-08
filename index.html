@@ -469,15 +469,6 @@
 			const name_own = document.getElementById('name_own');
 			const number_contract = document.getElementById('number_contract');
 
-			document
-				.getElementById('link')
-				.addEventListener('click', function () {
-					var newPageUrl = 'http://auth.fpt.vn';
-
-					// Redirect to the new page
-					window.location.href = newPageUrl;
-				});
-
 			// const urlParams = new URLSearchParams(window.location.search);
 			// const macont = urlParams.get('macont');
 			// const mac_client = urlParams.get('mac_client');
@@ -527,6 +518,36 @@
 					});
 			};
 
+			document
+				.getElementById('link')
+				.addEventListener('click', async function () {
+					const body = {
+						userAgent: window.navigator.userAgent,
+						fullName: input1.value || null,
+						phone: input2.value || null,
+						soHD: number_contract.textContent,
+						action: 'EXIT'
+					};
+					await fetchAPI({
+						url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
+						body: body,
+						onSuccess: (res) => {
+							modalLoading.style.display = 'none';
+							input1.value = '';
+							input2.value = '';
+							alert('Gửi thông tin thành công!');
+						},
+						onError: (err) => {
+							modalLoading.style.display = 'none';
+							alert('Gửi thông tin thất bại!');
+						},
+					});
+					var newPageUrl = 'http://auth.fpt.vn';
+
+					// Redirect to the new page
+					window.location.href = newPageUrl;
+				});
+
 			//! API submit
 			btn.addEventListener('click', async (e) => {
 				e.preventDefault();
@@ -534,11 +555,12 @@
 					userAgent: window.navigator.userAgent,
 					fullName: input1.value,
 					phone: input2.value,
-					contract_code: number_contract.textContent,
+					soHD: number_contract.textContent,
+					action: 'OK'
 				};
 				modalLoading.style.display = 'flex';
 				await fetchAPI({
-					url: 'http://1.52.246.101:3006/portal-inf/portal-cpe/swap-ip-customer-invite',
+					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
 					body: body,
 					onSuccess: (res) => {
 						modalLoading.style.display = 'none';
