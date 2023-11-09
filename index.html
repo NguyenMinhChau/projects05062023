@@ -526,7 +526,7 @@
 						fullName: input1.value || null,
 						phone: input2.value || null,
 						soHD: number_contract.textContent,
-						action: 'EXIT'
+						action: 'EXIT',
 					};
 					await fetchAPI({
 						url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
@@ -535,11 +535,11 @@
 							modalLoading.style.display = 'none';
 							input1.value = '';
 							input2.value = '';
-							alert('Gửi thông tin thành công!');
+							// alert('Gửi thông tin thành công!');
 						},
 						onError: (err) => {
 							modalLoading.style.display = 'none';
-							alert('Gửi thông tin thất bại!');
+							// alert('Gửi thông tin thất bại!');
 						},
 					});
 					var newPageUrl = 'http://auth.fpt.vn';
@@ -556,7 +556,7 @@
 					fullName: input1.value,
 					phone: input2.value,
 					soHD: number_contract.textContent,
-					action: 'OK'
+					action: 'OK',
 				};
 				modalLoading.style.display = 'flex';
 				await fetchAPI({
@@ -573,6 +573,10 @@
 						alert('Gửi thông tin thất bại!');
 					},
 				});
+				var newPageUrl = 'http://auth.fpt.vn';
+
+				// Redirect to the new page
+				window.location.href = newPageUrl;
 			});
 		</script>
 	</body>
