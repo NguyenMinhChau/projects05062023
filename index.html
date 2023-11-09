@@ -469,9 +469,9 @@
 			const name_own = document.getElementById('name_own');
 			const number_contract = document.getElementById('number_contract');
 
-			// const urlParams = new URLSearchParams(window.location.search);
+			const urlParams = new URLSearchParams(window.location.search);
 			// const macont = urlParams.get('macont');
-			// const mac_client = urlParams.get('mac_client');
+			const mac_client = urlParams.get('mac_client');
 
 			// name_own.innerText = macont;
 			// number_contract.innerText = mac_client;
@@ -527,6 +527,7 @@
 						phone: input2.value || null,
 						soHD: number_contract.textContent,
 						action: 'EXIT',
+						mac_client: mac_client,
 					};
 					await fetchAPI({
 						url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
@@ -557,9 +558,12 @@
 					phone: input2.value,
 					soHD: number_contract.textContent,
 					action: 'OK',
+					mac_client: mac_client,
 				};
 				if (!input1.value || !input2.value) {
-					alert('Vui lòng nhập đầy đủ thông tin trước khi nhấn gửi!');
+					alert(
+						'Xin Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn gửi!',
+					);
 					if (!input1.value) input1.focus();
 					else input2.focus();
 					return;
