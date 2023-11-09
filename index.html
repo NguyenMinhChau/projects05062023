@@ -558,6 +558,12 @@
 					soHD: number_contract.textContent,
 					action: 'OK',
 				};
+				if (!input1.value || !input2.value) {
+					alert('Vui lòng nhập đầy đủ thông tin trước khi nhấn gửi!');
+					if (!input1.value) input1.focus();
+					else input2.focus();
+					return;
+				}
 				modalLoading.style.display = 'flex';
 				await fetchAPI({
 					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
