@@ -78,6 +78,43 @@
 			box-sizing: border-box;
 		}
 
+		.middle_content_two,
+		.middle_content_three {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 10px;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.middle_content_two_item,
+		.middle_content_three_item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.middle_content_two_item img,
+		.middle_content_three_item img {
+			width: 100%;
+			max-width: 150px;
+			height: 110px;
+			object-fit: contain;
+			cursor: pointer;
+		}
+
+		.middle_content_two_item input,
+		.middle_content_three_item input {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+
 		.middle_title,
 		.middle_name_own {
 			text-align: center;
@@ -427,6 +464,74 @@
 						<p>Xin cảm ơn!</p>
 					</div>
 				</div>
+				<div class="middle_content" id="information_two">
+					<div class="middle_content_two">
+						<div class="middle_content_two_item">
+							<label for="radio_1"
+								><img src="./fpt-logo.png" alt="image"
+							/></label>
+							<input
+								type="radio"
+								name="radio_two"
+								value="radio_1"
+								class="radio"
+								id="radio_1"
+							/>
+						</div>
+						<div class="middle_content_two_item">
+							<label for="radio_2"
+								><img src="./fpt-logo.png" alt="image"
+							/></label>
+							<input
+								type="radio"
+								name="radio_two"
+								value="radio_2"
+								class="radio"
+								id="radio_2"
+							/>
+						</div>
+						<div class="middle_content_two_item">
+							<label for="radio_3"
+								><img src="./fpt-logo.png" alt="image"
+							/></label>
+							<input
+								type="radio"
+								name="radio_two"
+								value="radio_3"
+								class="radio"
+								id="radio_3"
+							/>
+						</div>
+					</div>
+				</div>
+				<div class="middle_content" id="information_three">
+					<div class="middle_content_three">
+						<div class="middle_content_three_item">
+							<label for="radio_4"
+								><img src="./fpt-logo.png" alt="image"
+							/></label>
+							<input
+								type="radio"
+								name="radio_three"
+								value="radio_4"
+								class="radio"
+								id="radio_4"
+							/>
+						</div>
+						<div class="middle_content_three_item">
+							<label for="radio_5"
+								><img src="./fpt-logo.png" alt="image"
+							/></label>
+							<input
+								type="radio"
+								name="radio_three"
+								value="radio_5"
+								class="radio"
+								id="radio_5"
+							/>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="container-bottom">
 				<input
@@ -441,7 +546,15 @@
 				/>
 				<div class="btn_container">
 					<button id="link" class="btn link">Thoát</button>
-					<button id="button" class="btn">Gửi</button>
+					<button id="link_back_one" class="btn link">
+						Quay lại
+					</button>
+					<button id="link_back_two" class="btn link">
+						Quay lại
+					</button>
+					<button id="button_step_one" class="btn">Tiếp</button>
+					<button id="button_step_two" class="btn">Tiếp</button>
+					<button id="button_step_three" class="btn">Gửi</button>
 				</div>
 			</div>
 		</div>
@@ -461,10 +574,110 @@
 		<script async>
 			const btn = document.getElementById('button');
 			const informationElement = document.getElementById('information');
+			const informationTwoElement =
+				document.getElementById('information_two');
+			const informationThreeElement =
+				document.getElementById('information_three');
+			const linkElement = document.getElementById('link');
+			const linkBackElement = document.getElementById('link_back');
+			const linkBackOneElement = document.getElementById('link_back_one');
+			const linkBackTwoElement = document.getElementById('link_back_two');
+			const btnStepOneElement =
+				document.getElementById('button_step_one');
+			const btnStepTwoElement =
+				document.getElementById('button_step_two');
+			const btnStepThreeElement =
+				document.getElementById('button_step_three');
 			const modalLoading = document.querySelector('.modal-loading');
 
 			const input1 = document.getElementById('user_name');
 			const input2 = document.getElementById('phone');
+			let valueRadioTwo = '';
+			const radioTwo = document.querySelectorAll(
+				'#information_two .radio',
+			);
+
+			radioTwo.forEach((item) => {
+				item.addEventListener('change', function (e) {
+					valueRadioTwo = e.target.value;
+				});
+			});
+
+			let valueRadioThree = '';
+			const radioThree = document.querySelectorAll(
+				'#information_three .radio',
+			);
+
+			radioThree.forEach((item) => {
+				item.addEventListener('change', function (e) {
+					valueRadioThree = e.target.value;
+				});
+			});
+
+			informationTwoElement.style.display = 'none';
+			informationThreeElement.style.display = 'none';
+			btnStepTwoElement.style.display = 'none';
+			btnStepThreeElement.style.display = 'none';
+			linkBackOneElement.style.display = 'none';
+			linkBackTwoElement.style.display = 'none';
+
+			btnStepOneElement.addEventListener('click', function () {
+				if (!input1.value || !input2.value) {
+					alert(
+						'Xin Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn tiếp tục!',
+					);
+					if (!input1.value) input1.focus();
+					else input2.focus();
+					return;
+				}
+				informationElement.style.display = 'none';
+				linkElement.style.display = 'none';
+				btnStepOneElement.style.display = 'none';
+				input1.style.display = 'none';
+				input2.style.display = 'none';
+
+				informationTwoElement.style.display = 'inline-block';
+				linkBackOneElement.style.display = 'inline-block';
+				btnStepTwoElement.style.display = 'inline-block';
+			});
+
+			btnStepTwoElement.addEventListener('click', function () {
+				if (!valueRadioTwo || valueRadioTwo === '') {
+					alert(
+						'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
+					);
+					return;
+				}
+				informationTwoElement.style.display = 'none';
+				linkBackOneElement.style.display = 'none';
+				btnStepTwoElement.style.display = 'none';
+
+				informationThreeElement.style.display = 'inline-block';
+				linkBackTwoElement.style.display = 'inline-block';
+				btnStepThreeElement.style.display = 'inline-block';
+			});
+
+			linkBackOneElement.addEventListener('click', function () {
+				informationElement.style.display = 'inline-block';
+				linkElement.style.display = 'inline-block';
+				btnStepOneElement.style.display = 'inline-block';
+				input1.style.display = 'inline-block';
+				input2.style.display = 'inline-block';
+
+				informationTwoElement.style.display = 'none';
+				linkBackOneElement.style.display = 'none';
+				btnStepTwoElement.style.display = 'none';
+			});
+
+			linkBackTwoElement.addEventListener('click', function () {
+				informationTwoElement.style.display = 'inline-block';
+				linkBackOneElement.style.display = 'inline-block';
+				btnStepTwoElement.style.display = 'inline-block';
+
+				informationThreeElement.style.display = 'none';
+				linkBackTwoElement.style.display = 'none';
+				btnStepThreeElement.style.display = 'none';
+			});
 
 			const name_own = document.getElementById('name_own');
 			const number_contract = document.getElementById('number_contract');
@@ -472,9 +685,6 @@
 			const urlParams = new URLSearchParams(window.location.search);
 			// const macont = urlParams.get('macont');
 			const mac_client = urlParams.get('mac_client');
-
-			// name_own.innerText = macont;
-			// number_contract.innerText = mac_client;
 
 			//! HANDLE ERROR WHEN MA CONTRACT IS NOT EXIST
 			const htmls = `
@@ -518,6 +728,7 @@
 					});
 			};
 
+			// ACTION EXIT
 			document
 				.getElementById('link')
 				.addEventListener('click', async function () {
@@ -550,7 +761,7 @@
 				});
 
 			//! API submit
-			btn.addEventListener('click', async (e) => {
+			btnStepThreeElement.addEventListener('click', async (e) => {
 				e.preventDefault();
 				const body = {
 					userAgent: window.navigator.userAgent,
@@ -559,35 +770,37 @@
 					soHD: number_contract.textContent,
 					action: 'OK',
 					mac_client: mac_client,
+					radio_two: valueRadioTwo,
+					radio_three: valueRadioThree,
 				};
+
 				console.log(body);
-				if (!input1.value || !input2.value) {
+
+				if (!valueRadioThree || valueRadioThree === '') {
 					alert(
-						'Xin Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn gửi!',
+						'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
 					);
-					if (!input1.value) input1.focus();
-					else input2.focus();
 					return;
 				}
-				modalLoading.style.display = 'flex';
-				await fetchAPI({
-					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
-					body: body,
-					onSuccess: (res) => {
-						modalLoading.style.display = 'none';
-						input1.value = '';
-						input2.value = '';
-						alert('Gửi thông tin thành công!');
-					},
-					onError: (err) => {
-						modalLoading.style.display = 'none';
-						alert('Gửi thông tin thất bại!');
-					},
-				});
-				var newPageUrl = 'http://auth.fpt.vn';
+				// modalLoading.style.display = 'flex';
+				// await fetchAPI({
+				// 	url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
+				// 	body: body,
+				// 	onSuccess: (res) => {
+				// 		modalLoading.style.display = 'none';
+				// 		input1.value = '';
+				// 		input2.value = '';
+				// 		alert('Gửi thông tin thành công!');
+				// 	},
+				// 	onError: (err) => {
+				// 		modalLoading.style.display = 'none';
+				// 		alert('Gửi thông tin thất bại!');
+				// 	},
+				// });
+				// var newPageUrl = 'http://auth.fpt.vn';
 
 				// Redirect to the new page
-				window.location.href = newPageUrl;
+				// window.location.href = newPageUrl;
 			});
 		</script>
 	</body>
