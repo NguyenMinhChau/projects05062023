@@ -1,693 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>FPT Telecom</title>
-		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
-		<meta property="og:image" content="./fpt-logo.png" />
-		<meta
-			name="description"
-			content="FPT Telecom - Chuyển đổi thiết bị wifi thế hệ thứ 6 WIFI 6"
-		/>
-	</head>
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			width: 100%;
-			height: 100vh;
-			display: flex;
-			justify-content: center;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		}
 
-		body::-webkit-scrollbar {
-			display: none;
-		}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>FPT Telecom</title>
+	<link rel="icon" href="./favicon-16x16.png" type="image/png" />
+	<meta property="og:image" content="./fpt-logo.png" />
+	<meta name="description" content="FPT Telecom - Chuyển đổi thiết bị wifi thế hệ thứ 6 WIFI 6" />
+</head>
+<style>
+	body,
+	html {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
 
-		.container {
-			width: 550px;
-			height: 100vh;
-			background-color: #fff;
-			background-image: url('./fpt_wifi.jpg');
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: 100% 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			box-sizing: border-box;
-			gap: 10px;
-		}
+	body::-webkit-scrollbar {
+		display: none;
+	}
 
-		.container-top {
-			/* flex: 3; */
-			width: 100%;
-		}
+	.container {
+		width: 550px;
+		height: 100vh;
+		background-color: #fff;
+		background-image: url('./fpt_wifi.jpg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		gap: 10px;
+	}
 
-		.container-middle {
-			/* flex: 5; */
-			padding-top: 15vh;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+	.container-top {
+		/* flex: 3; */
+		width: 100%;
+	}
 
-		.middle_content {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			border-radius: 30px;
-			width: 90%;
-			background: rgb(2, 0, 36);
-			background: linear-gradient(
-				180deg,
+	.container-middle {
+		/* flex: 5; */
+		padding-top: 15vh;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.middle_content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border-radius: 30px;
+		width: 90%;
+		background: rgb(2, 0, 36);
+		background: linear-gradient(180deg,
 				rgba(2, 0, 36, 1) 0%,
 				rgba(94, 120, 204, 1) 0%,
 				rgba(27, 114, 212, 1) 0%,
 				rgba(108, 157, 213, 1) 100%,
-				rgba(9, 9, 121, 1) 100%
-			);
-			padding: 15px;
-			box-sizing: border-box;
+				rgba(9, 9, 121, 1) 100%);
+		padding: 15px;
+		box-sizing: border-box;
+	}
+
+	.middle_content_two,
+	.middle_content_three {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 10px;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.middle_content_two_item,
+	.middle_content_three_item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.middle_content_two_item img,
+	.middle_content_three_item img {
+		width: 100%;
+		max-width: 150px;
+		height: 110px;
+		object-fit: contain;
+		cursor: pointer;
+	}
+
+	.middle_content_two_item input,
+	.middle_content_three_item input {
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		border: none;
+		outline: none;
+		cursor: pointer;
+	}
+
+	.middle_title,
+	.middle_name_own {
+		text-align: center;
+		font-weight: bold;
+		font-size: 25px;
+		color: #fff;
+		letter-spacing: 1px;
+	}
+
+	.middle_name_own {
+		font-weight: 300;
+	}
+
+	.middle_desc {
+		color: #fff;
+		margin-top: 15px;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		font-size: 25px;
+	}
+
+	.middle_desc p {
+		text-align: justify;
+		font-weight: bold;
+		line-height: 1.3;
+		margin: 5px 0;
+		font-weight: 500;
+	}
+
+	.middle_desc p span {
+		color: #f8db6b;
+		text-decoration: none !important;
+	}
+
+	.container-bottom {
+		/* flex: 3; */
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 10px;
+	}
+
+	.container-bottom input {
+		width: 70%;
+		height: 40px;
+		border-radius: 30px;
+		border: none;
+		outline: none;
+		padding: 0 20px;
+		font-size: 23px;
+		box-sizing: border-box;
+	}
+
+	.container-bottom input::-webkit-input-placeholder {
+		color: #000;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.btn_container .btn {
+		width: 150px;
+		height: 40px;
+		border-radius: 30px;
+		border: none;
+		outline: none;
+		background-color: #f8db6b;
+		font-size: 20px;
+		font-weight: bold;
+		cursor: pointer;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.btn_container .link {
+		display: inline-block;
+		color: #fff;
+		text-decoration: none;
+		background-color: chocolate;
+	}
+
+	.modal-loading {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.2);
+		z-index: 999;
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 12px;
+		box-sizing: border-box;
+	}
+
+	.modal-content {
+		background-color: rgba(255, 255, 255, 0.9);
+		border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	@-webkit-keyframes dots-fade {
+		0% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
 		}
 
-		.middle_content_two,
-		.middle_content_three {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: 10px;
-			align-items: center;
-			justify-content: space-around;
+		10% {
+			opacity: 1;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
 		}
 
-		.middle_content_two_item,
-		.middle_content_three_item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
+		20% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
 		}
 
-		.middle_content_two_item img,
-		.middle_content_three_item img {
-			width: 100%;
-			max-width: 150px;
-			height: 110px;
-			object-fit: contain;
-			cursor: pointer;
+		30% {
+			opacity: 0;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
 		}
 
-		.middle_content_two_item input,
-		.middle_content_three_item input {
-			width: 15px;
-			height: 15px;
-			border-radius: 50%;
-			border: none;
-			outline: none;
-			cursor: pointer;
+		40% {
+			opacity: 1;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+
+		50% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+
+		60% {
+			background-color: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+
+		70% {
+			opacity: 1;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+
+		80%,
+		100% {
+			opacity: 0;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+	}
+
+	@keyframes dots-fade {
+		0% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
+		}
+
+		10% {
+			opacity: 1;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
+		}
+
+		20% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(-175%);
+			transform: translateX(-175%);
+		}
+
+		30% {
+			opacity: 0;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+
+		40% {
+			opacity: 1;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+
+		50% {
+			background: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+
+		60% {
+			background-color: #2d7cd4;
+			opacity: 0;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+
+		70% {
+			opacity: 1;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+
+		80%,
+		100% {
+			opacity: 0;
+			-webkit-transform: translateX(175%);
+			transform: translateX(175%);
+		}
+	}
+
+	.dots-fade:before {
+		-webkit-animation: dots-fade 2s infinite;
+		animation: dots-fade 2s infinite;
+		background-color: #2d7cd4;
+		border-radius: 100%;
+		content: '';
+		display: block;
+		height: 10px;
+		width: 10px;
+	}
+
+	/* Styles for PC/Desktop */
+	@media (min-width: 1024px) {
+		.container {
+			width: 600px;
 		}
 
 		.middle_title,
 		.middle_name_own {
-			text-align: center;
-			font-weight: bold;
-			font-size: 25px;
-			color: #fff;
-			letter-spacing: 1px;
-		}
-
-		.middle_name_own {
-			font-weight: 300;
+			font-size: 13px;
 		}
 
 		.middle_desc {
-			color: #fff;
-			margin-top: 15px;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			font-size: 25px;
-		}
-
-		.middle_desc p {
-			text-align: justify;
-			font-weight: bold;
-			line-height: 1.3;
-			margin: 5px 0;
-			font-weight: 500;
-		}
-
-		.middle_desc p span {
-			color: #f8db6b;
-			text-decoration: none !important;
-		}
-
-		.container-bottom {
-			/* flex: 3; */
-			width: 100%;
-			box-sizing: border-box;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: flex-start;
-			gap: 10px;
+			font-size: 11px;
 		}
 
 		.container-bottom input {
-			width: 70%;
-			height: 40px;
-			border-radius: 30px;
-			border: none;
-			outline: none;
-			padding: 0 20px;
-			font-size: 23px;
-			box-sizing: border-box;
+			height: 20px;
+			font-size: 13px;
 		}
 
 		.container-bottom input::-webkit-input-placeholder {
-			color: #000;
-			font-size: 20px;
-			font-weight: bold;
-			text-align: center;
+			font-size: 10px;
 		}
 
 		.btn_container .btn {
-			width: 150px;
-			height: 40px;
-			border-radius: 30px;
-			border: none;
-			outline: none;
-			background-color: #f8db6b;
+			width: 100px;
+			height: 20px;
+			font-size: 12px;
+		}
+	}
+
+	/* Styles for Tablets */
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.container {
+			width: 700px;
+		}
+
+		.middle_title,
+		.middle_name_own {
 			font-size: 20px;
-			font-weight: bold;
-			cursor: pointer;
-			font-weight: bold;
-			text-align: center;
 		}
 
-		.btn_container .link {
-			display: inline-block;
-			color: #fff;
-			text-decoration: none;
-			background-color: chocolate;
+		.middle_desc {
+			font-size: 20px;
 		}
+	}
 
-		.modal-loading {
-			position: fixed;
-			top: 0;
-			left: 0;
+	/* Styles for Mobile */
+	@media (max-width: 767px) {
+		.container {
 			width: 100%;
-			height: 100vh;
-			background-color: rgba(0, 0, 0, 0.2);
-			z-index: 999;
-			display: none;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 12px;
-			box-sizing: border-box;
 		}
 
-		.modal-content {
-			background-color: rgba(255, 255, 255, 0.9);
-			border-radius: 15px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 10px;
-			box-sizing: border-box;
+		.middle_title,
+		.middle_name_own {
+			font-size: 13px;
 		}
 
-		@-webkit-keyframes dots-fade {
-			0% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			10% {
-				opacity: 1;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			20% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			30% {
-				opacity: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			40% {
-				opacity: 1;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			50% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			60% {
-				background-color: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
-			70% {
-				opacity: 1;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
-			80%,
-			100% {
-				opacity: 0;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
-		}
-		@keyframes dots-fade {
-			0% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			10% {
-				opacity: 1;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			20% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(-175%);
-				transform: translateX(-175%);
-			}
-			30% {
-				opacity: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			40% {
-				opacity: 1;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			50% {
-				background: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(0);
-				transform: translateX(0);
-			}
-			60% {
-				background-color: #2d7cd4;
-				opacity: 0;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
-			70% {
-				opacity: 1;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
-			80%,
-			100% {
-				opacity: 0;
-				-webkit-transform: translateX(175%);
-				transform: translateX(175%);
-			}
+		.middle_desc {
+			font-size: 12px;
 		}
 
-		.dots-fade:before {
-			-webkit-animation: dots-fade 2s infinite;
-			animation: dots-fade 2s infinite;
-			background-color: #2d7cd4;
-			border-radius: 100%;
-			content: '';
-			display: block;
-			height: 10px;
-			width: 10px;
+		.container-bottom input {
+			height: 25px;
+			font-size: 14px;
 		}
 
-		/* Styles for PC/Desktop */
-		@media (min-width: 1024px) {
-			.container {
-				width: 600px;
-			}
-
-			.middle_title,
-			.middle_name_own {
-				font-size: 13px;
-			}
-
-			.middle_desc {
-				font-size: 11px;
-			}
-
-			.container-bottom input {
-				height: 20px;
-				font-size: 13px;
-			}
-
-			.container-bottom input::-webkit-input-placeholder {
-				font-size: 10px;
-			}
-
-			.btn_container .btn {
-				width: 100px;
-				height: 20px;
-				font-size: 12px;
-			}
+		.container-bottom input::-webkit-input-placeholder {
+			font-size: 12px;
 		}
 
-		/* Styles for Tablets */
-		@media (min-width: 768px) and (max-width: 1023px) {
-			.container {
-				width: 700px;
-			}
-
-			.middle_title,
-			.middle_name_own {
-				font-size: 20px;
-			}
-
-			.middle_desc {
-				font-size: 20px;
-			}
+		.btn_container .btn {
+			width: 100px;
+			height: 25px;
+			font-size: 15px;
 		}
+	}
+</style>
 
-		/* Styles for Mobile */
-		@media (max-width: 767px) {
-			.container {
-				width: 100%;
-			}
-
-			.middle_title,
-			.middle_name_own {
-				font-size: 13px;
-			}
-
-			.middle_desc {
-				font-size: 12px;
-			}
-
-			.container-bottom input {
-				height: 25px;
-				font-size: 14px;
-			}
-
-			.container-bottom input::-webkit-input-placeholder {
-				font-size: 12px;
-			}
-
-			.btn_container .btn {
-				width: 100px;
-				height: 25px;
-				font-size: 15px;
-			}
-		}
-	</style>
-
-	<body>
-		<div class="container" loading="lazy">
-			<div class="container-top"></div>
-			<div class="container-middle">
-				<div class="middle_content" id="information">
-					<span class="middle_title"
-						>Kính chào Quý Khách với Khách Hàng</span
-					>
-					<span
-						class="middle_name_own"
-						id="name_own"
-						style="color: #ffdb58; font-weight: bold"
-						>Tên chủ hợp đồng</span
-					>
-					<div class="middle_desc">
-						<span style="margin-bottom: 10px"
-							><b>Số hợp đồng:</b>
-							<span
-								id="number_contract"
-								style="color: #ffdb58; font-weight: bold"
-								>DAAAB7374</span
-							></span
-						>
-						<p>
-							FPT Telecom trân trọng thông báo. Anh chị là Khách
-							hàng thân thiết được trải nghiệm chương trình chuyển
-							đổi thiết bị wifi thế hệ thứ 6 <span>WIFI 6</span>
-						</p>
-						<p>Thời gian thực hiện 01/11/2023 đến 30/11/2023</p>
-						<p>
-							FPT Telecom chưa liên lạc được với Quý khách từ số
-							tổng đài
-							<span>024.7300.2222</span>
-							Quý khách vui lòng để lại số điện thoại liên lạc để
-							Nhân viên FPT hướng dẫn thực hiện hoặc liên hệ tổng
-							đài
-							<span>19006600</span>
-						</p>
-						<p>Xin cảm ơn!</p>
-					</div>
+<body>
+	<div class="container" loading="lazy">
+		<div class="container-top"></div>
+		<div class="container-middle">
+			<div class="middle_content" id="information">
+				<span class="middle_title">Kính chào Quý Khách với Khách Hàng</span>
+				<span class="middle_name_own" id="name_own" style="color: #ffdb58; font-weight: bold">Phạm Bùi Tuấn Vũ</span>
+				<div class="middle_desc">
+					<span style="margin-bottom: 10px"><b>Số hợp đồng:</b>
+						<span id="number_contract" style="color: #ffdb58; font-weight: bold">DAAAB7374</span></span>
+					<p>
+						FPT Telecom trân trọng thông báo. Anh chị là Khách
+						hàng thân thiết được trải nghiệm chương trình chuyển
+						đổi thiết bị wifi thế hệ thứ 6 <span>WIFI 6</span>
+					</p>
+					<p>Thời gian thực hiện 01/11/2023 đến 30/11/2023</p>
+					<p>
+						FPT Telecom chưa liên lạc được với Quý khách từ số
+						tổng đài
+						<span>024.7300.2222</span>
+						Quý khách vui lòng để lại số điện thoại liên lạc để
+						Nhân viên FPT hướng dẫn thực hiện hoặc liên hệ tổng
+						đài
+						<span>19006600</span>
+					</p>
+					<p>Xin cảm ơn!</p>
 				</div>
-				<div class="middle_content" id="information_two">
-					<div class="middle_content_two">
-						<div class="middle_content_two_item">
-							<label for="radio_1"
-								><img src="./fpt-logo.png" alt="image"
-							/></label>
-							<input
-								type="radio"
-								name="radio_two"
-								value="radio_1"
-								class="radio"
-								id="radio_1"
-							/>
-						</div>
-						<div class="middle_content_two_item">
-							<label for="radio_2"
-								><img src="./fpt-logo.png" alt="image"
-							/></label>
-							<input
-								type="radio"
-								name="radio_two"
-								value="radio_2"
-								class="radio"
-								id="radio_2"
-							/>
-						</div>
-						<div class="middle_content_two_item">
-							<label for="radio_3"
-								><img src="./fpt-logo.png" alt="image"
-							/></label>
-							<input
-								type="radio"
-								name="radio_two"
-								value="radio_3"
-								class="radio"
-								id="radio_3"
-							/>
-						</div>
+			</div>
+			<div class="middle_content" id="information_two">
+				<div class="middle_content_two">
+					<div class="middle_content_two_item">
+						<label for="radio_1"><img src="./box-fpt.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">FPT Play Box</span></span>
+						<input type="radio" name="radio_two" value="FPT Play Box" class="radio" id="radio_1" />
 					</div>
-				</div>
-				<div class="middle_content" id="information_three">
-					<div class="middle_content_three">
-						<div class="middle_content_three_item">
-							<label for="radio_4"
-								><img src="./fpt-logo.png" alt="image"
-							/></label>
-							<input
-								type="radio"
-								name="radio_three"
-								value="radio_4"
-								class="radio"
-								id="radio_4"
-							/>
-						</div>
-						<div class="middle_content_three_item">
-							<label for="radio_5"
-								><img src="./fpt-logo.png" alt="image"
-							/></label>
-							<input
-								type="radio"
-								name="radio_three"
-								value="radio_5"
-								class="radio"
-								id="radio_5"
-							/>
-						</div>
+					<div class="middle_content_two_item">
+						<label for="radio_2"><img src="./camerafpt.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">Camera FPT</span></span>
+						<input type="radio" name="radio_two" value="Camera FPT" class="radio" id="radio_2" />
+					</div>
+					<div class="middle_content_two_item">
+						<label for="radio_3"><img src="./AC1000c_v2.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">Modem Wifi FPT</span></span>
+						<input type="radio" name="radio_two" value="Modem Wifi FPT" class="radio" id="radio_3" />
 					</div>
 				</div>
 			</div>
-			<div class="container-bottom">
-				<input
-					type="text"
-					placeholder="NHẬP TÊN LIÊN HỆ"
-					id="user_name"
-				/>
-				<input
-					type="text"
-					placeholder="NHẬP SỐ ĐIỆN THOẠI LIÊN HỆ"
-					id="phone"
-				/>
-				<div class="btn_container">
-					<button id="link" class="btn link">Thoát</button>
-					<button id="link_back_one" class="btn link">
-						Quay lại
-					</button>
-					<button id="link_back_two" class="btn link">
-						Quay lại
-					</button>
-					<button id="button_step_one" class="btn">Tiếp</button>
-					<button id="button_step_two" class="btn">Tiếp</button>
-					<button id="button_step_three" class="btn">Gửi</button>
+			<div class="middle_content" id="information_three">
+				<div class="middle_content_three">
+					<div class="middle_content_three_item">
+						<label for="radio_4"><img src="./AX1800GZ.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">AX1800GZ</span></span>
+						<input type="radio" name="radio_three" value="AX1800GZ" class="radio" id="radio_4" />
+					</div>
+					<div class="middle_content_three_item">
+						<label for="radio_5"><img src="./AC1000Z.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">AC1000Z</span></span>
+						<input type="radio" name="radio_three" value="AC1000Z" class="radio" id="radio_5" />
+					</div>
+					<div class="middle_content_three_item">
+						<label for="radio_6"><img src="./A134GHU.png" alt="image" /></label>
+						<span style="margin-bottom: 10px; margin-top: 5px;"><span id="number_contract" style="color: white">A134GHU</span></span>
+						<input type="radio" name="radio_three" value="A134GHU" class="radio" id="radio_6" />
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="modal-loading">
-			<div class="modal-content">
-				<img
-					loading="lazy"
-					src="./fpt-logo.png"
-					alt="logo"
-					style="width: 100%; max-width: 100px; object-fit: contain"
-				/>
-				<div class="dots-fade"></div>
+		<div class="container-bottom">
+			<input type="text" placeholder="NHẬP TÊN LIÊN HỆ" id="user_name" />
+			<input type="text" placeholder="NHẬP SỐ ĐIỆN THOẠI LIÊN HỆ" id="phone" />
+			<div class="btn_container">
+				<button id="link" class="btn link">Thoát</button>
+				<button id="link_back_one" class="btn link">
+					Quay lại
+				</button>
+				<button id="link_back_two" class="btn link">
+					Quay lại
+				</button>
+				<button id="button_step_one" class="btn">Tiếp</button>
+				<button id="button_step_two" class="btn">Tiếp</button>
+				<button id="button_step_three" class="btn">Gửi</button>
 			</div>
 		</div>
+	</div>
 
-		<script async>
-			const btn = document.getElementById('button');
-			const informationElement = document.getElementById('information');
-			const informationTwoElement =
-				document.getElementById('information_two');
-			const informationThreeElement =
-				document.getElementById('information_three');
-			const linkElement = document.getElementById('link');
-			const linkBackElement = document.getElementById('link_back');
-			const linkBackOneElement = document.getElementById('link_back_one');
-			const linkBackTwoElement = document.getElementById('link_back_two');
-			const btnStepOneElement =
-				document.getElementById('button_step_one');
-			const btnStepTwoElement =
-				document.getElementById('button_step_two');
-			const btnStepThreeElement =
-				document.getElementById('button_step_three');
-			const modalLoading = document.querySelector('.modal-loading');
+	<div class="modal-loading">
+		<div class="modal-content">
+			<img loading="lazy" src="./fpt-logo.png" alt="logo" style="width: 100%; max-width: 100px; object-fit: contain" />
+			<div class="dots-fade"></div>
+		</div>
+	</div>
 
-			const input1 = document.getElementById('user_name');
-			const input2 = document.getElementById('phone');
-			let valueRadioTwo = '';
-			const radioTwo = document.querySelectorAll(
-				'#information_two .radio',
-			);
+	<script async>
+		const btn = document.getElementById('button');
+		const informationElement = document.getElementById('information');
+		const informationTwoElement =
+			document.getElementById('information_two');
+		const informationThreeElement =
+			document.getElementById('information_three');
+		const linkElement = document.getElementById('link');
+		const linkBackElement = document.getElementById('link_back');
+		const linkBackOneElement = document.getElementById('link_back_one');
+		const linkBackTwoElement = document.getElementById('link_back_two');
+		const btnStepOneElement =
+			document.getElementById('button_step_one');
+		const btnStepTwoElement =
+			document.getElementById('button_step_two');
+		const btnStepThreeElement =
+			document.getElementById('button_step_three');
+		const modalLoading = document.querySelector('.modal-loading');
 
-			radioTwo.forEach((item) => {
-				item.addEventListener('change', function (e) {
-					valueRadioTwo = e.target.value;
-				});
+		const input1 = document.getElementById('user_name');
+		const input2 = document.getElementById('phone');
+		let valueRadioTwo = '';
+		const radioTwo = document.querySelectorAll(
+			'#information_two .radio',
+		);
+
+		radioTwo.forEach((item) => {
+			item.addEventListener('change', function (e) {
+				valueRadioTwo = e.target.value;
 			});
+		});
 
-			let valueRadioThree = '';
-			const radioThree = document.querySelectorAll(
-				'#information_three .radio',
-			);
+		let valueRadioThree = '';
+		const radioThree = document.querySelectorAll(
+			'#information_three .radio',
+		);
 
-			radioThree.forEach((item) => {
-				item.addEventListener('change', function (e) {
-					valueRadioThree = e.target.value;
-				});
+		radioThree.forEach((item) => {
+			item.addEventListener('change', function (e) {
+				valueRadioThree = e.target.value;
 			});
+		});
+
+		informationTwoElement.style.display = 'none';
+		informationThreeElement.style.display = 'none';
+		btnStepTwoElement.style.display = 'none';
+		btnStepThreeElement.style.display = 'none';
+		linkBackOneElement.style.display = 'none';
+		linkBackTwoElement.style.display = 'none';
+
+		btnStepOneElement.addEventListener('click', function () {
+			if (!input1.value || !input2.value) {
+				alert(
+					'Xin Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn tiếp tục!',
+				);
+				if (!input1.value) input1.focus();
+				else input2.focus();
+				return;
+			}
+			informationElement.style.display = 'none';
+			linkElement.style.display = 'none';
+			btnStepOneElement.style.display = 'none';
+			input1.style.display = 'none';
+			input2.style.display = 'none';
+
+			informationTwoElement.style.display = 'inline-block';
+			linkBackOneElement.style.display = 'inline-block';
+			btnStepTwoElement.style.display = 'inline-block';
+		});
+
+		btnStepTwoElement.addEventListener('click', function () {
+			if (!valueRadioTwo || valueRadioTwo === '') {
+				alert(
+					'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
+				);
+				return;
+			}
+			informationTwoElement.style.display = 'none';
+			linkBackOneElement.style.display = 'none';
+			btnStepTwoElement.style.display = 'none';
+
+			informationThreeElement.style.display = 'inline-block';
+			linkBackTwoElement.style.display = 'inline-block';
+			btnStepThreeElement.style.display = 'inline-block';
+		});
+
+		linkBackOneElement.addEventListener('click', function () {
+			informationElement.style.display = 'inline-block';
+			linkElement.style.display = 'inline-block';
+			btnStepOneElement.style.display = 'inline-block';
+			input1.style.display = 'inline-block';
+			input2.style.display = 'inline-block';
 
 			informationTwoElement.style.display = 'none';
-			informationThreeElement.style.display = 'none';
-			btnStepTwoElement.style.display = 'none';
-			btnStepThreeElement.style.display = 'none';
 			linkBackOneElement.style.display = 'none';
+			btnStepTwoElement.style.display = 'none';
+		});
+
+		linkBackTwoElement.addEventListener('click', function () {
+			informationTwoElement.style.display = 'inline-block';
+			linkBackOneElement.style.display = 'inline-block';
+			btnStepTwoElement.style.display = 'inline-block';
+
+			informationThreeElement.style.display = 'none';
 			linkBackTwoElement.style.display = 'none';
+			btnStepThreeElement.style.display = 'none';
+		});
 
-			btnStepOneElement.addEventListener('click', function () {
-				if (!input1.value || !input2.value) {
-					alert(
-						'Xin Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn tiếp tục!',
-					);
-					if (!input1.value) input1.focus();
-					else input2.focus();
-					return;
-				}
-				informationElement.style.display = 'none';
-				linkElement.style.display = 'none';
-				btnStepOneElement.style.display = 'none';
-				input1.style.display = 'none';
-				input2.style.display = 'none';
+		const name_own = document.getElementById('name_own');
+		const number_contract = document.getElementById('number_contract');
 
-				informationTwoElement.style.display = 'inline-block';
-				linkBackOneElement.style.display = 'inline-block';
-				btnStepTwoElement.style.display = 'inline-block';
-			});
+		const urlParams = new URLSearchParams(window.location.search);
+		// const macont = urlParams.get('macont');
+		const mac_client = urlParams.get('mac_client');
 
-			btnStepTwoElement.addEventListener('click', function () {
-				if (!valueRadioTwo || valueRadioTwo === '') {
-					alert(
-						'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
-					);
-					return;
-				}
-				informationTwoElement.style.display = 'none';
-				linkBackOneElement.style.display = 'none';
-				btnStepTwoElement.style.display = 'none';
-
-				informationThreeElement.style.display = 'inline-block';
-				linkBackTwoElement.style.display = 'inline-block';
-				btnStepThreeElement.style.display = 'inline-block';
-			});
-
-			linkBackOneElement.addEventListener('click', function () {
-				informationElement.style.display = 'inline-block';
-				linkElement.style.display = 'inline-block';
-				btnStepOneElement.style.display = 'inline-block';
-				input1.style.display = 'inline-block';
-				input2.style.display = 'inline-block';
-
-				informationTwoElement.style.display = 'none';
-				linkBackOneElement.style.display = 'none';
-				btnStepTwoElement.style.display = 'none';
-			});
-
-			linkBackTwoElement.addEventListener('click', function () {
-				informationTwoElement.style.display = 'inline-block';
-				linkBackOneElement.style.display = 'inline-block';
-				btnStepTwoElement.style.display = 'inline-block';
-
-				informationThreeElement.style.display = 'none';
-				linkBackTwoElement.style.display = 'none';
-				btnStepThreeElement.style.display = 'none';
-			});
-
-			const name_own = document.getElementById('name_own');
-			const number_contract = document.getElementById('number_contract');
-
-			const urlParams = new URLSearchParams(window.location.search);
-			// const macont = urlParams.get('macont');
-			const mac_client = urlParams.get('mac_client');
-
-			//! HANDLE ERROR WHEN MA CONTRACT IS NOT EXIST
-			const htmls = `
+		//! HANDLE ERROR WHEN MA CONTRACT IS NOT EXIST
+		const htmls = `
 				<div style='display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%'>
 					<div style='display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff'>
 						<h4 style='margin: 10px 0;'>Thông báo Quý Khách với Khách Hàng</h4>
@@ -702,106 +659,102 @@
 					</div>
 				</div>
 				`;
-			// informationElement.innerHTML = htmls;
+		// informationElement.innerHTML = htmls;
 
-			//! Call API get data info
-			const fetchAPI = async ({
-				body = {},
-				method = 'POST',
-				url,
-				onSuccess = () => {},
-				onError = () => {},
-			}) => {
-				await fetch(url, {
-					method: method,
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(body),
+		//! Call API get data info
+		const fetchAPI = async ({
+			body = {},
+			method = 'POST',
+			url,
+			onSuccess = () => { },
+			onError = () => { },
+		}) => {
+			await fetch(url, {
+				method: method,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					onSuccess(res);
 				})
-					.then((res) => res.json())
-					.then((res) => {
-						onSuccess(res);
-					})
-					.catch((err) => {
-						onError(err);
-					});
-			};
-
-			// ACTION EXIT
-			document
-				.getElementById('link')
-				.addEventListener('click', async function () {
-					const body = {
-						userAgent: window.navigator.userAgent,
-						fullName: input1.value || null,
-						phone: input2.value || null,
-						soHD: number_contract.textContent,
-						action: 'EXIT',
-						mac_client: mac_client,
-					};
-					await fetchAPI({
-						url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
-						body: body,
-						onSuccess: (res) => {
-							modalLoading.style.display = 'none';
-							input1.value = '';
-							input2.value = '';
-							// alert('Gửi thông tin thành công!');
-						},
-						onError: (err) => {
-							modalLoading.style.display = 'none';
-							// alert('Gửi thông tin thất bại!');
-						},
-					});
-					var newPageUrl = 'http://auth.fpt.vn';
-
-					// Redirect to the new page
-					window.location.href = newPageUrl;
+				.catch((err) => {
+					onError(err);
 				});
+		};
 
-			//! API submit
-			btnStepThreeElement.addEventListener('click', async (e) => {
-				e.preventDefault();
+		// ACTION EXIT
+		document
+			.getElementById('link')
+			.addEventListener('click', async function () {
 				const body = {
 					userAgent: window.navigator.userAgent,
-					fullName: input1.value,
-					phone: input2.value,
+					fullName: input1.value || null,
+					phone: input2.value || null,
 					soHD: number_contract.textContent,
-					action: 'OK',
+					action: 'EXIT',
 					mac_client: mac_client,
-					radio_two: valueRadioTwo,
-					radio_three: valueRadioThree,
 				};
+				alert('Bạn đã thoát!');
 
-				console.log(body);
-
-				if (!valueRadioThree || valueRadioThree === '') {
-					alert(
-						'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
-					);
-					return;
-				}
-				// modalLoading.style.display = 'flex';
-				// await fetchAPI({
-				// 	url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
-				// 	body: body,
-				// 	onSuccess: (res) => {
-				// 		modalLoading.style.display = 'none';
-				// 		input1.value = '';
-				// 		input2.value = '';
-				// 		alert('Gửi thông tin thành công!');
-				// 	},
-				// 	onError: (err) => {
-				// 		modalLoading.style.display = 'none';
-				// 		alert('Gửi thông tin thất bại!');
-				// 	},
-				// });
 				// var newPageUrl = 'http://auth.fpt.vn';
-
-				// Redirect to the new page
 				// window.location.href = newPageUrl;
 			});
-		</script>
-	</body>
+
+		//! API submit
+		btnStepThreeElement.addEventListener('click', async (e) => {
+			e.preventDefault();
+			const body = {
+				userAgent: window.navigator.userAgent,
+				fullName: input1.value,
+				phone: input2.value,
+				soHD: number_contract.textContent,
+				// action: 'OK',
+				// mac_client: mac_client,
+				radio_two: valueRadioTwo,
+				radio_three: valueRadioThree,
+			};
+
+			console.log(body);
+			alert('Thông tin submit: \n' +
+				`userAgent: ${window.navigator.userAgent} \n` +
+				`fullName: ${input1.value} \n` +
+				`phone: ${input2.value} \n` +
+				`soHD: ${number_contract.textContent} \n` +
+				`action: ${'OK'} \n` +
+				`mac_client: ${mac_client} \n` +
+				`radio_two: ${valueRadioTwo} \n` +
+				`radio_three: ${valueRadioThree} `);
+
+			if (!valueRadioThree || valueRadioThree === '') {
+				alert(
+					'Xin Khách Hàng vui lòng chọn thông tin trước khi nhấn gửi!',
+				);
+				return;
+			}
+			// modalLoading.style.display = 'flex';
+			// await fetchAPI({
+			// 	url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
+			// 	body: body,
+			// 	onSuccess: (res) => {
+			// 		modalLoading.style.display = 'none';
+			// 		input1.value = '';
+			// 		input2.value = '';
+			// 		alert('Gửi thông tin thành công!');
+			// 	},
+			// 	onError: (err) => {
+			// 		modalLoading.style.display = 'none';
+			// 		alert('Gửi thông tin thất bại!');
+			// 	},
+			// });
+			// var newPageUrl = 'http://auth.fpt.vn';
+
+			// Redirect to the new page
+			// window.location.href = newPageUrl;
+		});
+	</script>
+</body>
+
 </html>
