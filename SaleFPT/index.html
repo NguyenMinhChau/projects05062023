@@ -7,6 +7,12 @@
 		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
 		<meta property="og:image" content="./fpt-logo.png" />
 		<meta name="description" content="FPT Telecom" />
+		<script
+			defer
+			async
+			src="https://kit.fontawesome.com/cc3041f69f.js"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<style>
 		body,
@@ -43,6 +49,21 @@
 		.container_top {
 			width: 100%;
 			box-sizing: border-box;
+			position: relative;
+		}
+
+		.icon_close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 40px;
+			height: 40px;
+			background-color: #ffffff5a;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 		}
 
 		.container_bottom {
@@ -290,7 +311,14 @@
 
 	<body>
 		<div class="container" loading="lazy">
-			<div class="container_top"></div>
+			<div class="container_top">
+				<div class="icon_close" id="close">
+					<i
+						class="fa-regular fa-circle-xmark"
+						style="font-size: 20px; color: #fff"
+					></i>
+				</div>
+			</div>
 			<div class="container_bottom">
 				<div class="bottom_content">
 					<div class="bottom_content_input_container">
@@ -300,7 +328,9 @@
 							id="phone"
 						/>
 						<div class="bottom_content_input_icon">
-							<span style="color: white">>></span>
+							<span style="color: white"
+								><i class="fa-solid fa-angles-right"></i
+							></span>
 						</div>
 					</div>
 					<div class="bottom_content_actions_container">
@@ -328,6 +358,8 @@
 		<script async defer>
 			const btnSubmitElement = document.getElementById('button_submit');
 			const btnExitElement = document.getElementById('button_exit');
+			const closeElement = document.getElementById('close');
+			const phoneElement = document.getElementById('phone');
 			const modalLoading = document.querySelector('.modal-loading');
 			const containerElement = document.querySelector('.container');
 			const containerTopElement =
@@ -361,8 +393,6 @@
 				let heightInputIcon = '60px';
 				let heightActionBtn = '55px';
 				let gapBottomContent = '25px';
-
-				console.log('screenWidth: ', screenWidth);
 
 				if (screenWidth === 320) {
 					imageUrl = './sale_mobile.png';
@@ -466,11 +496,46 @@
 
 			window.addEventListener('resize', updateBackground);
 
+			let phoneValue = phoneElement.value;
+
 			btnSubmitElement.addEventListener('click', (e) => {
 				e.preventDefault();
+				if (!phoneElement?.value) {
+					alert('Vui lòng nhập số điện thoại');
+					phoneElement.focus();
+					return;
+				} else {
+					if (
+						phoneElement?.value?.length < 10 ||
+						phoneElement?.value?.length > 11
+					) {
+						alert('Số điện thoại không hợp lệ');
+						phoneElement.focus();
+						return;
+					}
+				}
+
+				modalLoading.style.display = 'flex';
+				setTimeout(() => {
+					modalLoading.style.display = 'none';
+					alert(
+						`Đăng ký thành công\nChúng tôi sẽ liên hệ với bạn sớm nhất qua số điện thoại ${phoneElement?.value} bạn đã cung cấp.\nXin chân thành cảm ơn!`,
+					);
+				}, 3000);
 			});
 			btnExitElement.addEventListener('click', (e) => {
 				e.preventDefault();
+				const isConfirm = confirm('Bạn có chắc chắn muốn thoát?');
+				if (isConfirm) {
+					window.close();
+				}
+			});
+			closeElement.addEventListener('click', (e) => {
+				e.preventDefault();
+				const isConfirm = confirm('Bạn có chắc chắn muốn thoát?');
+				if (isConfirm) {
+					window.close();
+				}
 			});
 		</script>
 	</body>
