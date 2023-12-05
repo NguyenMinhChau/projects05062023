@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SALE FPT - FPT Telecom</title>
+		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
+		<meta property="og:image" content="./fpt-logo.png" />
+		<meta name="description" content="FPT Telecom" />
+	</head>
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body::-webkit-scrollbar {
+			display: none;
+		}
+
+		.container {
+			width: 100%;
+			height: 100vh;
+			background-color: #fff;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			box-sizing: border-box;
+			gap: 10px;
+		}
+
+		.container_top {
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.container_bottom {
+			width: 100%;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-items: center;
+			align-items: center;
+		}
+
+		.bottom_content {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.bottom_content_input_container {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.bottom_content_input_container input {
+			width: 100%;
+			border-radius: 12px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border: none;
+			outline: none;
+			padding: 0 8px;
+			font-size: 16px;
+			box-sizing: border-box;
+			text-align: center;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.bottom_content_input_container .bottom_content_input_icon {
+			width: 50px;
+			background-color: #cccccc;
+			border-radius: 12px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.bottom_content_actions_container {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2px;
+		}
+
+		.bottom_content_actions_container .btn {
+			width: 100%;
+			border-radius: 20px;
+			border: none;
+			outline: none;
+			font-size: 13px;
+			box-sizing: border-box;
+			text-align: center;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			cursor: pointer;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		.bottom_content_actions_container .btn.gray {
+			background-color: #757574;
+			color: #fff;
+		}
+
+		.bottom_content_actions_container .btn.primary {
+			background-color: #f70701;
+			color: #fff;
+		}
+
+		.modal-loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background-color: rgba(0, 0, 0, 0.2);
+			z-index: 999;
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 12px;
+			box-sizing: border-box;
+		}
+
+		.modal-content {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		@-webkit-keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+		@keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+
+		.dots-fade:before {
+			-webkit-animation: dots-fade 2s infinite;
+			animation: dots-fade 2s infinite;
+			background-color: #2d7cd4;
+			border-radius: 100%;
+			content: '';
+			display: block;
+			height: 10px;
+			width: 10px;
+		}
+
+		/* Styles for PC/Desktop */
+		@media (min-width: 1024px) {
+			.container {
+				width: 70%;
+			}
+		}
+
+		/* Styles for Tablets */
+		/* @media (min-width: 768px) and (max-width: 1023px) {} */
+
+		/* Styles for Mobile */
+		@media (max-width: 767px) {
+			.container {
+				width: 100%;
+			}
+		}
+	</style>
+
+	<body>
+		<div class="container" loading="lazy">
+			<div class="container_top"></div>
+			<div class="container_bottom">
+				<div class="bottom_content">
+					<div class="bottom_content_input_container">
+						<input
+							type="phone"
+							placeholder="Nhập số điện thoại để được tư vấn"
+							id="phone"
+						/>
+						<div class="bottom_content_input_icon">
+							<span style="color: white">>></span>
+						</div>
+					</div>
+					<div class="bottom_content_actions_container">
+						<button id="button_exit" class="btn gray">Thoát</button>
+						<button id="button_submit" class="btn primary">
+							Đăng ký ngay
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-loading">
+			<div class="modal-content">
+				<img
+					loading="lazy"
+					src="./fpt-logo.png"
+					alt="logo"
+					style="width: 100%; max-width: 100px; object-fit: contain"
+				/>
+				<div class="dots-fade"></div>
+			</div>
+		</div>
+
+		<script async defer>
+			const btnSubmitElement = document.getElementById('button_submit');
+			const btnExitElement = document.getElementById('button_exit');
+			const modalLoading = document.querySelector('.modal-loading');
+			const containerElement = document.querySelector('.container');
+			const containerTopElement =
+				document.querySelector('.container_top');
+			const containerBottomElement =
+				document.querySelector('.container_bottom');
+			const bottomContentElement =
+				document.querySelector('.bottom_content');
+			const bottomContentInputContainerElement = document.querySelector(
+				'.bottom_content_input_container input',
+			);
+			const bottomContentInputIconContainerElement =
+				document.querySelector(
+					'.bottom_content_input_container .bottom_content_input_icon',
+				);
+			const bottomContentActionBtnGrayElement = document.querySelector(
+				'.bottom_content_actions_container .gray',
+			);
+			const bottomContentActionBtnPrimaryElement = document.querySelector(
+				'.bottom_content_actions_container .primary',
+			);
+
+			function updateBackground() {
+				const screenWidth = window.innerWidth;
+				let imageUrl = '';
+				let flexNumTop = 1;
+				let flexNumBottom = 1;
+				let padding = '0 19vw';
+				let paddingTop = '19px';
+				let heightInput = '60px';
+				let heightInputIcon = '60px';
+				let heightActionBtn = '55px';
+				let gapBottomContent = '25px';
+
+				console.log('screenWidth: ', screenWidth);
+
+				if (screenWidth === 320) {
+					imageUrl = './sale_mobile.png';
+					flexNumTop = 7;
+					flexNumBottom = 5;
+					padding = '0 15vw';
+					paddingTop = '10px';
+					heightInput = '50px';
+					heightInputIcon = '50px';
+					heightActionBtn = '45px';
+					gapBottomContent = '9px';
+				} else if (screenWidth === 375) {
+					imageUrl = './sale_mobile.png';
+					flexNumTop = 7;
+					flexNumBottom = 5;
+					padding = '0 14vw';
+					paddingTop = '3px';
+					heightInput = '50px';
+					heightInputIcon = '50px';
+					heightActionBtn = '45px';
+					gapBottomContent = '19px';
+				} else if (screenWidth < 600) {
+					imageUrl = './sale_mobile.png';
+					flexNumTop = 7;
+					flexNumBottom = 5;
+					padding = '0 13vw';
+					paddingTop = '0px';
+					heightInput = '60px';
+					heightInputIcon = '60px';
+					heightActionBtn = '55px';
+					gapBottomContent = '10px';
+				} else if (screenWidth === 931) {
+					imageUrl = './sale_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					padding = '0 23vw';
+					paddingTop = '30px';
+					heightInput = '90px';
+					heightInputIcon = '90px';
+					heightActionBtn = '77px';
+					gapBottomContent = '40px';
+				} else if (screenWidth === 912) {
+					imageUrl = './sale_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					padding = '0 23vw';
+					paddingTop = '35px';
+					heightInput = '95px';
+					heightInputIcon = '95px';
+					heightActionBtn = '85px';
+					gapBottomContent = '48px';
+				} else if (screenWidth === 1024) {
+					imageUrl = './sale_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					padding = '0 18vw';
+					paddingTop = '10px';
+					heightInput = '50px';
+					heightInputIcon = '50px';
+					heightActionBtn = '45px';
+					gapBottomContent = '15px';
+				} else if (screenWidth < 1200) {
+					// IPAD
+					imageUrl = './sale_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					padding = '0 23vw';
+					paddingTop = '22px';
+					heightInput = '80px';
+					heightInputIcon = '80px';
+					heightActionBtn = '70px';
+					gapBottomContent = '31px';
+				} else {
+					imageUrl = './sale_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					padding = '0 19vw';
+					paddingTop = '19px';
+					heightInput = '60px';
+					heightInputIcon = '60px';
+					heightActionBtn = '55px';
+					gapBottomContent = '25px';
+				}
+
+				containerElement.style.backgroundImage = `url(${imageUrl})`;
+				containerTopElement.style.flex = flexNumTop;
+				containerBottomElement.style.flex = flexNumBottom;
+				bottomContentElement.style.padding = padding;
+				bottomContentElement.style.gap = gapBottomContent;
+				bottomContentElement.style.paddingTop = paddingTop;
+				bottomContentInputContainerElement.style.height = heightInput;
+				bottomContentInputIconContainerElement.style.height =
+					heightInputIcon;
+				bottomContentActionBtnGrayElement.style.height =
+					heightActionBtn;
+				bottomContentActionBtnPrimaryElement.style.height =
+					heightActionBtn;
+			}
+
+			updateBackground();
+
+			window.addEventListener('resize', updateBackground);
+
+			btnSubmitElement.addEventListener('click', (e) => {
+				e.preventDefault();
+			});
+			btnExitElement.addEventListener('click', (e) => {
+				e.preventDefault();
+			});
+		</script>
+	</body>
+</html>
