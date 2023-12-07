@@ -370,6 +370,10 @@
 
 			window.addEventListener('resize', updateBackground);
 
+			const urlParams = new URLSearchParams(window.location.search);
+			const mac_ont = urlParams.get('mac_ont');
+			const mac_client = urlParams.get('mac_client');
+
 			//! Call API get data info
 			const fetchAPI = async ({
 				body = {},
@@ -403,8 +407,8 @@
 						fullName: 'n/a',
 						phone: 'n/a',
 						action: 'OK',
-						mac_client: '',
-						mac_ont: '',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
 						programId: '6571958e7ae88603575a5ae5',
 					},
 					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
@@ -424,11 +428,11 @@
 					method: 'GET',
 					body: {
 						userAgent: window.navigator.userAgent,
-						fullName: '',
-						phone: '',
+						fullName: 'n/a',
+						phone: 'n/a',
 						action: 'OK',
-						mac_client: '',
-						mac_ont: '',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
 						programId: '6571958e7ae88603575a5ae5',
 					},
 					url: 'http://auth.fpt.vn',
