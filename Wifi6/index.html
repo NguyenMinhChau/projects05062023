@@ -411,7 +411,17 @@
 						mac_ont: mac_ont,
 						programId: '6571958e7ae88603575a5ae5',
 					},
-					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite'
+					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
+					onSuccess: (res) => {
+						if (res.status === 200) {
+							window.location.href = ' http://auth.fpt.vn';
+						} else {
+							alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+						}
+					},
+					onError: (err) => {
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
 				});
 
 				await fetchAPI({
