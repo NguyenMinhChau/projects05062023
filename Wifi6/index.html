@@ -373,6 +373,8 @@
 			const urlParams = new URLSearchParams(window.location.search);
 			const mac_ont = urlParams.get('mac_ont');
 			const mac_client = urlParams.get('mac_client');
+			const URL_BACKEND = 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
+			const URL_VERIFY = 'http://auth.fpt.vn';
 
 			//! Call API get data info
 			const fetchAPI = async ({
@@ -400,7 +402,6 @@
 			// ok
 			actionImgElement.addEventListener('click', async (e) => {
 				e.preventDefault();
-				// window.location.href = 'http://auth.fpt.vn';
 				await fetchAPI({
 					body: {
 						userAgent: window.navigator.userAgent,
@@ -411,10 +412,10 @@
 						mac_ont: mac_ont,
 						programId: '6571958e7ae88603575a5ae5',
 					},
-					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
+					url: URL_BACKEND,
 					onSuccess: (res) => {
 						if (res.status === 200) {
-							window.location.href = ' http://auth.fpt.vn';
+							window.location.href = URL_VERIFY;
 						} else {
 							alert('Có lỗi xảy ra, vui lòng thử lại sau!');
 						}
@@ -435,21 +436,13 @@
 						mac_ont: mac_ont,
 						programId: '6571958e7ae88603575a5ae5',
 					},
-					url: 'http://auth.fpt.vn',
-					onSuccess: (res) => {
-						if (res.status === 200) {
-							window.location.href =
-								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
-						} else {
-							alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-						}
-					},
-					onError: (err) => {
-						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-					},
+					url: URL_VERIFY
 				});
+
+				window.location.href = 'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6'
 			});
 
+			// exit
 			btnCloseElement.addEventListener('click', async (e) => {
 				e.preventDefault();
 				await fetchAPI({
@@ -462,18 +455,9 @@
 						mac_ont: '',
 						programId: '6571958e7ae88603575a5ae5',
 					},
-					url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
-					onSuccess: (res) => {
-						if (res.status === 200) {
-							window.location.href = ' http://auth.fpt.vn';
-						} else {
-							alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-						}
-					},
-					onError: (err) => {
-						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-					},
+					url: URL_BACKEND
 				});
+				window.location.href = URL_VERIFY;
 			});
 		</script>
 	</body>
