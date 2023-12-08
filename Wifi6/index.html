@@ -96,8 +96,6 @@
 			justify-content: center;
 			border-radius: 10px;
 			width: 100%;
-			background: rgb(2, 0, 36);
-			background-color: #ffffff3a;
 			padding: 15px;
 			box-sizing: border-box;
 		}
@@ -116,6 +114,7 @@
 			width: 100%;
 			display: flex;
 			justify-content: center;
+			margin-top: 10px;
 		}
 
 		.btn {
@@ -303,6 +302,7 @@
 			</div>
 			<div class="container_bottom">
 				<div class="bottom_content">
+					<div style="text-align: center; text-transform: uppercase; font-size: 15px; color: #fff; margin-bottom: 15px; font-weight: bold;">Thông tin liên hệ tư vấn</div>
 					<input
 						type="text"
 						placeholder="NHẬP TÊN LIÊN HỆ"
@@ -367,7 +367,7 @@
 				let heightBottomContentInput = '40px';
 				let heightActionSendContent = '40px';
 
-				// console.log(screenWidth);
+				console.log(screenWidth);
 
 				if (screenWidth === 280) {
 					imageUrl = './wifi6_mobile.png';
@@ -423,15 +423,42 @@
 					marginBottomContent = '13vh 5vw 15vh 5vw';
 					heightBottomContentInput = '35px';
 					heightActionSendContent = '35px';
-				} else if (screenWidth === 931) {
+				} else if (screenWidth === 768) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '290px';
 					marginBottomContent = '5vh 3vw 15vh 50vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
+				} else if (screenWidth === 820) {
+					imageUrl = './wifi6_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '45px';
+				 	heightActionSendContent = '45px';
+				} else if (screenWidth === 779) {
+					imageUrl = './wifi6_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '45px';
+				 	heightActionSendContent = '45px';
+				}else if (screenWidth === 931) {
+					imageUrl = './wifi6_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				} else if (screenWidth === 912) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
@@ -439,8 +466,8 @@
 					widthAction = '60%';
 					widthImg = '300px';
 					marginBottomContent = '5vh 3vw 15vh 50vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				} else if (screenWidth === 1024) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
@@ -448,8 +475,8 @@
 					widthAction = '60%';
 					widthImg = '250px';
 					marginBottomContent = '3vh 3vw 15vh 35vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				} else if (screenWidth === 1280) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
@@ -457,8 +484,8 @@
 					widthAction = '60%';
 					widthImg = '250px';
 					marginBottomContent = '3vh 3vw 15vh 35vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				} else if (screenWidth < 1200) {
 					// IPAD
 					imageUrl = './wifi6_laptop.png';
@@ -466,18 +493,18 @@
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '250px';
-					marginBottomContent = '5vh 3vw 15vh 50vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					marginBottomContent = '5vh 8vw 15vh 38vw';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				} else {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '250px';
-					marginBottomContent = '5vh 3vw 15vh 35vw';
-					heightBottomContentInput = '40px';
-					heightActionSendContent = '40px';
+					marginBottomContent = '5vh 8vw 15vh 38vw';
+					heightBottomContentInput = '45px';
+					heightActionSendContent = '45px';
 				}
 
 				containerElement.style.backgroundImage =
