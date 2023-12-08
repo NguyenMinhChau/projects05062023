@@ -34,7 +34,6 @@
 		.container {
 			width: 100%;
 			height: 100vh;
-			background-color: #fff;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
@@ -86,6 +85,49 @@
 			width: 100%;
 			box-sizing: border-box;
 			position: relative;
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.bottom_content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			width: 100%;
+			background: rgb(2, 0, 36);
+			background-color: #ffffff3a;
+			padding: 15px;
+			box-sizing: border-box;
+		}
+
+		.bottom_content input {
+			width: 100%;
+			border-radius: 10px;
+			border: 1px solid #0000005a;
+			outline: none;
+			padding: 0 10px;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+		}
+
+		.btn_container {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+
+		.btn {
+			width: 100%;
+			border-radius: 10px;
+			border: none;
+			outline: none;
+			background-color: #2d7cd4;
+			color: #fff;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
 		}
 
 		.modal-loading {
@@ -259,7 +301,23 @@
 					<img src="./wifi6_button.png" />
 				</div>
 			</div>
-			<div class="container_bottom"></div>
+			<div class="container_bottom">
+				<div class="bottom_content">
+					<input
+						type="text"
+						placeholder="NHẬP TÊN LIÊN HỆ"
+						id="user_name"
+					/>
+					<input
+						type="text"
+						placeholder="NHẬP SỐ ĐIỆN THOẠI LIÊN HỆ"
+						id="phone"
+					/>
+					<div class="btn_container">
+						<button id="button_send" class="btn">Gửi</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="modal-loading">
@@ -274,7 +332,7 @@
 			</div>
 		</div>
 
-		<script async defer>
+		<script async>
 			const btnCloseElement = document.getElementById('close');
 			const btnActionElement = document.getElementById('action');
 
@@ -285,6 +343,17 @@
 			const containerBottomElement =
 				document.querySelector('.container_bottom');
 			const actionImgElement = document.querySelector('#action img');
+			const bottomContentElement =
+				document.querySelector('.bottom_content');
+			const bottomContentInputUserNameElement = document.querySelector(
+				'.bottom_content #user_name',
+			);
+			const bottomContentInputPhoneElement = document.querySelector(
+				'.bottom_content #phone',
+			);
+			const bottomContentActionSend = document.querySelector(
+				'.bottom_content .btn',
+			);
 
 			function updateBackground() {
 				const screenWidth = window.innerWidth;
@@ -294,6 +363,11 @@
 				let widthAction = '90%';
 				let widthImg = '230px';
 				let marginTopAction = '0px';
+				let marginBottomContent = '13vh 15vw 15vh 15vw';
+				let heightBottomContentInput = '40px';
+				let heightActionSendContent = '40px';
+
+				// console.log(screenWidth);
 
 				if (screenWidth === 280) {
 					imageUrl = './wifi6_mobile.png';
@@ -301,48 +375,90 @@
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '180px';
+					marginBottomContent = '13vh 5vw 15vh 5vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
 				} else if (screenWidth === 320) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '180px';
+					marginBottomContent = '13vh 15vw 15vh 15vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				} else if (screenWidth === 375) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '180px';
+					marginBottomContent = '13vh 5vw 15vh 5vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
+				} else if (screenWidth === 414) {
+					imageUrl = './wifi6_mobile.png';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '230px';
+					marginBottomContent = '13vh 5vw 15vh 5vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
 				} else if (screenWidth === 540) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '200px';
+					marginBottomContent = '13vh 15vw 15vh 15vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
 				} else if (screenWidth < 600) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '230px';
+					marginBottomContent = '13vh 5vw 15vh 5vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
 				} else if (screenWidth === 931) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				} else if (screenWidth === 912) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '300px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				} else if (screenWidth === 1024) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '250px';
+					marginBottomContent = '3vh 3vw 15vh 35vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
+				} else if (screenWidth === 1280) {
+					imageUrl = './wifi6_laptop.png';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '250px';
+					marginBottomContent = '3vh 3vw 15vh 35vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				} else if (screenWidth < 1200) {
 					// IPAD
 					imageUrl = './wifi6_laptop.png';
@@ -350,20 +466,33 @@
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '250px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				} else {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
 					widthAction = '60%';
 					widthImg = '250px';
+					marginBottomContent = '5vh 3vw 15vh 35vw';
+					heightBottomContentInput = '40px';
+					heightActionSendContent = '40px';
 				}
 
-				containerElement.style.backgroundImage = `url(${imageUrl})`;
+				containerElement.style.backgroundImage =
+					'url(' + imageUrl + ')';
 				containerTopElement.style.flex = flexNumTop;
 				containerBottomElement.style.flex = flexNumBottom;
 				actionImgElement.style.width = widthImg;
 				btnActionElement.style.width = widthAction;
 				btnActionElement.style.marginTop = marginTopAction;
+				bottomContentElement.style.margin = marginBottomContent;
+				bottomContentInputUserNameElement.style.height =
+					heightBottomContentInput;
+				bottomContentInputPhoneElement.style.height =
+					heightBottomContentInput;
+				bottomContentActionSend.style.height = heightActionSendContent;
 			}
 
 			updateBackground();
@@ -375,7 +504,6 @@
 			const mac_client = urlParams.get('mac_client');
 			const URL_BACKEND =
 				'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
-			const URL_VERIFY = 'http://auth.fpt.vn';
 
 			//! Call API get data info
 			const fetchAPI = async ({
@@ -400,59 +528,84 @@
 						onError(err);
 					});
 			};
+
 			// ok
 			actionImgElement.addEventListener('click', async (e) => {
 				e.preventDefault();
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: 'n/a',
+						phone: 'n/a',
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						console.log('Send data success');
+					},
+					onError: (err) => {
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
+
 				const xhr = new XMLHttpRequest();
-				xhr.open('GET', URL_VERIFY, true);
+				xhr.open('GET', '${URL_VERIFY}', true);
 				xhr.onreadystatechange = function () {
 					if (xhr.readyState === 4) {
 						if (xhr.status === 200) {
-							window.location.href = URL_BACKEND;
+							window.location.href =
+								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
 						} else {
-							window.location.href = URL_BACKEND;
+							window.location.href =
+								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
 						}
 					}
 				};
 				xhr.send();
-				// await fetchAPI({
-				// 	body: {
-				// 		userAgent: window.navigator.userAgent,
-				// 		fullName: 'n/a',
-				// 		phone: 'n/a',
-				// 		action: 'OK',
-				// 		mac_client: mac_client,
-				// 		mac_ont: mac_ont,
-				// 		programId: '6571958e7ae88603575a5ae5',
-				// 	},
-				// 	url: URL_BACKEND,
-				// 	onSuccess: (res) => {
-				// 		if (res.status === 200) {
-				// 			window.location.href = URL_VERIFY;
-				// 		} else {
-				// 			alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-				// 		}
-				// 	},
-				// 	onError: (err) => {
-				// 		alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-				// 	},
-				// });
+			});
 
-				// await fetchAPI({
-				// 	method: 'GET',
-				// 	body: {
-				// 		userAgent: window.navigator.userAgent,
-				// 		fullName: 'n/a',
-				// 		phone: 'n/a',
-				// 		action: 'OK',
-				// 		mac_client: mac_client,
-				// 		mac_ont: mac_ont,
-				// 		programId: '6571958e7ae88603575a5ae5',
-				// 	},
-				// 	url: URL_VERIFY
-				// });
+			// send
+			bottomContentActionSend.addEventListener('click', async (e) => {
+				e.preventDefault();
+				const userName = bottomContentInputUserNameElement.value;
+				const phone = bottomContentInputPhoneElement.value;
 
-				// window.location.href = 'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6'
+				if (userName === '') {
+					alert('Vui lòng nhập họ và tên');
+					bottomContentInputUserNameElement.focus();
+					return;
+				} else if (phone === '') {
+					alert('Vui lòng nhập số điện thoại');
+					bottomContentInputPhoneElement.focus();
+					return;
+				}
+
+				modalLoading.style.display = 'flex';
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: userName,
+						phone: phone,
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						console.log('Send data success');
+						modalLoading.style.display = 'none';
+						alert('Gửi thông tin thành công!');
+						window.location.href = '${URL_VERIFY}';
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
 			});
 
 			// exit
@@ -461,16 +614,16 @@
 				await fetchAPI({
 					body: {
 						userAgent: window.navigator.userAgent,
-						fullName: '',
-						phone: '',
+						fullName: 'n/a',
+						phone: 'n/a',
 						action: 'EXIT',
-						mac_client: '',
-						mac_ont: '',
-						programId: '6571958e7ae88603575a5ae5',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
 					},
 					url: URL_BACKEND,
 				});
-				window.location.href = URL_VERIFY;
+				window.location.href = '${URL_VERIFY}';
 			});
 		</script>
 	</body>
