@@ -373,7 +373,8 @@
 			const urlParams = new URLSearchParams(window.location.search);
 			const mac_ont = urlParams.get('mac_ont');
 			const mac_client = urlParams.get('mac_client');
-			const URL_BACKEND = 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
+			const URL_BACKEND =
+				'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
 			const URL_VERIFY = 'http://auth.fpt.vn';
 
 			//! Call API get data info
@@ -402,44 +403,56 @@
 			// ok
 			actionImgElement.addEventListener('click', async (e) => {
 				e.preventDefault();
-				await fetchAPI({
-					body: {
-						userAgent: window.navigator.userAgent,
-						fullName: 'n/a',
-						phone: 'n/a',
-						action: 'OK',
-						mac_client: mac_client,
-						mac_ont: mac_ont,
-						programId: '6571958e7ae88603575a5ae5',
-					},
-					url: URL_BACKEND,
-					onSuccess: (res) => {
-						if (res.status === 200) {
-							window.location.href = URL_VERIFY;
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', URL_VERIFY, true);
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if (xhr.status === 200) {
+							window.location.href = URL_BACKEND;
 						} else {
-							alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+							window.location.href = URL_BACKEND;
 						}
-					},
-					onError: (err) => {
-						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-					},
-				});
+					}
+				};
+				xhr.send();
+				// await fetchAPI({
+				// 	body: {
+				// 		userAgent: window.navigator.userAgent,
+				// 		fullName: 'n/a',
+				// 		phone: 'n/a',
+				// 		action: 'OK',
+				// 		mac_client: mac_client,
+				// 		mac_ont: mac_ont,
+				// 		programId: '6571958e7ae88603575a5ae5',
+				// 	},
+				// 	url: URL_BACKEND,
+				// 	onSuccess: (res) => {
+				// 		if (res.status === 200) {
+				// 			window.location.href = URL_VERIFY;
+				// 		} else {
+				// 			alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+				// 		}
+				// 	},
+				// 	onError: (err) => {
+				// 		alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+				// 	},
+				// });
 
-				await fetchAPI({
-					method: 'GET',
-					body: {
-						userAgent: window.navigator.userAgent,
-						fullName: 'n/a',
-						phone: 'n/a',
-						action: 'OK',
-						mac_client: mac_client,
-						mac_ont: mac_ont,
-						programId: '6571958e7ae88603575a5ae5',
-					},
-					url: URL_VERIFY
-				});
+				// await fetchAPI({
+				// 	method: 'GET',
+				// 	body: {
+				// 		userAgent: window.navigator.userAgent,
+				// 		fullName: 'n/a',
+				// 		phone: 'n/a',
+				// 		action: 'OK',
+				// 		mac_client: mac_client,
+				// 		mac_ont: mac_ont,
+				// 		programId: '6571958e7ae88603575a5ae5',
+				// 	},
+				// 	url: URL_VERIFY
+				// });
 
-				window.location.href = 'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6'
+				// window.location.href = 'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6'
 			});
 
 			// exit
@@ -455,7 +468,7 @@
 						mac_ont: '',
 						programId: '6571958e7ae88603575a5ae5',
 					},
-					url: URL_BACKEND
+					url: URL_BACKEND,
 				});
 				window.location.href = URL_VERIFY;
 			});
