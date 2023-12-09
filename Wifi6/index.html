@@ -367,8 +367,6 @@
 				let heightBottomContentInput = '40px';
 				let heightActionSendContent = '40px';
 
-				console.log(screenWidth);
-
 				if (screenWidth === 280) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
@@ -387,13 +385,24 @@
 					marginBottomContent = '13vh 15vw 15vh 15vw';
 					heightBottomContentInput = '40px';
 					heightActionSendContent = '40px';
-				} else if (screenWidth === 375) {
+				}
+				else if (screenWidth === 360) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '180px';
-					marginBottomContent = '13vh 5vw 15vh 5vw';
+					marginBottomContent = '10vh 15vw 15vh 15vw';
+					heightBottomContentInput = '35px';
+					heightActionSendContent = '35px';
+				}
+				else if (screenWidth === 375) {
+					imageUrl = './wifi6_mobile.png';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '9vh 5vw 15vh 5vw';
 					heightBottomContentInput = '35px';
 					heightActionSendContent = '35px';
 				} else if (screenWidth === 414) {
@@ -411,16 +420,16 @@
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '200px';
-					marginBottomContent = '13vh 15vw 15vh 15vw';
+					marginBottomContent = '10vh 15vw 15vh 15vw';
 					heightBottomContentInput = '35px';
 					heightActionSendContent = '35px';
-				} else if (screenWidth < 600) {
+				} else if (screenWidth <= 670) {
 					imageUrl = './wifi6_mobile.png';
 					flexNumTop = 5;
 					flexNumBottom = 8;
 					widthAction = '90%';
 					widthImg = '230px';
-					marginBottomContent = '13vh 5vw 15vh 5vw';
+					marginBottomContent = '13vh 10vw 15vh 5vw';
 					heightBottomContentInput = '35px';
 					heightActionSendContent = '35px';
 				} else if (screenWidth === 768) {
@@ -450,7 +459,7 @@
 					marginBottomContent = '5vh 3vw 15vh 50vw';
 					heightBottomContentInput = '45px';
 				 	heightActionSendContent = '45px';
-				}else if (screenWidth === 931) {
+				}else if (screenWidth === 912) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
@@ -459,7 +468,7 @@
 					marginBottomContent = '5vh 3vw 15vh 50vw';
 					heightBottomContentInput = '45px';
 					heightActionSendContent = '45px';
-				} else if (screenWidth === 912) {
+				} else if (screenWidth === 931) {
 					imageUrl = './wifi6_laptop.png';
 					flexNumTop = 1;
 					flexNumBottom = 1;
