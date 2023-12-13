@@ -4,12 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Pay Wifi TVU - FPT Telecom</title>
-		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
-		<meta property="og:image" content="./fpt-logo.png" />
+		<link
+			rel="icon"
+			href="https://${IP_HOST_SERVER}${BASE_PATH_API + STATIC_PATH_FOLDER}/favicon-16x16.png"
+			type="image/png"
+		/>
+		<meta
+			property="og:image"
+			content="https://${IP_HOST_SERVER}${BASE_PATH_API + STATIC_PATH_FOLDER}/fpt-logo.png"
+		/>
 		<meta
 			name="description"
 			content="FPT Telecom - Pay Wifi Trường Đại Học Trà Vinh"
 		/>
+		<script
+			type="text/javascript"
+			src="https://${IP_HOST_SERVER}${BASE_PATH_API + STATIC_PATH_ASSETS_MODULE}/crypto4.0.0.min.js"
+		></script>
 	</head>
 	<style>
 		body,
@@ -32,7 +43,7 @@
 			width: 450px;
 			height: 100vh;
 			background-color: #fff;
-			background-image: url('./pay-wifi.jpg');
+			background-image: url('https://${IP_HOST_SERVER}${BASE_PATH_API + STATIC_PATH_FOLDER}/pay-wifi.jpg');
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
@@ -60,7 +71,7 @@
 		}
 
 		.container-bottom input {
-			width: 50%;
+			width: 70%;
 			height: 50px;
 			border-radius: 6px;
 			border: none;
@@ -239,7 +250,7 @@
 		/* Styles for PC/Desktop */
 		@media (min-width: 1024px) {
 			.container {
-				width: 500px;
+				width: 530px;
 			}
 
 			.container-bottom input {
@@ -290,6 +301,23 @@
 				font-size: 12px;
 			}
 		}
+		.error_container {
+			width: 70%;
+			display: flex;
+			align-items: flex-start;
+			text-align: left;
+		}
+		.error_email,
+		.error_code {
+			color: red;
+			font-size: 12px;
+			text-align: left;
+			display: none;
+		}
+		.email_error,
+		.code_error {
+			border: 1px solid red !important;
+		}
 	</style>
 
 	<body>
@@ -301,12 +329,17 @@
 					placeholder="VUI LÒNG NHẬP EMAIL"
 					id="email"
 				/>
+				<div class="error_container">
+					<span class="error_email">Vui lòng nhập email</span>
+				</div>
 				<input
 					type="text"
 					placeholder="VUI LÒNG NHẬP MÃ CODE"
 					id="code"
-					style="text-transform: uppercase"
 				/>
+				<div class="error_container">
+					<span class="error_code">Vui lòng nhập mã code</span>
+				</div>
 				<div class="btn_container">
 					<button id="button" class="btn">KẾT NỐI INTERNET</button>
 				</div>
@@ -317,7 +350,7 @@
 			<div class="modal-content">
 				<img
 					loading="lazy"
-					src="./fpt-logo.png"
+					src="https://${IP_HOST_SERVER}${BASE_PATH_API + STATIC_PATH_FOLDER}/fpt-logo.png"
 					alt="logo"
 					style="width: 100%; max-width: 100px; object-fit: contain"
 				/>
@@ -334,21 +367,6 @@
 			// const urlParams = new URLSearchParams(window.location.search);
 
 			//! HANDLE DISPLAY ERROR
-			const htmls = `
-				<div style='display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%'>
-					<div style='display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff'>
-						<h4 style='margin: 10px 0;'>Thông báo Quý Khách với Khách Hàng</h4>
-						<p style='margin: 0; line-height: 1.6'>Hệ thống đang bảo trì</p>
-						<p style='margin: 0; line-height: 1.6'>Vui lòng thử lại sau, xin cảm ơn!</p>
-						<img
-						loading="lazy"
-						src='./cog-image.png'
-						alt='image'
-						style='width: 100%; max-width: 300px; margin-top: 10px; object-fit: contain'
-						/>
-					</div>
-				</div>
-				`;
 
 			//! Call API get data info
 			const fetchAPI = async ({
@@ -373,48 +391,141 @@
 						onError(err);
 					});
 			};
+			function paramsToObj(_string, _separator) {
+				var _res = {},
+					_arr = [],
+					_tmp;
+				try {
+					var _arr = _string.split(_separator);
+				} catch (e) {}
+
+				for (var _i = 0; _i < _arr.length; _i++) {
+					try {
+						_tmp = _arr[_i].split('=');
+
+						_res[_tmp[0]] = _tmp[1];
+					} catch (e) {}
+				}
+				return _res;
+			}
+			function getNavUrl() {
+				return window.location.search.replace('?', '');
+			}
+			const reDir = 'http://10.15.99.1:1999/login.php?';
+			const welcome = 'http://fas.pwifi.cpe-lab.com:9988/v2/success.html';
+			var para = getNavUrl();
+			var _s = paramsToObj(location.search.slice(1), '&');
+			var _decrypted, _dec_r;
+			var key = '15101999';
+			// function _submit() {
+			// 	window.location = reDir + 'mac=' + _dec_r.clientmac + '&redirect=' + encodeURIComponent(welcome) + '&code=' + pass.value
+			// }
+
+			emailInputElement.addEventListener('change', (e) => {
+				if (e.target.value) {
+					emailInputElement.classList.remove('email_error');
+					document.querySelector('.error_email').style.display =
+						'none';
+				}
+			});
+
+			codeInputElement.addEventListener('change', (e) => {
+				if (e.target.value) {
+					codeInputElement.classList.remove('code_error');
+					document.querySelector('.error_code').style.display =
+						'none';
+				}
+			});
 
 			//! API submit
 			btnSubmitElement.addEventListener('click', async (e) => {
 				e.preventDefault();
 				const email = emailInputElement.value;
-				const code = codeInputElement.value.toUpperCase();
+				const code = codeInputElement.value;
 				const body = {
 					userAgent: window.navigator.userAgent,
 					email: email,
 					code: code,
+					device_mac: 'Test Giao Dien',
+					macAP: 'xxxxx123432',
 				};
 				if (!email || !code) {
 					alert(
 						'Xin Quý Khách Hàng vui lòng nhập đầy đủ thông tin trước khi nhấn KẾT NỐI INTERNET!',
 					);
-					if (!email) emailInputElement.focus();
-					else codeInputElement.focus();
+					if (!email) {
+						emailInputElement.classList.add('email_error');
+						document.querySelector('.error_email').style.display =
+							'block';
+						emailInputElement.focus();
+					} else {
+						codeInputElement.classList.add('code_error');
+						document.querySelector('.error_code').style.display =
+							'block';
+						codeInputElement.focus();
+					}
 					return;
 				}
 				modalLoading.style.display = 'flex';
-				setTimeout(() => {
-					modalLoading.style.display = 'none';
-					alert(
-						`Thông tin gửi\nEmail: ${email}\nMã code: ${code}\nCảm ơn Quý Khách đã tin tưởng và sử dụng dịch vụ của chúng tôi`,
+				if (_s['fas'] && _s['iv']) {
+					key = CryptoJS.MD5(key).toString().slice(0, 32);
+					console.log(_s);
+					var atobFas = URL.createObjectURL(
+						new Blob([_s['fas']], { type: 'text/plain' }),
 					);
-					emailInputElement.value = '';
-					codeInputElement.value = '';
-				}, 3000);
-				// await fetchAPI({
-				// 	url: 'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite',
-				// 	body: body,
-				// 	onSuccess: (res) => {
-				// 		modalLoading.style.display = 'none';
-				// 		emailInputElement.value = '';
-				// 		codeInputElement.value = '';
-				// 		alert('Gửi thông tin thành công!');
-				// 	},
-				// 	onError: (err) => {
-				// 		modalLoading.style.display = 'none';
-				// 		alert('Gửi thông tin thất bại!');
-				// 	},
-				// });
+
+					_decrypted = CryptoJS.AES.decrypt(
+						atobFas,
+						CryptoJS.enc.Utf8.parse(key),
+						{
+							iv: CryptoJS.enc.Utf8.parse(_s['iv']),
+							mode: CryptoJS.mode.CBC,
+							padding: CryptoJS.pad.Pkcs7,
+						},
+					);
+					_dec_r = paramsToObj(
+						_decrypted.toString(CryptoJS.enc.Utf8),
+						', ',
+					);
+					console.log(
+						reDir +
+							'mac=' +
+							_dec_r.clientmac +
+							'&redirect=' +
+							encodeURIComponent(welcome) +
+							'&code=' +
+							code,
+					);
+					window.location =
+						reDir +
+						'mac=' +
+						_dec_r.clientmac +
+						'&redirect=' +
+						encodeURIComponent(welcome) +
+						'&code=' +
+						code;
+				}
+
+				await fetchAPI({
+					url: 'https://${IP_HOST_SERVER + BASE_PATH_API}/dh-tra-vinh/on-press-connect-internet',
+					body: body,
+					onSuccess: (res) => {
+						modalLoading.style.display = 'none';
+						// emailInputElement.value = '';
+						// codeInputElement.value = '';
+						if (!res.success) {
+							alert(
+								res?.errors[0]?.msg || res?.errors[0]?.message,
+							);
+						} else {
+							alert('Kết nối Internet thành công!');
+						}
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Kết nối thất bại!');
+					},
+				});
 			});
 		</script>
 	</body>
