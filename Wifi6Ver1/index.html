@@ -58,27 +58,11 @@
 			padding: 10px;
 			cursor: pointer;
 		}
+
 		#close img {
 			width: 40px;
 			height: 40px;
 			object-fit: contain;
-		}
-
-		#action {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			padding: 10px;
-			display: flex;
-			align-items: center;
-			width: 90%;
-			justify-content: center;
-		}
-
-		#action img {
-			width: 230px;
-			object-fit: contain;
-			cursor: pointer;
 		}
 
 		.container_bottom {
@@ -305,15 +289,13 @@
 
 		<script async>
 			const btnCloseElement = document.getElementById('close');
-			const btnActionElement = document.getElementById('action');
-
 			const modalLoading = document.querySelector('.modal-loading');
 			const containerElement = document.querySelector('.container');
+
 			const containerTopElement =
 				document.querySelector('.container_top');
 			const containerBottomElement =
 				document.querySelector('.container_bottom');
-			const actionImgElement = document.querySelector('#action img');
 			const bottomContentElement =
 				document.querySelector('.bottom_content');
 			const bottomContentActionSend =
@@ -324,34 +306,21 @@
 				let imageUrl = '';
 				let flexNumTop = 1;
 				let flexNumBottom = 1;
-				let widthAction = '90%';
-				let marginTopAction = '0px';
-				let marginBottomContent = '13vh 15vw 15vh 15vw';
+				let marginBottomContent = '25vh 0vw 5vh 14vw';
 				let widthImg = '310px';
 				let heightImg = '110px';
-
-				// console.log(screenWidth);
 
 				if (screenWidth === 280) {
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '180px';
-					marginBottomContent = '13vh 5vw 15vh 5vw';
-				} else if (screenWidth === 320) {
+					marginBottomContent = '38vh 0vw 0vh 2vw';
+					widthImg = '130px';
+					heightImg = '50px';
+				} else if (screenWidth === 325 || screenWidth === 326) {
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '180px';
-					marginBottomContent = '13vh 15vw 15vh 15vw';
-				} else if (screenWidth === 325) {
-					imageUrl = './wifi6_mobile.jpg';
-					flexNumTop = 5;
-					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '180px';
 					marginBottomContent = '38vh 0vw 0vh 2vw';
 					widthImg = '130px';
 					heightImg = '50px';
@@ -359,8 +328,6 @@
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '180px';
 					marginBottomContent = '38vh 0vw 0vh 0vw';
 					widthImg = '190px';
 					heightImg = '70px';
@@ -368,8 +335,6 @@
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '180px';
 					marginBottomContent = '39vh 0vw 0vh 0vw';
 					widthImg = '190px';
 					heightImg = '70px';
@@ -377,8 +342,6 @@
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '230px';
 					marginBottomContent = '39vh 0vw 0vh 0vw';
 					widthImg = '210px';
 					heightImg = '80px';
@@ -386,8 +349,6 @@
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '200px';
 					marginBottomContent = '38vh 0vw 0vh 5vw';
 					widthImg = '250px';
 					heightImg = '90px';
@@ -395,8 +356,6 @@
 					imageUrl = './wifi6_mobile.jpg';
 					flexNumTop = 5;
 					flexNumBottom = 8;
-					widthAction = '90%';
-					widthImg = '230px';
 					marginBottomContent = '40vh 0vw 0vh 3vw';
 					widthImg = '190px';
 					heightImg = '70px';
@@ -404,8 +363,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '290px';
 					marginBottomContent = '25vh 0vw 0vh 18vw';
 					widthImg = '250px';
 					heightImg = '110px';
@@ -413,22 +370,19 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '290px';
-					marginBottomContent = '5vh 3vw 15vh 50vw';
+					marginBottomContent = '25vh 0vw 0vh 18vw';
+					widthImg = '250px';
+					heightImg = '110px';
 				} else if (screenWidth === 779) {
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
 					widthImg = '290px';
 					marginBottomContent = '5vh 3vw 15vh 50vw';
 				} else if (screenWidth === 912) {
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '290px';
 					marginBottomContent = '25vh 0vw 0vh 18vw';
 					widthImg = '280px';
 					heightImg = '130px';
@@ -436,8 +390,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '300px';
 					marginBottomContent = '25vh 0vw 0vh 18vw';
 					widthImg = '280px';
 					heightImg = '130px';
@@ -445,8 +397,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '250px';
 					marginBottomContent = '25vh 0vw 0vh 10vw';
 					widthImg = '260px';
 					heightImg = '110px';
@@ -454,8 +404,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '250px';
 					marginBottomContent = '24vh 0vw 0vh 13vw';
 					widthImg = '270px';
 					heightImg = '100px';
@@ -464,8 +412,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
-					widthImg = '250px';
 					marginBottomContent = '25vh 0vw 0vh 16vw';
 					widthImg = '250px';
 					heightImg = '110px';
@@ -473,7 +419,6 @@
 					imageUrl = './wifi6_laptop.jpg';
 					flexNumTop = 1;
 					flexNumBottom = 1;
-					widthAction = '60%';
 					marginBottomContent = '25vh 0vw 5vh 14vw';
 					widthImg = '310px';
 					heightImg = '110px';
@@ -482,9 +427,6 @@
 				containerElement.style.backgroundImage = `url(${imageUrl})`;
 				containerTopElement.style.flex = flexNumTop;
 				containerBottomElement.style.flex = flexNumBottom;
-				actionImgElement.style.width = widthImg;
-				btnActionElement.style.width = widthAction;
-				btnActionElement.style.marginTop = marginTopAction;
 				bottomContentElement.style.margin = marginBottomContent;
 				bottomContentActionSend.style.width = widthImg;
 				bottomContentActionSend.style.height = heightImg;
@@ -524,45 +466,7 @@
 					});
 			};
 
-			// ok
-			actionImgElement.addEventListener('click', async (e) => {
-				e.preventDefault();
-				await fetchAPI({
-					body: {
-						userAgent: window.navigator.userAgent,
-						fullName: 'n/a',
-						phone: 'n/a',
-						action: 'OK',
-						mac_client: mac_client,
-						mac_ont: mac_ont,
-						programId: '${programId}',
-					},
-					url: URL_BACKEND,
-					onSuccess: async (res) => {
-						console.log('Send data success');
-					},
-					onError: (err) => {
-						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-					},
-				});
-
-				const xhr = new XMLHttpRequest();
-				xhr.open('GET', '${URL_VERIFY}', true);
-				xhr.onreadystatechange = function () {
-					if (xhr.readyState === 4) {
-						if (xhr.status === 200) {
-							window.location.href =
-								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
-						} else {
-							window.location.href =
-								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
-						}
-					}
-				};
-				xhr.send();
-			});
-
-			// send
+			// action here
 			bottomContentActionSend.addEventListener('click', async (e) => {
 				e.preventDefault();
 
@@ -579,7 +483,6 @@
 					},
 					url: URL_BACKEND,
 					onSuccess: async (res) => {
-						console.log('Send data success');
 						modalLoading.style.display = 'none';
 						alert('Gửi thông tin thành công!');
 						window.location.href = '${URL_VERIFY}';
