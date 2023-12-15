@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Wifi 6 - FPT Telecom</title>
+		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
+		<meta property="og:image" content="./fpt-logo.png" />
+		<meta name="description" content="FPT Telecom" />
+		<script
+			defer
+			async
+			src="https://kit.fontawesome.com/cc3041f69f.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body::-webkit-scrollbar {
+			display: none;
+		}
+
+		.container {
+			width: 100%;
+			height: 100vh;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			box-sizing: border-box;
+			gap: 10px;
+		}
+
+		.container_top {
+			width: 100%;
+			box-sizing: border-box;
+			position: relative;
+		}
+
+		#close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 10px;
+			cursor: pointer;
+		}
+		#close img {
+			width: 40px;
+			height: 40px;
+			object-fit: contain;
+		}
+
+		#action {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			width: 90%;
+			justify-content: center;
+		}
+
+		#action img {
+			width: 230px;
+			object-fit: contain;
+			cursor: pointer;
+		}
+
+		.container_bottom {
+			width: 100%;
+			box-sizing: border-box;
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.bottom_content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			width: 100%;
+			padding: 15px;
+			box-sizing: border-box;
+		}
+
+		.btn_container {
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+			margin-top: 10px;
+		}
+
+		.btn_container img {
+			cursor: pointer;
+		}
+
+		.modal-loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background-color: rgba(0, 0, 0, 0.2);
+			z-index: 999;
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 12px;
+			box-sizing: border-box;
+		}
+
+		.modal-content {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		@-webkit-keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+		@keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+
+		.dots-fade:before {
+			-webkit-animation: dots-fade 2s infinite;
+			animation: dots-fade 2s infinite;
+			background-color: #2d7cd4;
+			border-radius: 100%;
+			content: '';
+			display: block;
+			height: 10px;
+			width: 10px;
+		}
+
+		/* Styles for PC/Desktop */
+		@media (min-width: 1024px) {
+			.container {
+				width: 70%;
+			}
+		}
+
+		/* Styles for Tablets */
+		/* @media (min-width: 768px) and (max-width: 1023px) {} */
+
+		/* Styles for Mobile */
+		@media (max-width: 767px) {
+			.container {
+				width: 100%;
+			}
+		}
+	</style>
+
+	<body>
+		<div class="container" loading="lazy">
+			<div class="container_top">
+				<div id="close">
+					<img src="./action_exit.png" />
+				</div>
+				<div id="action" style="visibility: hidden">
+					<img src="./wifi6_button.png" />
+				</div>
+			</div>
+			<div class="container_bottom">
+				<div class="bottom_content">
+					<div class="btn_container">
+						<img src="./action_here.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-loading">
+			<div class="modal-content">
+				<img
+					loading="lazy"
+					src="./fpt-logo.png"
+					alt="logo"
+					style="width: 100%; max-width: 100px; object-fit: contain"
+				/>
+				<div class="dots-fade"></div>
+			</div>
+		</div>
+
+		<script async>
+			const btnCloseElement = document.getElementById('close');
+			const btnActionElement = document.getElementById('action');
+
+			const modalLoading = document.querySelector('.modal-loading');
+			const containerElement = document.querySelector('.container');
+			const containerTopElement =
+				document.querySelector('.container_top');
+			const containerBottomElement =
+				document.querySelector('.container_bottom');
+			const actionImgElement = document.querySelector('#action img');
+			const bottomContentElement =
+				document.querySelector('.bottom_content');
+			const bottomContentActionSend =
+				document.querySelector('.btn_container img');
+
+			function updateBackground() {
+				const screenWidth = window.innerWidth;
+				let imageUrl = '';
+				let flexNumTop = 1;
+				let flexNumBottom = 1;
+				let widthAction = '90%';
+				let marginTopAction = '0px';
+				let marginBottomContent = '13vh 15vw 15vh 15vw';
+				let widthImg = '310px';
+				let heightImg = '110px';
+
+				// console.log(screenWidth);
+
+				if (screenWidth === 280) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '13vh 5vw 15vh 5vw';
+				} else if (screenWidth === 320) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '13vh 15vw 15vh 15vw';
+				} else if (screenWidth === 325) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '38vh 0vw 0vh 2vw';
+					widthImg = '130px';
+					heightImg = '50px';
+				} else if (screenWidth === 360) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '38vh 0vw 0vh 0vw';
+					widthImg = '190px';
+					heightImg = '70px';
+				} else if (screenWidth === 375) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '180px';
+					marginBottomContent = '39vh 0vw 0vh 0vw';
+					widthImg = '190px';
+					heightImg = '70px';
+				} else if (screenWidth === 414) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '230px';
+					marginBottomContent = '39vh 0vw 0vh 0vw';
+					widthImg = '210px';
+					heightImg = '80px';
+				} else if (screenWidth === 540) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '200px';
+					marginBottomContent = '38vh 0vw 0vh 5vw';
+					widthImg = '250px';
+					heightImg = '90px';
+				} else if (screenWidth <= 670) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					widthAction = '90%';
+					widthImg = '230px';
+					marginBottomContent = '40vh 0vw 0vh 3vw';
+					widthImg = '190px';
+					heightImg = '70px';
+				} else if (screenWidth === 768) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '25vh 0vw 0vh 18vw';
+					widthImg = '250px';
+					heightImg = '110px';
+				} else if (screenWidth === 820) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+				} else if (screenWidth === 779) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+				} else if (screenWidth === 912) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '290px';
+					marginBottomContent = '25vh 0vw 0vh 18vw';
+					widthImg = '280px';
+					heightImg = '130px';
+				} else if (screenWidth === 931) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '300px';
+					marginBottomContent = '25vh 0vw 0vh 18vw';
+					widthImg = '280px';
+					heightImg = '130px';
+				} else if (screenWidth === 1024) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '250px';
+					marginBottomContent = '25vh 0vw 0vh 10vw';
+					widthImg = '260px';
+					heightImg = '110px';
+				} else if (screenWidth === 1280) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '250px';
+					marginBottomContent = '24vh 0vw 0vh 13vw';
+					widthImg = '270px';
+					heightImg = '100px';
+				} else if (screenWidth < 1200) {
+					// IPAD
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					widthImg = '250px';
+					marginBottomContent = '25vh 0vw 0vh 16vw';
+					widthImg = '250px';
+					heightImg = '110px';
+				} else {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthAction = '60%';
+					marginBottomContent = '25vh 0vw 5vh 14vw';
+					widthImg = '310px';
+					heightImg = '110px';
+				}
+
+				containerElement.style.backgroundImage = `url(${imageUrl})`;
+				containerTopElement.style.flex = flexNumTop;
+				containerBottomElement.style.flex = flexNumBottom;
+				actionImgElement.style.width = widthImg;
+				btnActionElement.style.width = widthAction;
+				btnActionElement.style.marginTop = marginTopAction;
+				bottomContentElement.style.margin = marginBottomContent;
+				bottomContentActionSend.style.width = widthImg;
+				bottomContentActionSend.style.height = heightImg;
+			}
+
+			updateBackground();
+
+			window.addEventListener('resize', updateBackground);
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const mac_ont = urlParams.get('mac_ont');
+			const mac_client = urlParams.get('mac_client');
+			const URL_BACKEND =
+				'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
+
+			//! Call API get data info
+			const fetchAPI = async ({
+				body = {},
+				method = 'POST',
+				url,
+				onSuccess = () => {},
+				onError = () => {},
+			}) => {
+				await fetch(url, {
+					method: method,
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(body),
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						onSuccess(res);
+					})
+					.catch((err) => {
+						onError(err);
+					});
+			};
+
+			// ok
+			actionImgElement.addEventListener('click', async (e) => {
+				e.preventDefault();
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: 'n/a',
+						phone: 'n/a',
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						console.log('Send data success');
+					},
+					onError: (err) => {
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
+
+				const xhr = new XMLHttpRequest();
+				xhr.open('GET', '${URL_VERIFY}', true);
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if (xhr.status === 200) {
+							window.location.href =
+								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
+						} else {
+							window.location.href =
+								'https://shop.fpt.vn/tin-tuc/trai-nghiem-wifi6';
+						}
+					}
+				};
+				xhr.send();
+			});
+
+			// send
+			bottomContentActionSend.addEventListener('click', async (e) => {
+				e.preventDefault();
+
+				modalLoading.style.display = 'flex';
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: userName,
+						phone: phone,
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						console.log('Send data success');
+						modalLoading.style.display = 'none';
+						alert('Gửi thông tin thành công!');
+						window.location.href = '${URL_VERIFY}';
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
+			});
+
+			// exit
+			btnCloseElement.addEventListener('click', async (e) => {
+				e.preventDefault();
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: 'n/a',
+						phone: 'n/a',
+						action: 'EXIT',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+				});
+				window.location.href = '${URL_VERIFY}';
+			});
+		</script>
+	</body>
+</html>
