@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Wifi 6 - FPT Telecom</title>
+		<link rel="icon" href="./favicon-16x16.png" type="image/png" />
+		<meta property="og:image" content="./fpt-logo.png" />
+		<meta name="description" content="FPT Telecom" />
+		<script
+			defer
+			async
+			src="https://kit.fontawesome.com/cc3041f69f.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body::-webkit-scrollbar {
+			display: none;
+		}
+
+		.container {
+			width: 100%;
+			height: 100vh;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			box-sizing: border-box;
+			gap: 10px;
+		}
+
+		.container_top {
+			width: 100%;
+			box-sizing: border-box;
+			position: relative;
+		}
+
+		#close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 10px;
+			cursor: pointer;
+			display: inline;
+		}
+
+		#close img {
+			width: 40px;
+			height: 40px;
+			object-fit: contain;
+		}
+
+		.container_bottom {
+			width: 100%;
+			box-sizing: border-box;
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.bottom_content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			width: 100%;
+			padding: 15px;
+			box-sizing: border-box;
+		}
+
+		.btn_container {
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+			margin-top: 10px;
+		}
+
+		.btn_container img {
+			cursor: pointer;
+		}
+
+		#action {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			height: 100%;
+			flex-direction: column;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		#action input {
+			width: 100%;
+			border-radius: 5px;
+			border: 1px solid #0000005a;
+			outline: none;
+			padding: 0 10px;
+			margin-bottom: 5px;
+			box-sizing: border-box;
+		}
+
+		.btn_container {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			margin-top: 5px;
+		}
+
+		.btn {
+			width: 100%;
+			border-radius: 5px;
+			border: none;
+			outline: none;
+			background-color: #003dd7;
+			color: #fff;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.modal-loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background-color: rgba(0, 0, 0, 0.2);
+			z-index: 999;
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 12px;
+			box-sizing: border-box;
+		}
+
+		.modal-content {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		@-webkit-keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+		@keyframes dots-fade {
+			0% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			10% {
+				opacity: 1;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			20% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(-175%);
+				transform: translateX(-175%);
+			}
+			30% {
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			40% {
+				opacity: 1;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			50% {
+				background: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+			60% {
+				background-color: #2d7cd4;
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			70% {
+				opacity: 1;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+			80%,
+			100% {
+				opacity: 0;
+				-webkit-transform: translateX(175%);
+				transform: translateX(175%);
+			}
+		}
+
+		.dots-fade:before {
+			-webkit-animation: dots-fade 2s infinite;
+			animation: dots-fade 2s infinite;
+			background-color: #2d7cd4;
+			border-radius: 100%;
+			content: '';
+			display: block;
+			height: 10px;
+			width: 10px;
+		}
+
+		/* Styles for PC/Desktop */
+		@media (min-width: 1024px) {
+			.container {
+				width: 70%;
+			}
+		}
+
+		/* Styles for Tablets */
+		/* @media (min-width: 768px) and (max-width: 1023px) {} */
+
+		/* Styles for Mobile */
+		@media (max-width: 767px) {
+			.container {
+				width: 100%;
+			}
+		}
+	</style>
+
+	<body>
+		<div class="container" loading="lazy">
+			<div class="container_top">
+				<div id="close">
+					<img src="./action_exit.png" />
+				</div>
+				<div id="action">
+					<div
+						style="
+							text-align: center;
+							text-transform: uppercase;
+							font-size: 13px;
+							color: #fff;
+							margin-bottom: 10px;
+							font-weight: bold;
+						"
+					>
+						Thông tin liên hệ tư vấn
+					</div>
+					<input
+						type="text"
+						placeholder="Nhập tên liên hệ"
+						id="user_name"
+					/>
+					<input
+						type="text"
+						placeholder="Nhập số điện thoại liên hệ"
+						id="phone"
+					/>
+					<div class="btn_container">
+						<button id="button_send" class="btn">Gửi</button>
+					</div>
+				</div>
+			</div>
+			<div class="container_bottom">
+				<div class="bottom_content">
+					<div class="btn_container">
+						<img src="./action_here.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-loading">
+			<div class="modal-content">
+				<img
+					loading="lazy"
+					src="./fpt-logo.png"
+					alt="logo"
+					style="width: 100%; max-width: 100px; object-fit: contain"
+				/>
+				<div class="dots-fade"></div>
+			</div>
+		</div>
+
+		<script async>
+			const btnCloseElement = document.getElementById('close');
+			const modalLoading = document.querySelector('.modal-loading');
+			const containerElement = document.querySelector('.container');
+			const actionContainerElement = document.querySelector('#action');
+			const actionInputUserNameElement =
+				document.querySelector('#user_name');
+			const actionInputPhoneElement = document.querySelector('#phone');
+			const actionSendElement = document.querySelector('#button_send');
+
+			const containerTopElement =
+				document.querySelector('.container_top');
+			const containerBottomElement =
+				document.querySelector('.container_bottom');
+			const bottomContentElement =
+				document.querySelector('.bottom_content');
+			const bottomContentActionSend =
+				document.querySelector('.btn_container img');
+
+			function updateBackground() {
+				const screenWidth = window.innerWidth;
+				const screenHeight = window.innerHeight;
+				let imageUrl = '';
+				let flexNumTop = 1;
+				let flexNumBottom = 1;
+				let marginBottomContent = '25vh 0vw 5vh 14vw';
+				let marginTopContent = '25vh 0vw 5vh 14vw';
+				let widthImg = '310px';
+				let heightImg = '110px';
+				let heightActionInput = '40px';
+				let heightActionSend = '40px';
+
+				if (screenWidth === 280) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					marginBottomContent = '38vh 0vw 0vh 2vw';
+					marginTopContent = '25vh 0vw 5vh 14vw';
+					widthImg = '130px';
+					heightImg = '50px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 295) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '3vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '130px';
+					heightImg = '50px';
+					heightActionInput = '25px';
+					heightActionSend = '25px';
+				} else if (screenWidth === 325 || screenWidth === 326) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 5;
+					flexNumBottom = 8;
+					marginBottomContent = '43vh 0vw 0vh 2vw';
+					marginTopContent = '25vh 0vw 5vh 14vw';
+					widthImg = '130px';
+					heightImg = '50px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 360) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '3vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '190px';
+					heightImg = '70px';
+					heightActionInput = '30px';
+					heightActionSend = '30px';
+				} else if (screenWidth === 375) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '1vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '190px';
+					heightImg = '70px';
+					heightActionInput = '25px';
+					heightActionSend = '25px';
+				} else if (screenWidth === 414) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '3vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '210px';
+					heightImg = '80px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 540) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '3vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '250px';
+					heightImg = '90px';
+					heightActionInput = '25px';
+					heightActionSend = '25px';
+				} else if (screenWidth <= 670) {
+					imageUrl = './wifi6_mobile.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 5;
+					marginBottomContent = '3vh 40vw 0vh 0vw';
+					marginTopContent = '0vh 8vw 0vh 8vw';
+					widthImg = '190px';
+					heightImg = '70px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 768) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 10;
+					marginBottomContent = '8vh 40vw 0vh 5vw';
+					marginTopContent = '0vh 45vw 0vh 8vw';
+					widthImg = '250px';
+					heightImg = '110px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 820) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 10;
+					marginBottomContent = '8vh 40vw 0vh 5vw';
+					marginTopContent = '0vh 45vw 0vh 8vw';
+					widthImg = '250px';
+					heightImg = '110px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 779) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					widthImg = '290px';
+					marginBottomContent = '5vh 3vw 15vh 50vw';
+					marginTopContent = '25vh 0vw 5vh 14vw';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 912) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 10;
+					marginBottomContent = '8vh 35vw 0vh 5vw';
+					marginTopContent = '0vh 45vw 0vh 5vw';
+					widthImg = '280px';
+					heightImg = '130px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 931) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 1;
+					flexNumBottom = 1;
+					marginBottomContent = '25vh 0vw 0vh 18vw';
+					marginTopContent = '25vh 0vw 5vh 14vw';
+					widthImg = '280px';
+					heightImg = '130px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 1024 && screenHeight === 1366) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 10;
+					marginBottomContent = '9vh 25vw 0vh 5vw';
+					marginTopContent = '0vh 30vw 0vh 5vw';
+					widthImg = '260px';
+					heightImg = '110px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else if (screenWidth === 1024 && screenHeight === 600) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 8;
+					marginBottomContent = '2vh 25vw 0vh 5vw';
+					marginTopContent = '0vh 30vw 0vh 5vw';
+					widthImg = '250px';
+					heightImg = '100px';
+					heightActionInput = '30px';
+					heightActionSend = '30px';
+				} else if (screenWidth === 1029 && screenHeight === 551) {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 8;
+					marginBottomContent = '2vh 25vw 0vh 5vw';
+					marginTopContent = '0vh 30vw 0vh 5vw';
+					widthImg = '250px';
+					heightImg = '100px';
+					heightActionInput = '30px';
+					heightActionSend = '30px';
+				} else if (screenWidth < 1200) {
+					// IPAD
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 20;
+					flexNumBottom = 10;
+					marginBottomContent = '8vh 25vw 0vh 5vw';
+					marginTopContent = '0vh 32vw 0vh 5vw';
+					widthImg = '250px';
+					heightImg = '110px';
+					heightActionInput = '40px';
+					heightActionSend = '40px';
+				} else {
+					imageUrl = './wifi6_laptop.jpg';
+					flexNumTop = 7;
+					flexNumBottom = 3;
+					marginBottomContent = '4vh 20vw 0vh 0vw';
+					marginTopContent = '0vh 35vw 0vh 8vw';
+					widthImg = '300px';
+					heightImg = '100px';
+					heightActionInput = '25px';
+					heightActionSend = '25px';
+				}
+
+				containerElement.style.backgroundImage = `url(${imageUrl})`;
+				containerTopElement.style.flex = flexNumTop;
+				containerBottomElement.style.flex = flexNumBottom;
+				bottomContentElement.style.margin = marginBottomContent;
+				actionContainerElement.style.margin = marginTopContent;
+				bottomContentActionSend.style.width = widthImg;
+				bottomContentActionSend.style.height = heightImg;
+				actionInputUserNameElement.style.height = heightActionInput;
+				actionInputPhoneElement.style.height = heightActionInput;
+				actionSendElement.style.height = heightActionSend;
+			}
+
+			updateBackground();
+
+			window.addEventListener('resize', updateBackground);
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const mac_ont = urlParams.get('mac_ont');
+			const mac_client = urlParams.get('mac_client');
+			const URL_BACKEND =
+				'http://swapwifi6.cpe-lab.com/portal-inf/portal-cpe/swap-ip-customer-invite';
+
+			//! Call API get data info
+			const fetchAPI = async ({
+				body = {},
+				method = 'POST',
+				url,
+				onSuccess = () => {},
+				onError = () => {},
+			}) => {
+				await fetch(url, {
+					method: method,
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(body),
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						onSuccess(res);
+					})
+					.catch((err) => {
+						onError(err);
+					});
+			};
+
+			// action here
+			bottomContentActionSend.addEventListener('click', async (e) => {
+				e.preventDefault();
+
+				modalLoading.style.display = 'flex';
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: userName,
+						phone: phone,
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						modalLoading.style.display = 'none';
+						alert('Gửi thông tin thành công!');
+						window.location.href = '${URL_VERIFY}';
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
+			});
+
+			// send info user name/phone
+			actionSendElement.addEventListener('click', async (e) => {
+				e.preventDefault();
+
+				const userName = actionInputUserNameElement.value;
+				const phone = actionInputPhoneElement.value;
+
+				if (!userName) {
+					alert('Vui lòng nhập họ và tên!');
+					actionInputUserNameElement.focus();
+					return;
+				} else if (!phone) {
+					alert('Vui lòng nhập số điện thoại!');
+					actionInputPhoneElement.focus();
+					return;
+				}
+
+				modalLoading.style.display = 'flex';
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: userName,
+						phone: phone,
+						action: 'OK',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+					onSuccess: async (res) => {
+						modalLoading.style.display = 'none';
+						alert('Gửi thông tin thành công!');
+						window.location.href = '${URL_VERIFY}';
+						actionInputUserNameElement.value = '';
+						actionInputPhoneElement.value = '';
+					},
+					onError: (err) => {
+						modalLoading.style.display = 'none';
+						alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+					},
+				});
+			});
+
+			// exit
+			btnCloseElement.addEventListener('click', async (e) => {
+				e.preventDefault();
+				await fetchAPI({
+					body: {
+						userAgent: window.navigator.userAgent,
+						fullName: 'n/a',
+						phone: 'n/a',
+						action: 'EXIT',
+						mac_client: mac_client,
+						mac_ont: mac_ont,
+						programId: '${programId}',
+					},
+					url: URL_BACKEND,
+				});
+				window.location.href = '${URL_VERIFY}';
+			});
+		</script>
+	</body>
+</html>
