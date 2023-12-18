@@ -421,7 +421,7 @@
 			// 	window.location = reDir + 'mac=' + _dec_r.clientmac + '&redirect=' + encodeURIComponent(welcome) + '&code=' + pass.value
 			// }
 
-			emailInputElement.addEventListener('change', (e) => {
+			emailInputElement.addEventListener('input', (e) => {
 				if (e.target.value) {
 					emailInputElement.classList.remove('email_error');
 					document.querySelector('.error_email').style.display =
