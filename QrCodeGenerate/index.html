@@ -337,6 +337,11 @@
 			/* Body ------------------------------ */
 
 			.email-body {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				/* gap: 12px; */
+				flex-wrap: wrap;
 				width: 100%;
 				height: 100vh;
 				margin: 0;
@@ -347,13 +352,12 @@
 			}
 
 			.email-body_inner {
-				width: 570px;
-				margin: 0 auto;
-				padding: 0;
-				-premailer-width: 570px;
+				width: 50%;
+				height: 200px;
 				-premailer-cellpadding: 0;
 				-premailer-cellspacing: 0;
 				background-color: #ffffff;
+				border: 0.5px solid #ccc;
 			}
 
 			.email-footer {
@@ -392,17 +396,16 @@
 
 			.bg_image {
 				position: relative;
+				padding: 0 10px;
 				height: 100%;
-				/* background-image: url('https://img.freepik.com/free-vector/white-technology-background_23-2148403782.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1700179200&semt=ais');
-				background-repeat: no-repeat;
-				background-size: cover;
-				background-position: center; */
 			}
 			.print {
 				position: absolute;
 				top: 10px;
 				right: 10px;
 				cursor: pointer;
+				font-size: 30px;
+				z-index: 999;
 			}
 			/*Media Queries ------------------------------ */
 
@@ -436,18 +439,30 @@
 						cellspacing="0"
 						role="presentation"
 					>
+						<div class="print">
+							<i class="fa-solid fa-print"></i>
+						</div>
 						<!-- Email Body -->
 						<tr>
 							<td
 								class="email-body"
-								width="570"
 								cellpadding="0"
 								cellspacing="0"
-							>
-								<table
+							></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<script async>
+			const DATA_QR_CODE = ['A123', 'B456', 'C789', 'D012', 'F367'];
+			const emailBody = document.querySelector('.email-body');
+
+			const htmls = DATA_QR_CODE.map((item) => {
+				return `
+				<table
 									class="email-body_inner"
 									style="text-align: center"
-									width="570"
 									cellpadding="0"
 									cellspacing="0"
 									role="presentation"
@@ -456,52 +471,48 @@
 									<tr>
 										<td
 											class="content-cell bg_image"
-											style="padding-top: 30px"
 										>
-											<div class="print">
-												<i
-													class="fa-solid fa-print"
-												></i>
-											</div>
-											<p
+											<p style="margin: 0"
 												class="f-fallback sub align-center"
 											>
 												<img
 													src="https://mangfpt.vn/wp-content/uploads/2020/11/logo-mang-fpt.png"
 													alt="FPT Telecom"
-													width="100"
-													height="100"
+													width="70"
+													height="70"
 													style="
-														height: 50px;
-														width: 100px;
-														max-width: 100px;
-														max-height: 100px;
+														height: 70px;
+														width: 70px;
+														max-width: 70px;
+														max-height: 70px;
 														object-fit: contain;
 													"
 												/>
 											</p>
 											<div
 												style="
+													position: absolute;
+													top: 12px; 
+													left: 12px;
 													width: 100%;
-													display: flex;
-													align-items: center;
-													justify-content: center;
-													margin-bottom: 15px;
 												"
 											>
-												<div id="qrcode"></div>
+												<div class="qrcode"></div>
 											</div>
 											<h1
 												style="
+												font-size: 16px;
 													text-align: center;
-													margin-bottom: 0;
+													margin-bottom: 5px;
 												"
 											>
 												Mã Code:
-												<span id="code"></span>
+												<span class="code"></span>
 											</h1>
 											<p
 												style="
+												margin: 0;
+												margin-bottom: 10px;
 													font-weight: bold;
 													text-align: center;
 												"
@@ -511,9 +522,11 @@
 
 											<p
 												style="
+												margin: 0;
 													text-align: center;
 													font-weight: bold;
 													text-transform: uppercase;
+													font-size: 16px
 												"
 											>
 												Truy cập Internet tốc độ cao
@@ -522,10 +535,11 @@
 
 											<div
 												class="f-fallback"
-												style="margin-top: 20px"
+												style="margin-top: 0"
 											>
 												<p
 													style="
+													    margin: 0;
 														text-align: justify;
 														margin-bottom: 0;
 														font-weight: bold;
@@ -537,6 +551,7 @@
 												<div style="margin-left: 30px">
 													<p
 														style="
+														margin: 0;
 															text-align: left;
 															font-weight: 600;
 														"
@@ -546,6 +561,7 @@
 													</p>
 													<p
 														style="
+														margin: 0;
 															text-align: left;
 															font-weight: 600;
 														"
@@ -554,6 +570,7 @@
 													</p>
 													<p
 														style="
+														margin: 0;
 															text-align: left;
 															font-weight: 600;
 														"
@@ -577,6 +594,7 @@
 													style="
 														text-align: left;
 														margin: 0;
+														font-size: 14px;
 													"
 												>
 													- Mã code có hạn sử dụng
@@ -587,6 +605,7 @@
 													style="
 														text-align: left;
 														margin: 0;
+														font-size: 14px;
 													"
 												>
 													- Được sử dụng trên toàn bộ
@@ -594,17 +613,18 @@
 													trên toàn quốc.
 												</p>
 
-												<p style="text-align: center">
+												<p style="text-align: center; font-size: 15px;  margin: 0" >
 													Xin chân thành cảm ơn Quý
 													Khách Hàng
 												</p>
 
 												<p
+												style="font-size: 15px;  margin: 0"
 													class="f-fallback align-center"
 												>
 													Tổng đài hỗ trợ dịch vụ
 												</p>
-												<p
+												<p style="font-size: 15px; margin-bottom: 10px"
 													class="f-fallback align-center"
 												>
 													<a href="fb.com/uberwifi"
@@ -615,43 +635,31 @@
 										</td>
 									</tr>
 								</table>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-		<script async>
-			// Mã code bạn muốn chuyển thành mã QR code
-			const codeToGenerate = 'ABC123';
-
-			document.getElementById('code').innerHTML = codeToGenerate;
-
-			// Sử dụng thư viện qrcode.js để tạo mã QR code
-			const qrcode = new QRCode(document.getElementById('qrcode'), {
-				text: codeToGenerate,
-				width: 128,
-				height: 128,
+				`;
 			});
 
-			// Hiển thị mã QR code
-			qrcode.makeCode(codeToGenerate);
-			function printArea() {
+			emailBody.innerHTML = htmls.join('');
+
+			const qrCodes = document.querySelectorAll('.qrcode');
+			const codes = document.querySelectorAll('.code');
+
+			qrCodes.forEach((qrCode, index) => {
+				const qrcode = new QRCode(qrCode, {
+					width: 50,
+					height: 50,
+				});
+				qrcode.makeCode(DATA_QR_CODE[index]);
+			});
+
+			codes.forEach((code, index) => {
+				code.innerHTML = DATA_QR_CODE[index];
+			});
+
+			const print = document.querySelector('.print');
+			print.addEventListener('click', () => {
 				document.querySelector('.print').style.display = 'none';
-				var printContents =
-					document.querySelector('.content-cell').innerHTML;
-				var originalContents = document.body.innerHTML;
-
-				document.body.innerHTML = printContents;
-
 				window.print();
-
-				document.body.innerHTML = originalContents;
-				document.querySelector('.print').style.display = 'block';
-			}
-			document
-				.querySelector('.print')
-				.addEventListener('click', printArea);
+			});
 		</script>
 	</body>
 </html>
