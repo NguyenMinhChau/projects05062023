@@ -281,7 +281,7 @@
 													Internet bình thường</span
 												>
 												<!-- <img src="./button_close.png" /> -->
-												<div class=".img">
+												<div class="img">
 													<i
 														class="fa-solid fa-wifi"
 													></i>
@@ -373,6 +373,7 @@
 			const btnSend = document.querySelector('#send');
 			const phoneElement = document.querySelector('#phone');
 			const btnClose = document.querySelector('.bg_image #close');
+			const btnCloseIcon = document.querySelector('.bg_image #close i');
 			const emailBodyInnerElement =
 				document.querySelector('.email-body_inner');
 			const bgImageElement = document.querySelector('.bg_image');
@@ -424,27 +425,32 @@
 				let paddingContentFive = '10vh 5vw 8vh 5vw';
 				let widthInfoContainer = '200px';
 				let topBtnClose = '25px';
+				let rightBtnClose = '15px';
 				let paddingBtnClose = '8px';
 
 				console.log(screenWidth);
 				console.log(screenHeight);
 
 				if (screenWidth === 320) {
-					imageUrl = './390x844.jpg';
+					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '37vh 5vw 8vh 7vw';
-					paddingContentOne = '1vh 0vw 0vh 48vw';
+					paddingBgImageContent = '31vh 5vw 8vh 7vw';
+					paddingContentOne = '1vh 0vw 0vh 45vw';
 					contentOneImg = '90px';
-					paddingContentTwo = '1.5vh 0vw 0vh 57vw';
+					paddingContentTwo = '1.5vh 0vw 0vh 55vw';
 					contentTwoImg = '40px';
-					paddingContentThree = '0vh 0vw 14vh 15vw';
+					paddingContentThree = '0vh 0vw 14vh 20vw';
 					contentThreeLink = '4.3vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '9px';
 					contentThreeSpanSize = '6px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '5px';
+					paddingBtnClose = '3px';
+					rightBtnClose = '3px';
+					btnCloseIcon.style.fontSize = '15px';
 				} else if (screenWidth === 390 && screenHeight === 844) {
 					imageUrl = './390x844.jpg';
 					fontSizeSpan = '8px';
@@ -714,6 +720,7 @@
 
 				bgImageElement.style.backgroundImage = `url(${imageUrl})`;
 				btnClose.style.top = topBtnClose;
+				btnClose.style.right = rightBtnClose;
 				btnClose.style.padding = paddingBtnClose;
 				emailBodyInnerElement.style.width = width;
 				bgImageSpanElement.style.fontSize = fontSizeSpan;
