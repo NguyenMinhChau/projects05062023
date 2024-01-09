@@ -124,6 +124,16 @@
 
 			.content_two {
 				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				gap: 0px;
+				justify-content: flex-start;
+				align-items: flex-start !important;
+			}
+
+			.content_two span {
+				color: #fff;
+				font-style: italic;
 			}
 
 			.content_two .img {
@@ -134,20 +144,11 @@
 
 			.content_three {
 				box-sizing: border-box;
-				display: flex;
-				flex-direction: column;
-				gap: 0px;
-				justify-content: flex-start;
-				align-items: flex-start !important;
 			}
 
 			.content_three a {
 				font-weight: bold;
 				color: blue;
-			}
-
-			.content_three span {
-				color: #fff;
 			}
 
 			.content_four {
@@ -214,6 +215,7 @@
 				background-color: #ff6b6b;
 				padding: 8px;
 				border-radius: 8px;
+				cursor: pointer;
 			}
 
 			.bg_image #close span {
@@ -308,6 +310,13 @@
 														<span
 															class="img qrcode"
 														></span>
+														<span class="save_text"
+															>*Quý khách có thể
+															lưu lại mã QR Code
+															để sử dụng thanh
+															toán cho lần
+															sau</span
+														>
 													</div>
 													<div
 														class="content_item content_three"
@@ -316,12 +325,6 @@
 															target="_blank"
 															href="https://fpt.vn/pay/SGD123456"
 															>https://fpt.vn/pay/SGD123456</a
-														>
-														<span
-															>Quý khách có thể
-															lưu lại để sử dụng
-															thanh toán cho lần
-															sau</span
 														>
 													</div>
 													<div
@@ -334,19 +337,23 @@
 															class="info_contact_container"
 														>
 															<span
-																>Thông tin liên
-																hệ</span
+																>Quý khách vui
+																lòng nhập số
+																điện thoại để
+																được phục
+																vụ:</span
 															>
 															<input
 																type="phone"
 																id="phone"
-																placeholder="Nhập số điện thoại liên hệ"
+																placeholder="Nhập số điện thoại"
 															/>
 															<div
 																style="
 																	width: 95%;
 																	display: flex;
 																	justify-content: center;
+																	margin-top: 5px;
 																"
 															>
 																<button
@@ -390,13 +397,13 @@
 				document.querySelector('.content_two');
 			const bgImageContentTwoImgElement =
 				document.querySelector('.content_two .img');
+			const bgImageContentTwoSpanElement = document.querySelector(
+				'.content_two .save_text',
+			);
 			const bgImageContentThreeElement =
 				document.querySelector('.content_three');
 			const bgImageContentThreeLinkElement =
 				document.querySelector('.content_three a');
-			const bgImageContentThreeSpanElement = document.querySelector(
-				'.content_three span',
-			);
 			const bgImageContentFourElement =
 				document.querySelector('.content_four');
 			const bgImageContentFiveElement =
@@ -416,11 +423,13 @@
 				let paddingContentOne = '10vh 5vw 8vh 5vw';
 				let contentOneImg = '130px';
 				let paddingContentTwo = '10vh 5vw 8vh 5vw';
+				let paddingContentImgTwo = '10vh 5vw 8vh 5vw';
+				let paddingContentSaveTextTwo = '10vh 5vw 8vh 5vw';
 				let contentTwoImg = '70px';
 				let paddingContentThree = '10vh 5vw 8vh 5vw';
 				let contentThreeLink = '0vh 0vw 0vh 0vw';
 				let contentThreeLinkSize = '16px';
-				let contentThreeSpanSize = '10px';
+				let contentTwoSpanSize = '10px';
 				let paddingContentFour = '10vh 5vw 8vh 5vw';
 				let paddingContentFive = '10vh 5vw 8vh 5vw';
 				let widthInfoContainer = '200px';
@@ -435,15 +444,17 @@
 					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '31vh 5vw 8vh 7vw';
-					paddingContentOne = '1vh 0vw 0vh 45vw';
+					paddingBgImageContent = '31vh 15vw 6vh 15vw';
+					paddingContentOne = '0vh 0vw 0vh 37vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '1.5vh 0vw 0vh 55vw';
+					paddingContentImgTwo = '0.5vh 0vw 0vh 47vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 4vw';
 					contentTwoImg = '40px';
-					paddingContentThree = '0vh 0vw 14vh 20vw';
-					contentThreeLink = '4.3vh 0vw 0vh 0vw';
-					contentThreeLinkSize = '9px';
-					contentThreeSpanSize = '6px';
+					paddingContentThree = '2vh 0vw 8vh 12vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '11px';
+					contentTwoSpanSize = '6px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -456,14 +467,16 @@
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
 					paddingBgImageContent = '37vh 5vw 15vh 7vw';
-					paddingContentOne = '1vh 0vw 0vh 48vw';
+					paddingContentOne = '0.5vh 0vw 0vh 48vw';
 					contentOneImg = '100px';
 					paddingContentTwo = '3.5vh 0vw 0vh 57vw';
-					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 14vh 15vw';
-					contentThreeLink = '4.5vh 0vw 0vh 0vw';
-					contentThreeLinkSize = '10px';
-					contentThreeSpanSize = '8px';
+					paddingContentImgTwo = '1vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0.5vh 0vw 0vh 10vw';
+					contentTwoImg = '48px';
+					paddingContentThree = '2.5vh 0vw 8vh 15vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '13px';
+					contentTwoSpanSize = '8px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -475,11 +488,13 @@
 					paddingContentOne = '0vh 0vw 0vh 48vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '0vh 0vw 0vh 57vw';
+					paddingContentImgTwo = '0vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 57vw';
 					contentTwoImg = '40px';
 					paddingContentThree = '0vh 0vw 14vh 28vw';
 					contentThreeLink = '4vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '10px';
-					contentThreeSpanSize = '10px';
+					contentTwoSpanSize = '10px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 2vw';
 					widthInfoContainer = '200px';
@@ -487,15 +502,17 @@
 					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '32vh 15vw 16vh 15vw';
+					paddingBgImageContent = '32vh 15vw 13vh 15vw';
 					paddingContentOne = '0vh 0vw 0vh 40vw';
 					contentOneImg = '100px';
-					paddingContentTwo = '1vh 0vw 0vh 50vw';
+					paddingContentTwo = '0vh 0vw 0vh 50vw';
+					paddingContentImgTwo = '0vh 0vw 0vh 45vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0.3vh 3vw';
 					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 11vh 13vw';
-					contentThreeLink = '5vh 0vw 0vh 0vw';
-					contentThreeLinkSize = '10px';
-					contentThreeSpanSize = '8px';
+					paddingContentThree = '2vh 0vw 9vh 13vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '13px';
+					contentTwoSpanSize = '8px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -504,32 +521,36 @@
 					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '31vh 8vw 13vh 5vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
+					paddingBgImageContent = '31vh 15vw 11vh 15vw';
+					paddingContentOne = '1vh 0vw 0vh 37vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '0vh 0vw 0vh 57vw';
+					paddingContentImgTwo = '1.5vh 0vw 0vh 45vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 3vw';
 					contentTwoImg = '45px';
-					paddingContentThree = '0vh 0vw 9vh 23vw';
-					contentThreeLink = '4vh 0vw 0vh 0vw';
-					contentThreeLinkSize = '10px';
-					contentThreeSpanSize = '8px';
+					paddingContentThree = '2vh 0vw 9vh 13vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '11px';
+					contentTwoSpanSize = '8px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
-					paddingContentFive = '0vh 0vw 0vh 2vw';
-					widthInfoContainer = '250px';
+					paddingContentFive = '0vh 0vw 0vh 0vw';
+					widthInfoContainer = '100%';
 					topBtnClose = '15px';
 				} else if (screenWidth === 280) {
 					imageUrl = './390x844.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '37vh 5vw 12vh 7vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
+					paddingBgImageContent = '37vh 5vw 8vh 7vw';
+					paddingContentOne = '1vh 0vw 0vh 48vw';
 					contentOneImg = '80px';
-					paddingContentTwo = '1vh 0vw 0vh 57vw';
-					contentTwoImg = '45px';
-					paddingContentThree = '0vh 0vw 10vh 16vw';
-					contentThreeLink = '4vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '5.5px';
-					contentThreeLinkSize = '8px';
+					paddingContentTwo = '0vh 0vw 0vh 57vw';
+					paddingContentImgTwo = '0.5vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 2vw';
+					contentTwoImg = '40px';
+					paddingContentThree = '2vh 0vw 9vh 16vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '7px';
+					contentThreeLinkSize = '12px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -541,11 +562,13 @@
 					paddingContentOne = '0vh 0vw 0vh 48vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '0vh 0vw 2vh 57vw';
-					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 8vh 16vw';
-					contentThreeLink = '2vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '7px';
-					contentThreeLinkSize = '10px';
+					paddingContentImgTwo = '1vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0.8vh 0vw 0vh 4vw';
+					contentTwoImg = '45px';
+					paddingContentThree = '2vh 0vw 8vh 16vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '9px';
+					contentThreeLinkSize = '12px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -553,18 +576,20 @@
 					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '32vh 8vw 12vh 5vw';
-					paddingContentOne = '1vh 0vw 0vh 48vw';
+					paddingBgImageContent = '32vh 15vw 9vh 15vw';
+					paddingContentOne = '1vh 0vw 0vh 39vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '3vh 0vw 2vh 57vw';
-					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 14vh 23vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '7px';
-					contentThreeLinkSize = '10px';
+					paddingContentImgTwo = '3vh 0vw 0vh 47vw';
+					paddingContentSaveTextTwo = '0.3vh 0vw 0vh 5vw';
+					contentTwoImg = '45px';
+					paddingContentThree = '4vh 0vw 14vh 13vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '7px';
+					contentThreeLinkSize = '12px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
-					paddingContentFive = '0vh 0vw 0vh 2vw';
-					widthInfoContainer = '200px';
+					paddingContentFive = '0vh 0vw 0vh 0vw';
+					widthInfoContainer = '100%';
 					topBtnClose = '10px';
 					paddingBtnClose = '3px';
 				} else if (
@@ -579,11 +604,13 @@
 					paddingContentOne = '0vh 0vw 0vh 48vw';
 					contentOneImg = '110px';
 					paddingContentTwo = '1vh 0vw 0vh 57vw';
-					contentTwoImg = '60px';
-					paddingContentThree = '0vh 0vw 10vh 16vw';
-					contentThreeLink = '4vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '8px';
-					contentThreeLinkSize = '13px';
+					paddingContentImgTwo = '1.5vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0.2vh 0vw 0vh 5vw';
+					contentTwoImg = '50px';
+					paddingContentThree = '2vh 0vw 8vh 16vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '10px';
+					contentThreeLinkSize = '14px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -591,73 +618,83 @@
 					imageUrl = './stop_cash_mobile.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '31vh 8vw 12vh 5vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
+					paddingBgImageContent = '31vh 15vw 12vh 15vw';
+					paddingContentOne = '1vh 0vw 0vh 40vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '0vh 0vw 0vh 57vw';
+					paddingContentImgTwo = '0.5vh 0vw 0vh 45vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 5vw';
 					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 10vh 23vw';
-					contentThreeLink = '4vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '8px';
-					contentThreeLinkSize = '12px';
+					paddingContentThree = '2vh 0vw 9vh 13vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '10px';
+					contentThreeLinkSize = '15px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
-					paddingContentFive = '0vh 0vw 0vh 2vw';
-					widthInfoContainer = '300px';
+					paddingContentFive = '0vh 0vw 0vh 0vw';
+					widthInfoContainer = '100%';
 				} else if (screenWidth < 600) {
 					imageUrl = './390x844.jpg';
 					fontSizeSpan = '8px';
 					widthSpan = '80px';
-					paddingBgImageContent = '37vh 5vw 13vh 7vw';
+					paddingBgImageContent = '37vh 5vw 10vh 7vw';
 					paddingContentOne = '0vh 0vw 0vh 48vw';
 					contentOneImg = '100px';
 					paddingContentTwo = '0vh 0vw 0vh 57vw';
-					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 9.5vh 16vw';
-					contentThreeLink = '3.5vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '7px';
-					contentThreeLinkSize = '10px';
+					paddingContentImgTwo = '0.5vh 0vw 0vh 57vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 7vw';
+					contentTwoImg = '45px';
+					paddingContentThree = '2vh 0vw 8vh 16vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '8px';
+					contentThreeLinkSize = '11px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
 				} else if (screenWidth === 931) {
 					imageUrl = './768x1024.jpg';
 					paddingBgImageContent = '34vh 8vw 13vh 7vw';
-					paddingContentOne = '3vh 0vw 0vh 28vw';
+					paddingContentOne = '4vh 0vw 0vh 28vw';
 					contentOneImg = '140px';
 					paddingContentTwo = '0vh 0vw 1vh 33vw';
-					contentTwoImg = '80px';
-					paddingContentThree = '0vh 0vw 6vh 7vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '10px';
-					contentThreeLinkSize = '16px';
+					paddingContentImgTwo = '0.5vh 0vw 0vh 33vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0.3vh 0.5vw';
+					contentTwoImg = '70px';
+					paddingContentThree = '2vh 0vw 8vh 7vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '15px';
+					contentThreeLinkSize = '22px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '63%';
 				} else if (screenWidth === 912) {
 					imageUrl = './768x1024.jpg';
 					paddingBgImageContent = '34vh 8vw 13vh 7vw';
-					paddingContentOne = '3vh 0vw 0vh 28vw';
+					paddingContentOne = '4vh 0vw 0vh 28vw';
 					contentOneImg = '140px';
 					paddingContentTwo = '0vh 0vw 1vh 33vw';
-					contentTwoImg = '80px';
-					paddingContentThree = '0vh 0vw 6vh 7vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '10px';
-					contentThreeLinkSize = '16px';
+					paddingContentImgTwo = '0.4vh 0vw 0vh 33vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0.5vh 0vw';
+					contentTwoImg = '70px';
+					paddingContentThree = '2vh 0vw 8vh 7vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '14.5px';
+					contentThreeLinkSize = '22px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '63%';
 				} else if (screenWidth === 1024 && screenHeight === 1366) {
 					imageUrl = './768x1024.jpg';
 					paddingBgImageContent = '34vh 8vw 14vh 7vw';
-					paddingContentOne = '3vh 0vw 0vh 28vw';
+					paddingContentOne = '3.5vh 0vw 0vh 28vw';
 					contentOneImg = '140px';
 					paddingContentTwo = '0vh 0vw 1vh 33vw';
-					contentTwoImg = '80px';
-					paddingContentThree = '0vh 0vw 5vh 7vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '10px';
-					contentThreeLinkSize = '16px';
+					paddingContentImgTwo = '1.8vh 0vw 0vh 33vw';
+					paddingContentSaveTextTwo = '0.5vh 0vw 0vh 2vw';
+					contentTwoImg = '75px';
+					paddingContentThree = '2.5vh 0vw 8vh 7vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '15px';
+					contentThreeLinkSize = '22px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '63%';
@@ -667,39 +704,45 @@
 					paddingContentOne = '1vh 0vw 0vh 20vw';
 					contentOneImg = '120px';
 					paddingContentTwo = '3vh 0vw 0vh 25vw';
-					contentTwoImg = '55px';
-					paddingContentThree = '0vh 0vw 0vh 5vw';
-					contentThreeLink = '6vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '9px';
-					contentThreeLinkSize = '14px';
+					paddingContentImgTwo = '2.5vh 0vw 0vh 25vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 0.5vw';
+					contentTwoImg = '50px';
+					paddingContentThree = '5vh 0vw 0vh 5vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '11px';
+					contentThreeLinkSize = '18px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 40vw';
-					widthInfoContainer = '280px';
+					widthInfoContainer = '100%';
 				} else if (screenWidth === 1280) {
 					imageUrl = './stop_cash_pc.jpg';
 					paddingBgImageContent = '37vh 8vw 12vh 9vw';
 					paddingContentOne = '1vh 0vw 0vh 20vw';
 					contentOneImg = '130px';
 					paddingContentTwo = '2vh 0vw 0vh 25vw';
-					contentTwoImg = '65px';
+					paddingContentImgTwo = '1.5vh 0vw 0vh 25vw';
+					paddingContentSaveTextTwo = '0.5vh 0vw 0vh 3vw';
+					contentTwoImg = '60px';
 					paddingContentThree = '4vh 0vw 0vh 5vw';
-					contentThreeLink = '2vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '10px';
-					contentThreeLinkSize = '14px';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '13px';
+					contentThreeLinkSize = '19px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 40vw';
-					widthInfoContainer = '300px';
+					widthInfoContainer = '100%';
 				} else if (screenWidth < 1200) {
 					imageUrl = './768x1024.jpg';
-					paddingBgImageContent = '34vh 8vw 12vh 7vw';
+					paddingBgImageContent = '34vh 8vw 11vh 7vw';
 					paddingContentOne = '3vh 0vw 0vh 28vw';
 					contentOneImg = '130px';
 					paddingContentTwo = '0vh 0vw 1vh 33vw';
-					contentTwoImg = '70px';
-					paddingContentThree = '0vh 0vw 7vh 7vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeSpanSize = '9px';
-					contentThreeLinkSize = '15px';
+					paddingContentImgTwo = '0.8vh 0vw 0vh 33vw';
+					paddingContentSaveTextTwo = '0vh 0vw 0vh 0.5vw';
+					contentTwoImg = '60px';
+					paddingContentThree = '2vh 0vw 8vh 7vw';
+					contentThreeLink = '0vh 0vw 0vh 0vw';
+					contentTwoSpanSize = '12px';
+					contentThreeLinkSize = '17px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '63%';
@@ -707,15 +750,17 @@
 					imageUrl = './stop_cash_pc.jpg';
 					width = '970px';
 					paddingBgImageContent = '36vh 5vw 12vh 5vw';
-					paddingContentOne = '0.5vh 5vw 0vh 12vw';
+					paddingContentOne = '1vh 5vw 0vh 12vw';
 					contentOneImg = '130px';
 					paddingContentTwo = '0vh 5vw 0vh 14vw';
-					contentTwoImg = '70px';
+					paddingContentImgTwo = '1vh 5vw 0vh 14vw';
+					paddingContentSaveTextTwo = '0vh 0vw 1vh 3vw';
+					contentTwoImg = '65px';
 					paddingContentThree = '0vh 0vw 0vh 3vw';
-					contentThreeLink = '5vh 0vw 0vh 0vw';
+					contentThreeLink = '4vh 0vw 0vh 0vw';
 					paddingContentFour = '0vh 5vw 0vh 5vw';
 					paddingContentFive = '0vh 0vw 0vh 25vw';
-					widthInfoContainer = '300px';
+					widthInfoContainer = '100%';
 				}
 
 				bgImageElement.style.backgroundImage = `url(${imageUrl})`;
@@ -728,14 +773,18 @@
 				bgImageContentElement.style.padding = paddingBgImageContent;
 				bgImageContentOneElement.style.padding = paddingContentOne;
 				bgImageContentOneImgElement.style.width = contentOneImg;
-				bgImageContentTwoElement.style.padding = paddingContentTwo;
+				// bgImageContentTwoElement.style.padding = paddingContentTwo;
+				bgImageContentTwoImgElement.style.padding =
+					paddingContentImgTwo;
+				bgImageContentTwoSpanElement.style.padding =
+					paddingContentSaveTextTwo;
 				bgImageContentTwoImgElement.style.width = contentTwoImg;
 				bgImageContentThreeElement.style.padding = paddingContentThree;
 				bgImageContentThreeLinkElement.style.margin = contentThreeLink;
 				bgImageContentThreeLinkElement.style.fontSize =
 					contentThreeLinkSize;
-				bgImageContentThreeSpanElement.style.fontSize =
-					contentThreeSpanSize;
+				bgImageContentTwoSpanElement.style.fontSize =
+					contentTwoSpanSize;
 				bgImageContentFourElement.style.padding = paddingContentFour;
 				bgImageContentFiveElement.style.padding = paddingContentFive;
 				bgImageContentFiveInfoContainerElement.style.width =
