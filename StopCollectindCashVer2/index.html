@@ -153,7 +153,7 @@
 			.info_contact_container {
 				padding: 5px 10px;
 				box-sizing: border-box;
-				border-radius: 8px;
+				border-radius: 20px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -171,7 +171,7 @@
 			.info_contact_container input {
 				width: 90%;
 				padding: 8px;
-				border-radius: 5px;
+				border-radius: 8px;
 				border: none;
 				outline: none;
 				border: 1px solid #ccc;
@@ -206,11 +206,6 @@
 				height: 100%;
 				object-fit: contain;
 				cursor: pointer !important;
-			}
-
-			#close i {
-				font-size: 25px;
-				color: #fff;
 			}
 			/*Media Queries ------------------------------ */
 
@@ -256,6 +251,10 @@
 										<td class="content-cell bg_image">
 											<div id="close">
 												<span
+													style="
+														display: block;
+														height: 0;
+													"
 													><img
 														src="./button_stop_cash_pc.png"
 														alt="FPT Telecom"
@@ -344,13 +343,13 @@
 		<script async>
 			const btnSend = document.querySelector('#send');
 			const phoneElement = document.querySelector('#phone');
+			const spanFormElement = document.querySelector(
+				'.info_contact_container span',
+			);
 			const btnClose = document.querySelector('.bg_image #close');
 			const emailBodyInnerElement =
 				document.querySelector('.email-body_inner');
 			const bgImageElement = document.querySelector('.bg_image');
-			const bgImageSpanElement = document.querySelector(
-				'.bg_image #close span',
-			);
 			const bgImageSpanImgElement = document.querySelector(
 				'.bg_image #close span img',
 			);
@@ -374,6 +373,8 @@
 				document.querySelector('.content_five');
 			const bgImageContentFiveInfoContainerElement =
 				document.querySelector('.info_contact_container');
+
+			// QR CODE
 			const qrCodeValue = 'https://fpt.vn/pay/SGD123456';
 
 			function updateBackground() {
@@ -384,8 +385,6 @@
 				let imageWidthClose = '100%';
 				let imageHeightClose = '100%';
 				let width = '100%';
-				let fontSizeSpan = '10px';
-				let widthSpan = '130px';
 				let paddingBgImageContent = '10vh 5vw 8vh 5vw';
 				let paddingContentOne = '10vh 5vw 8vh 5vw';
 				let contentOneImg = '130px';
@@ -394,13 +393,18 @@
 				let paddingContentThree = '10vh 5vw 8vh 5vw';
 				let contentThreeLink = '0vh 0vw 0vh 0vw';
 				let contentThreeLinkSize = '16px';
-				let contentTwoSpanSize = '10px';
 				let paddingContentFour = '10vh 5vw 8vh 5vw';
 				let paddingContentFive = '10vh 5vw 8vh 5vw';
 				let widthInfoContainer = '200px';
 				let topBtnClose = '25px';
 				let rightBtnClose = '15px';
 				let paddingBtnClose = '8px';
+				let spanFormSize = '';
+				let inputFormSize = '';
+				let inputFormHeight = '';
+				let inputFormWidth = '';
+				let buttonTextFormSize = '';
+				let buttonFormPadding = '';
 
 				console.log(screenWidth);
 				console.log(screenHeight);
@@ -410,39 +414,36 @@
 					imageUrlClose = './button_stop_cash_mobile.png';
 					imageWidthClose = '110px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '31vh 15vw 6vh 15vw';
+					paddingBgImageContent = '31vh 15vw 7vh 15vw';
 					paddingContentOne = '0vh 0vw 2vh 37vw';
 					contentOneImg = '90px';
 					paddingContentTwo = '0vh 0vw 0vh 52vw';
-					contentTwoImg = '45px';
+					contentTwoImg = '50px';
 					paddingContentThree = '4vh 0vw 10vh 12vw';
 					contentThreeLink = '0vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '11px';
-					contentTwoSpanSize = '6px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
-					topBtnClose = '5px';
 					paddingBtnClose = '0px';
+					topBtnClose = '0px';
 					rightBtnClose = '0px';
+					spanFormSize = '10px';
+					inputFormSize = '12px';
+					buttonTextFormSize = '12px';
 				} else if (screenWidth === 390 && screenHeight === 844) {
 					imageUrl = './stop_cash_390x844.jpg';
 					imageUrlClose = './button_stop_cash_390x844.png';
 					imageWidthClose = '150px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '35vh 5vw 18vh 7vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
-					contentOneImg = '100px';
-					paddingContentTwo = '0vh 0vw 0vh 62vw';
+					paddingBgImageContent = '35vh 13vw 18vh 13vw';
+					paddingContentOne = '0vh 0vw 0vh 42vw';
+					contentOneImg = '110px';
+					paddingContentTwo = '0vh 0vw 0vh 57vw';
 					contentTwoImg = '55px';
-					paddingContentThree = '1.5vh 0vw 7vh 18vw';
-					contentThreeLink = '0vh 0vw 0vh 0vw';
+					paddingContentThree = '0vh 0vw 7vh 13vw';
+					contentThreeLink = '3vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '13px';
-					contentTwoSpanSize = '8px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -450,8 +451,6 @@
 					rightBtnCloseButton = '0px';
 				} else if (screenWidth === 612) {
 					imageUrl = './390x844.jpg';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
 					paddingBgImageContent = '31vh 8vw 8vh 5vw';
 					paddingContentOne = '0vh 0vw 0vh 48vw';
 					contentOneImg = '90px';
@@ -460,26 +459,22 @@
 					paddingContentThree = '0vh 0vw 14vh 28vw';
 					contentThreeLink = '4vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '10px';
-					contentTwoSpanSize = '10px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 2vw';
 					widthInfoContainer = '200px';
 				} else if (screenWidth === 414 && screenHeight === 896) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
-					imageWidthClose = '150px';
+					imageWidthClose = '160px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
 					paddingBgImageContent = '30vh 15vw 13vh 15vw';
-					paddingContentOne = '0vh 0vw 0vh 40vw';
-					contentOneImg = '100px';
+					paddingContentOne = '0vh 0vw 0vh 36vw';
+					contentOneImg = '120px';
 					paddingContentTwo = '1vh 0vw 0vh 52vw';
-					contentTwoImg = '60px';
+					contentTwoImg = '65px';
 					paddingContentThree = '2vh 0vw 9vh 13vw';
 					contentThreeLink = '1vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '13px';
-					contentTwoSpanSize = '8px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -488,19 +483,16 @@
 				} else if (screenWidth === 414) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
-					imageWidthClose = '120px';
+					imageWidthClose = '140px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
 					paddingBgImageContent = '30vh 15vw 11vh 15vw';
 					paddingContentOne = '0vh 0vw 0vh 37vw';
-					contentOneImg = '90px';
+					contentOneImg = '110px';
 					paddingContentTwo = '0vh 0vw 0vh 52vw';
-					contentTwoImg = '55px';
+					contentTwoImg = '60px';
 					paddingContentThree = '0vh 0vw 8vh 13vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentThreeLinkSize = '12px';
-					contentTwoSpanSize = '8px';
+					contentThreeLink = '2.5vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '13px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
@@ -509,65 +501,60 @@
 				} else if (screenWidth === 280) {
 					imageUrl = './stop_cash_390x844.jpg';
 					imageUrlClose = './button_stop_cash_390x844.png';
-					imageWidthClose = '100px';
+					imageWidthClose = '120px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '35vh 13vw 13vh 13vw';
+					paddingBgImageContent = '35vh 13vw 15vh 13vw';
 					paddingContentOne = '0vh 0vw 0vh 40vw';
 					contentOneImg = '80px';
 					paddingContentTwo = '0.5vh 0vw 0vh 57vw';
 					contentTwoImg = '45px';
-					paddingContentThree = '0vh 0vw 8vh 14vw';
-					contentThreeLink = '2vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '7px';
+					paddingContentThree = '0vh 0vw 8vh 13vw';
+					contentThreeLink = '4vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '10px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
 					topBtnClose = '15px';
 					rightBtnClose = '0px';
+					spanFormSize = '10px';
+					inputFormSize = '10px';
+					buttonTextFormSize = '12px';
 				} else if (screenWidth === 375 && screenHeight === 812) {
 					imageUrl = './stop_cash_390x844.jpg';
 					imageUrlClose = './button_stop_cash_390x844.png';
-					imageWidthClose = '110px';
+					imageWidthClose = '140px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '35vh 5vw 18vh 7vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
-					contentOneImg = '90px';
-					paddingContentTwo = '0vh 0vw 0vh 63vw';
-					contentTwoImg = '50px';
-					paddingContentThree = '2vh 0vw 7vh 18vw';
-					contentThreeLink = '0vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '9px';
+					paddingBgImageContent = '35vh 13vw 17vh 13vw';
+					paddingContentOne = '0vh 0vw 0vh 42vw';
+					contentOneImg = '100px';
+					paddingContentTwo = '0vh 0vw 0vh 57vw';
+					contentTwoImg = '55px';
+					paddingContentThree = '0vh 0vw 7vh 13vw';
+					contentThreeLink = '3vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '12px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '25px';
+					rightBtnClose = '0px';
 				} else if (screenWidth === 375) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
 					imageWidthClose = '130px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
 					paddingBgImageContent = '30vh 15vw 9vh 15vw';
-					paddingContentOne = '0vh 0vw 0vh 39vw';
-					contentOneImg = '90px';
+					paddingContentOne = '0vh 0vw 0vh 37vw';
+					contentOneImg = '100px';
 					paddingContentTwo = '1vh 0vw 2vh 52vw';
-					contentTwoImg = '50px';
+					contentTwoImg = '55px';
 					paddingContentThree = '0vh 0vw 9vh 13vw';
 					contentThreeLink = '1.5vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '7px';
 					contentThreeLinkSize = '12px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
-					paddingBtnClose = '3px';
 				} else if (
 					screenWidth === 390 ||
 					screenWidth === 430 ||
@@ -575,37 +562,33 @@
 				) {
 					imageUrl = './stop_cash_390x844.jpg';
 					imageUrlClose = './button_stop_cash_390x844.png';
-					imageWidthClose = '150px';
+					imageWidthClose = '160px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '35vh 5vw 20vh 7vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
-					contentOneImg = '110px';
-					paddingContentTwo = '0.5vh 0vw 2vh 63vw';
+					paddingBgImageContent = '35vh 13vw 19vh 13vw';
+					paddingContentOne = '0vh 0vw 0vh 41vw';
+					contentOneImg = '120px';
+					paddingContentTwo = '0.5vh 0vw 2vh 57vw';
 					contentTwoImg = '60px';
-					paddingContentThree = '0vh 0vw 7vh 18vw';
+					paddingContentThree = '0vh 0vw 6vh 13vw';
 					contentThreeLink = '0vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '10px';
 					contentThreeLinkSize = '14px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '35px';
+					rightBtnClose = '0px';
 				} else if (screenWidth === 540) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
 					imageWidthClose = '150px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
 					paddingBgImageContent = '30vh 15vw 12vh 15vw';
-					paddingContentOne = '0vh 0vw 0vh 40vw';
-					contentOneImg = '110px';
+					paddingContentOne = '0vh 0vw 0vh 39vw';
+					contentOneImg = '120px';
 					paddingContentTwo = '0vh 0vw 0vh 53vw';
-					contentTwoImg = '55px';
-					paddingContentThree = '0vh 0vw 9vh 13vw';
-					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '10px';
+					contentTwoImg = '60px';
+					paddingContentThree = '0vh 0vw 10vh 13vw';
+					contentThreeLink = '4vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '15px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
@@ -617,16 +600,13 @@
 					imageUrlClose = './button_stop_cash_390x844.png';
 					imageWidthClose = '150px';
 					imageHeightClose = '80px';
-					fontSizeSpan = '8px';
-					widthSpan = '80px';
-					paddingBgImageContent = '35vh 5vw 15vh 7vw';
-					paddingContentOne = '0vh 0vw 0vh 48vw';
+					paddingBgImageContent = '35vh 13vw 15vh 13vw';
+					paddingContentOne = '0vh 0vw 0vh 41vw';
 					contentOneImg = '100px';
-					paddingContentTwo = '0vh 0vw 0vh 63vw';
+					paddingContentTwo = '0vh 0vw 0vh 57vw';
 					contentTwoImg = '50px';
-					paddingContentThree = '0vh 0vw 8vh 18vw';
+					paddingContentThree = '0vh 0vw 8vh 13vw';
 					contentThreeLink = '3vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '8px';
 					contentThreeLinkSize = '11px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
@@ -636,69 +616,81 @@
 				} else if (screenWidth === 931) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
-					imageWidthClose = '200px';
-					imageHeightClose = '100px';
-					paddingBgImageContent = '30vh 20vw 17vh 20vw';
-					paddingContentOne = '0vh 0vw 0vh 35vw';
-					contentOneImg = '150px';
+					imageWidthClose = '280px';
+					imageHeightClose = '110px';
+					paddingBgImageContent = '30vh 20vw 15vh 20vw';
+					paddingContentOne = '0vh 0vw 0vh 33vw';
+					contentOneImg = '180px';
 					paddingContentTwo = '0vh 0vw 2vh 46vw';
-					contentTwoImg = '80px';
-					paddingContentThree = '0vh 0vw 7vh 10vw';
-					contentThreeLink = '0vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '15px';
-					contentThreeLinkSize = '22px';
+					contentTwoImg = '90px';
+					paddingContentThree = '0vh 0vw 8vh 10vw';
+					contentThreeLink = '0.5vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '23px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '15px';
+					rightBtnClose = '0px';
+					spanFormSize = '19px';
+					inputFormSize = '20px';
+					inputFormWidth = '90%';
+					buttonTextFormSize = '19px';
+					buttonFormPadding = '10px 20px';
 				} else if (screenWidth === 912) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
-					imageWidthClose = '200px';
-					imageHeightClose = '100px';
-					paddingBgImageContent = '30vh 20vw 18vh 20vw';
-					paddingContentOne = '0vh 0vw 0vh 35vw';
-					contentOneImg = '160px';
+					imageWidthClose = '300px';
+					imageHeightClose = '120px';
+					paddingBgImageContent = '30vh 20vw 15vh 20vw';
+					paddingContentOne = '0vh 0vw 0vh 33vw';
+					contentOneImg = '200px';
 					paddingContentTwo = '0vh 0vw 0vh 45vw';
-					contentTwoImg = '88px';
-					paddingContentThree = '0vh 0vw 8vh 10vw';
+					contentTwoImg = '100px';
+					paddingContentThree = '0vh 0vw 10vh 10vw';
 					contentThreeLink = '4vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '14.5px';
-					contentThreeLinkSize = '22px';
+					contentThreeLinkSize = '24px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					spanFormSize = '20px';
+					inputFormSize = '24px';
+					inputFormWidth = '95%';
+					buttonTextFormSize = '22px';
+					buttonFormPadding = '10px 20px';
 				} else if (screenWidth === 1024 && screenHeight === 1366) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
-					imageWidthClose = '200px';
-					imageHeightClose = '100px';
-					paddingBgImageContent = '30vh 20vw 18vh 20vw';
+					imageWidthClose = '280px';
+					imageHeightClose = '120px';
+					paddingBgImageContent = '30vh 20vw 15vh 20vw';
 					paddingContentOne = '0vh 0vw 0vh 34vw';
-					contentOneImg = '180px';
+					contentOneImg = '210px';
 					paddingContentTwo = '0vh 0vw 0vh 47vw';
-					contentTwoImg = '90px';
+					contentTwoImg = '100px';
 					paddingContentThree = '0vh 0vw 10vh 10vw';
-					contentThreeLink = '6vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '15px';
-					contentThreeLinkSize = '22px';
+					contentThreeLink = '5vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '26px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
 					topBtnClose = '15px';
 					rightBtnClose = '15px';
+					spanFormSize = '21px';
+					inputFormSize = '23px';
+					buttonTextFormSize = '23px';
+					buttonFormPadding = '10px 25px';
 				} else if (screenWidth === 1024) {
 					imageUrl = './stop_cash_pc.jpg';
 					imageUrlClose = './button_stop_cash_pc.png';
-					imageWidthClose = '150px';
+					imageWidthClose = '180px';
 					imageHeightClose = '80px';
 					paddingBgImageContent = '35vh 8vw 12vh 9vw';
-					paddingContentOne = '1vh 0vw 0vh 20vw';
-					contentOneImg = '120px';
-					paddingContentTwo = '4vh 0vw 0vh 32vw';
-					contentTwoImg = '60px';
+					paddingContentOne = '1vh 0vw 0vh 23vw';
+					contentOneImg = '130px';
+					paddingContentTwo = '3vh 0vw 0vh 32vw';
+					contentTwoImg = '65px';
 					paddingContentThree = '0vh 0vw 0vh 6vw';
 					contentThreeLink = '8vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '11px';
 					contentThreeLinkSize = '18px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 45vw';
@@ -708,52 +700,89 @@
 				} else if (screenWidth === 1280) {
 					imageUrl = './stop_cash_pc.jpg';
 					imageUrlClose = './button_stop_cash_pc.png';
-					imageWidthClose = '180px';
-					imageHeightClose = '80px';
+					imageWidthClose = '200px';
+					imageHeightClose = '100px';
 					paddingBgImageContent = '35vh 8vw 12vh 9vw';
-					paddingContentOne = '0vh 0vw 0vh 23vw';
-					contentOneImg = '130px';
+					paddingContentOne = '1vh 0vw 0vh 23vw';
+					contentOneImg = '160px';
 					paddingContentTwo = '2vh 0vw 0vh 31vw';
-					contentTwoImg = '75px';
+					contentTwoImg = '80px';
 					paddingContentThree = '0vh 0vw 0vh 6vw';
 					contentThreeLink = '8vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '13px';
-					contentThreeLinkSize = '19px';
+					contentThreeLinkSize = '21px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 45vw';
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
-				} else if (screenWidth < 1200) {
+					spanFormSize = '15px';
+					inputFormSize = '16px';
+					buttonTextFormSize = '15px';
+				} else if (screenWidth === 745 && screenHeight === 1073) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
-					imageWidthClose = '180px';
-					imageHeightClose = '80px';
-					paddingBgImageContent = '29vh 20vw 15vh 20vw';
-					paddingContentOne = '0vh 0vw 0vh 33vw';
-					contentOneImg = '130px';
-					paddingContentTwo = '0vh 0vw 0vh 46vw';
-					contentTwoImg = '68px';
+					imageWidthClose = '200px';
+					imageHeightClose = '100px';
+					paddingBgImageContent = '29vh 20vw 12vh 20vw';
+					paddingContentOne = '0.8vh 0vw 0vh 33vw';
+					contentOneImg = '150px';
+					paddingContentTwo = '0vh 0vw 1vh 46vw';
+					contentTwoImg = '75px';
 					paddingContentThree = '0vh 0vw 8vh 10vw';
 					contentThreeLink = '2vh 0vw 0vh 0vw';
-					contentTwoSpanSize = '12px';
-					contentThreeLinkSize = '17px';
+					contentThreeLinkSize = '19px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 0vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '15px';
+					rightBtnClose = '0px';
+					spanFormSize = '17px';
+					inputFormSize = '18px';
+					inputFormWidth = '95%';
+					buttonTextFormSize = '16px';
+					buttonFormPadding = '10px 20px';
+				} else if (screenWidth < 1200) {
+					imageUrl = './stop_cash_768x1024.jpg';
+					imageUrlClose = './button_stop_cash_768x1024.png';
+					imageWidthClose = '200px';
+					imageHeightClose = '100px';
+					paddingBgImageContent = '29vh 20vw 14vh 20vw';
+					paddingContentOne = '0.8vh 0vw 0vh 33vw';
+					contentOneImg = '150px';
+					paddingContentTwo = '0vh 0vw 1vh 46vw';
+					contentTwoImg = '75px';
+					paddingContentThree = '0vh 0vw 8vh 10vw';
+					contentThreeLink = '2vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '19px';
+					paddingContentFour = '0vh 0vw 0vh 0vw';
+					paddingContentFive = '0vh 0vw 0vh 0vw';
+					widthInfoContainer = '100%';
+					topBtnClose = '15px';
+					rightBtnClose = '0px';
+					spanFormSize = '17px';
+					inputFormSize = '17px';
+					inputFormWidth = '95%';
+					buttonTextFormSize = '16px';
+					buttonFormPadding = '10px 20px';
 				} else {
 					imageUrl = './stop_cash_pc.jpg';
+					imageUrlClose = './button_stop_cash_pc.png';
+					imageWidthClose = '250px';
+					imageHeightClose = '100px';
 					width = '970px';
 					paddingBgImageContent = '35vh 5vw 12vh 5vw';
 					paddingContentOne = '0vh 5vw 0vh 12vw';
-					contentOneImg = '130px';
+					contentOneImg = '150px';
 					paddingContentTwo = '0vh 5vw 0vh 17vw';
-					contentTwoImg = '70px';
-					paddingContentThree = '0vh 0vw 0vh 3vw';
+					contentTwoImg = '80px';
+					paddingContentThree = '0vh 0vw 0vh 3.5vw';
+					contentThreeLinkSize = '17px';
 					contentThreeLink = '8vh 0vw 0vh 0vw';
 					paddingContentFour = '0vh 5vw 0vh 5vw';
 					paddingContentFive = '0vh 0vw 0vh 25vw';
 					widthInfoContainer = '100%';
+					topBtnClose = '0px';
+					rightBtnClose = '0px';
 				}
 
 				bgImageElement.style.backgroundImage = `url(${imageUrl})`;
@@ -764,8 +793,6 @@
 				btnClose.style.right = rightBtnClose;
 				btnClose.style.padding = paddingBtnClose;
 				emailBodyInnerElement.style.width = width;
-				bgImageSpanElement.style.fontSize = fontSizeSpan;
-				bgImageSpanElement.style.width = widthSpan;
 				bgImageContentElement.style.padding = paddingBgImageContent;
 				bgImageContentOneElement.style.padding = paddingContentOne;
 				bgImageContentOneImgElement.style.width = contentOneImg;
@@ -779,6 +806,12 @@
 				bgImageContentFiveElement.style.padding = paddingContentFive;
 				bgImageContentFiveInfoContainerElement.style.width =
 					widthInfoContainer;
+				spanFormElement.style.fontSize = spanFormSize;
+				phoneElement.style.fontSize = inputFormSize;
+				phoneElement.style.height = inputFormHeight;
+				phoneElement.style.width = inputFormWidth;
+				btnSend.style.fontSize = buttonTextFormSize;
+				btnSend.style.padding = buttonFormPadding;
 
 				bgImageContentTwoImgElement.innerHTML = '';
 
