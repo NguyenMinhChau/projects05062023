@@ -409,6 +409,8 @@
 				console.log(screenWidth);
 				console.log(screenHeight);
 
+				bgImageContentThreeLinkElement.innerHTML = `${screenWidth} - ${screenHeight}`;
+
 				if (screenWidth === 320) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
@@ -697,6 +699,25 @@
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
+				} else if (screenWidth === 1280 && screenHeight === 551) {
+					imageUrl = './stop_cash_pc.jpg';
+					width = '860px';
+					imageUrlClose = './button_stop_cash_pc.png';
+					imageWidthClose = '200px';
+					imageHeightClose = '100px';
+					paddingBgImageContent = '35vh 7vw 10vh 0vw';
+					paddingContentOne = '1vh 0vw 0vh 20vw';
+					contentOneImg = '130px';
+					paddingContentTwo = '2vh 0vw 0vh 27vw';
+					contentTwoImg = '65px';
+					paddingContentThree = '0vh 0vw 0vh 10vw';
+					contentThreeLink = '7vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '18px';
+					paddingContentFour = '0vh 0vw 0vh 0vw';
+					paddingContentFive = '0vh 0vw 0vh 35vw';
+					widthInfoContainer = '100%';
+					topBtnClose = '0px';
+					rightBtnClose = '0px';
 				} else if (screenWidth === 1280) {
 					imageUrl = './stop_cash_pc.jpg';
 					imageUrlClose = './button_stop_cash_pc.png';
@@ -718,6 +739,25 @@
 					spanFormSize = '15px';
 					inputFormSize = '16px';
 					buttonTextFormSize = '15px';
+				} else if (screenWidth >= 1280) {
+					imageUrl = './stop_cash_pc.jpg';
+					width = '860px';
+					imageUrlClose = './button_stop_cash_pc.png';
+					imageWidthClose = '200px';
+					imageHeightClose = '100px';
+					paddingBgImageContent = '35vh 7vw 10vh 0vw';
+					paddingContentOne = '1vh 0vw 0vh 20vw';
+					contentOneImg = '130px';
+					paddingContentTwo = '2vh 0vw 0vh 27vw';
+					contentTwoImg = '65px';
+					paddingContentThree = '0vh 0vw 0vh 10vw';
+					contentThreeLink = '7vh 0vw 0vh 0vw';
+					contentThreeLinkSize = '18px';
+					paddingContentFour = '0vh 0vw 0vh 0vw';
+					paddingContentFive = '0vh 0vw 0vh 35vw';
+					widthInfoContainer = '100%';
+					topBtnClose = '0px';
+					rightBtnClose = '0px';
 				} else if (screenWidth === 745 && screenHeight === 1073) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
