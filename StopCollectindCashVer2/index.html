@@ -147,7 +147,8 @@
 
 			.content_three a {
 				font-weight: bold;
-				color: blue;
+				color: #fff;
+				text-decoration: none;
 			}
 
 			.content_four {
@@ -174,7 +175,7 @@
 			.info_contact_container span {
 				font-size: 12px;
 				font-weight: bold;
-				color: #000;
+				color: #fff;
 			}
 
 			.info_contact_container input {
@@ -419,7 +420,7 @@
 				console.log(screenWidth);
 				console.log(screenHeight);
 
-				// bgImageContentThreeLinkElement.innerHTML = `${screenWidth} - ${screenHeight}`;
+				//bgImageContentThreeLinkElement.innerHTML = `${screenWidth} - ${screenHeight}`;
 
 				if (screenWidth === 320) {
 					imageUrl = './stop_cash_mobile.jpg';
@@ -492,6 +493,7 @@
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
+					spanFormSize = '14px'
 				} else if (screenWidth === 414) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
@@ -772,7 +774,28 @@
 					inputFormWidth = '95%';
 					buttonTextFormSize = '16px';
 					buttonFormPadding = '10px 20px';
-				} else if (screenWidth < 1200) {
+				}
+				else if (screenWidth === 1680 && screenHeight === 885) {
+					imageUrl = './stop_cash_pc.jpg';
+					imageUrlClose = './button_stop_cash_pc.png';
+					imageWidthClose = '250px';
+					imageHeightClose = '100px';
+					width = '970px';
+					paddingBgImageContent = '35vh 5vw 12vh 5vw';
+					paddingContentOne = '0vh 5vw 0vh 12vw';
+					contentOneImg = '150px';
+					paddingContentTwo = '0vh 5vw 0vh 18vw';
+					contentTwoImg = '80px';
+					paddingContentThree = '0vh 0vw 0vh 3.5vw';
+					contentThreeLinkSize = '17px';
+					contentThreeLink = '8vh 0vw 0vh 0vw';
+					paddingContentFour = '0vh 5vw 0vh 5vw';
+					paddingContentFive = '0vh 0vw 0vh 25vw';
+					widthInfoContainer = '100%';
+					topBtnClose = '0px';
+					rightBtnClose = '0px';
+				}
+				else if (screenWidth < 1200) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
 					imageWidthClose = '200px';
