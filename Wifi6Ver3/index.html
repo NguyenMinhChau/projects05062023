@@ -55,8 +55,8 @@
 			height: 100%;
 			box-sizing: border-box;
 			display: flex;
-			align-items: center;
-			justify-content: center;
+			align-items: start;
+			justify-content: end;
 		}
 
 		.content_container .image {
@@ -254,6 +254,7 @@
 				const screenHeight = window.innerHeight;
 				let imageUrl = '';
 				let padding = '0vh 0vw 0vh 0vw';
+				let paddingTop = '2vh';
 				let widthContainer = '';
 				let widthImage = '';
 				let heightImage = '';
@@ -264,7 +265,15 @@
 				if (screenWidth === 280) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '350px';
+					paddingTop = '1vh';
+					widthImage = '180px';
+					heightImage = '35px';
+				} else if (screenWidth === 320) {
+					imageUrl = './wifi6_mobile.png';
+					padding = '83vh 9vw 0vh 9vw';
+					paddingTop = '1vh';
+					widthImage = '180px';
+					heightImage = '35px';
 				} else if (screenWidth === 295) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
@@ -276,7 +285,9 @@
 				} else if (screenWidth === 360) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '250px';
+					paddingTop = '1vh';
+					widthImage = '200px';
+					heightImage = '40px';
 				} else if (screenWidth === 315) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
@@ -284,24 +295,33 @@
 				} else if (screenWidth === 375) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '320px';
+					paddingTop = '1vh';
+					widthImage = '200px';
+					heightImage = '40px';
 				} else if (screenWidth === 414) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '350px';
+					paddingTop = '1vh';
+					widthImage = '230px';
+					heightImage = '45px';
 				} else if (screenWidth === 540) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '350px';
+					paddingTop = '1vh';
+					widthImage = '200px';
+					heightImage = '40px';
 				} else if (screenWidth <= 670) {
 					imageUrl = './wifi6_mobile.png';
 					padding = '83vh 9vw 0vh 9vw';
-					widthImage = '350px';
+					paddingTop = '1vh';
+					widthImage = '220px';
+					heightImage = '45px';
 				} else if (screenWidth === 768) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
-					widthImage = '450px';
-					heightImage = '60px';
+					paddingTop = '1vh';
+					widthImage = '250px';
+					heightImage = '50px';
 				} else if (screenWidth === 820) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
@@ -311,28 +331,37 @@
 				} else if (screenWidth === 912) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
-					heightImage = '70px';
+					paddingTop = '1vh';
+					widthImage = '300px';
+					heightImage = '60px';
 				} else if (screenWidth === 931) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
-					widthImage = '400px';
-					heightImage = '90px';
+					paddingTop = '1vh';
+					widthImage = '300px';
+					heightImage = '60px';
 				} else if (screenWidth === 1024 && screenHeight === 1366) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
 					widthContainer = '100%';
-					heightImage = '90px';
+					paddingTop = '1vh';
+					widthImage = '350px';
+					heightImage = '70px';
 				} else if (screenWidth === 1024 && screenHeight === 600) {
 					imageUrl = './wifi6_pc.png';
 					padding = '86vh 9vw 0vh 9vw';
-					widthImage = '300px';
+					paddingTop = '1vh';
+					widthImage = '230px';
+					heightImage = '45px';
 				} else if (screenWidth === 1029 && screenHeight === 551) {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
 				} else if (screenWidth === 1280 && screenHeight === 551) {
 					imageUrl = './wifi6_pc.png';
 					padding = '86vh 9vw 0vh 9vw';
-					widthImage = '300px';
+					paddingTop = '1vh';
+					widthImage = '250px';
+					heightImage = '50px';
 				} else if (screenWidth === 698 && screenHeight === 409) {
 					imageUrl = './wifi6_pc.png';
 					padding = '86vh 9vw 0vh 9vw';
@@ -346,21 +375,27 @@
 				} else if (screenWidth === 1280) {
 					imageUrl = './wifi6_pc.png';
 					padding = '86vh 9vw 0vh 9vw';
+					paddingTop = '1vh';
+					widthImage = '250px';
+					heightImage = '50px';
 				} else if (screenWidth < 1200) {
 					// IPAD
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
-					heightImage = '70px';
+					paddingTop = '1vh';
+					widthImage = '250px';
+					heightImage = '50px';
 				} else {
 					imageUrl = './wifi6_pc.png';
 					padding = '85vh 9vw 0vh 9vw';
-					widthImage = '400px';
-					heightImage = '70px';
+					widthImage = '350px';
+					heightImage = '60px';
 				}
 
 				containerElement.style.backgroundImage = `url(${imageUrl})`;
 				containerElement.style.width = widthContainer;
-				contentContainerElement.style.padding = padding;
+				// contentContainerElement.style.padding = padding;
+				contentContainerElement.style.paddingTop = paddingTop;
 				contentContainerImgElement.style.width = widthImage;
 				contentContainerImgElement.style.height = heightImage;
 			}
