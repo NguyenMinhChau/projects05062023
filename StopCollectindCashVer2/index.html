@@ -124,13 +124,21 @@
 
 			.content_two {
 				box-sizing: border-box;
+				display: flex;
+				align-items: center;
+				justify-items: center;
 			}
 
 			.content_two .img {
-				height: 100%;
-				display: inline-flex;
-				align-items: center;
+				/* height: 100%; */
+				padding: 6px;
+				border-radius: 8px;
 				cursor: pointer;
+				background-color: #ffffff;
+				display: flex;
+				align-items: center;
+				justify-items: center;
+				box-sizing: border-box;
 			}
 
 			.content_three {
@@ -474,7 +482,7 @@
 					paddingBgImageContent = '30vh 15vw 13vh 15vw';
 					paddingContentOne = '0vh 0vw 0vh 36vw';
 					contentOneImg = '120px';
-					paddingContentTwo = '1vh 0vw 0vh 52vw';
+					paddingContentTwo = '1vh 0vw 0vh 51vw';
 					contentTwoImg = '65px';
 					paddingContentThree = '2vh 0vw 9vh 13vw';
 					contentThreeLink = '1vh 0vw 0vh 0vw';
@@ -549,7 +557,7 @@
 					paddingBgImageContent = '30vh 15vw 9vh 15vw';
 					paddingContentOne = '0vh 0vw 0vh 37vw';
 					contentOneImg = '100px';
-					paddingContentTwo = '1vh 0vw 2vh 52vw';
+					paddingContentTwo = '1vh 0vw 2vh 51vw';
 					contentTwoImg = '55px';
 					paddingContentThree = '0vh 0vw 9vh 13vw';
 					contentThreeLink = '1.5vh 0vw 0vh 0vw';
@@ -694,7 +702,7 @@
 					paddingContentTwo = '3vh 0vw 0vh 32vw';
 					contentTwoImg = '65px';
 					paddingContentThree = '0vh 0vw 0vh 6vw';
-					contentThreeLink = '8vh 0vw 0vh 0vw';
+					contentThreeLink = '7vh 0vw 0vh 0vw';
 					contentThreeLinkSize = '18px';
 					paddingContentFour = '0vh 0vw 0vh 0vw';
 					paddingContentFive = '0vh 0vw 0vh 45vw';
@@ -820,7 +828,7 @@
 				bgImageContentOneElement.style.padding = paddingContentOne;
 				bgImageContentOneImgElement.style.width = contentOneImg;
 				bgImageContentTwoElement.style.padding = paddingContentTwo;
-				bgImageContentTwoImgElement.style.width = contentTwoImg;
+				// bgImageContentTwoImgElement.style.width = contentTwoImg;
 				bgImageContentThreeElement.style.padding = paddingContentThree;
 				bgImageContentThreeLinkElement.style.margin = contentThreeLink;
 				bgImageContentThreeLinkElement.style.fontSize =
@@ -840,8 +848,8 @@
 
 				const qrcode = new QRCode(bgImageContentTwoImgElement, {
 					text: qrCodeValue,
-					width: Number(contentTwoImg?.replace('px', '')) - 10,
-					height: Number(contentTwoImg?.replace('px', '')) - 10,
+					width: Number(contentTwoImg?.replace('px', '')) - 20,
+					height: Number(contentTwoImg?.replace('px', '')) - 20,
 					colorDark: '#000000',
 					colorLight: '#ffffff',
 					correctLevel: QRCode.CorrectLevel.H,
