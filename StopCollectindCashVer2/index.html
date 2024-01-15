@@ -130,6 +130,7 @@
 				height: 100%;
 				display: inline-flex;
 				align-items: center;
+				cursor: pointer;
 			}
 
 			.content_three {
@@ -279,6 +280,7 @@
 														class="content_item content_two"
 													>
 														<span
+															id="qr_code"
 															class="img qrcode"
 														></span>
 													</div>
@@ -375,7 +377,7 @@
 				document.querySelector('.info_contact_container');
 
 			// QR CODE
-			const qrCodeValue = 'https://fpt.vn/pay/SGD123456';
+			const qrCodeValue = 'https://fpt.vn/pay/SGD12345689';
 
 			function updateBackground() {
 				const screenWidth = window.innerWidth;
@@ -873,6 +875,16 @@
 					});
 			};
 
+			function saveImage() {
+				let qelem = bgImageContentTwoImgElement.querySelector('img');
+				let qr = qelem.getAttribute('src');
+				let link = document.createElement('a');
+				link.download = `QRCode:${
+					qrCodeValue.replace('//', '/').split('/')[3]
+				}`;
+				link.href = qr;
+				link.click();
+			}
 			//! Send info
 			btnSend.addEventListener('click', () => {
 				const phone = phoneElement.value;
@@ -886,6 +898,10 @@
 
 			btnClose.addEventListener('click', () => {
 				window.location.href = 'http://auth.fpt.vn';
+			});
+
+			bgImageContentTwoImgElement.addEventListener('click', () => {
+				saveImage();
 			});
 		</script>
 	</body>
