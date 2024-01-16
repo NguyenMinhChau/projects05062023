@@ -226,6 +226,7 @@
 			}
 		</style>
 		<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+		<script src="https://unpkg.com/fabric@5.3.0/dist/fabric.min.js"></script>
 	</head>
 	<body>
 		<table
@@ -493,7 +494,7 @@
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
-					spanFormSize = '14px'
+					spanFormSize = '14px';
 				} else if (screenWidth === 414) {
 					imageUrl = './stop_cash_mobile.jpg';
 					imageUrlClose = './button_stop_cash_mobile.png';
@@ -774,8 +775,7 @@
 					inputFormWidth = '95%';
 					buttonTextFormSize = '16px';
 					buttonFormPadding = '10px 20px';
-				}
-				else if (screenWidth === 1680 && screenHeight === 885) {
+				} else if (screenWidth === 1680 && screenHeight === 885) {
 					imageUrl = './stop_cash_pc.jpg';
 					imageUrlClose = './button_stop_cash_pc.png';
 					imageWidthClose = '250px';
@@ -794,8 +794,7 @@
 					widthInfoContainer = '100%';
 					topBtnClose = '0px';
 					rightBtnClose = '0px';
-				}
-				else if (screenWidth < 1200) {
+				} else if (screenWidth < 1200) {
 					imageUrl = './stop_cash_768x1024.jpg';
 					imageUrlClose = './button_stop_cash_768x1024.png';
 					imageWidthClose = '200px';
@@ -907,14 +906,38 @@
 			};
 
 			function saveImage() {
-				let qelem = bgImageContentTwoImgElement.querySelector('img');
-				let qr = qelem.getAttribute('src');
-				let link = document.createElement('a');
-				link.download = `QRCode:${
-					qrCodeValue.replace('//', '/').split('/')[3]
-				}`;
-				link.href = qr;
-				link.click();
+				var canvas = new fabric.Canvas();
+
+				canvas.setDimensions({
+					width: 500, // Desired width
+					height: 500, // Desired height
+				});
+
+				let originalImage =
+					bgImageContentTwoImgElement.querySelector('img');
+
+				var fabricImage = new fabric.Image(originalImage, {
+					scaleX: canvas.width / originalImage.width,
+					scaleY: canvas.height / originalImage.height,
+				});
+
+				canvas.add(fabricImage);
+
+				var dataURL = canvas.toDataURL({
+					format: 'png',
+					quality: 0.3, // Desired quality (0.0 to 1.0)
+				});
+
+				var downloadLink = document.createElement('a');
+				downloadLink.href = dataURL;
+				downloadLink.download = 'QrCode_Image.png'; // Desired filename
+
+				// Append the link to the document and trigger the download
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+
+				// Clean up (optional)
+				document.body.removeChild(downloadLink);
 			}
 			//! Send info
 			btnSend.addEventListener('click', () => {
