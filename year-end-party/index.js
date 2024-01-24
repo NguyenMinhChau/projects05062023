@@ -65,11 +65,16 @@
 				}
 			});
 			const LIST_NUMBER_ONE = extractUniqueDigits(LIST_USER);
+			const LIST_CODE = LIST_USER?.map((item) => item?.code);
 			const LIST_USER_PRIZE = res.payload?.map((item, index) => {
 				if (item?.status === 'PRIZED') {
 					return item;
 				}
 			});
+
+			const randomCode = LIST_CODE?.filter((x) => x)?.[
+				Math.floor(Math.random() * LIST_CODE?.filter((x) => x)?.length)
+			];
 
 			audio.addEventListener(
 				'ended',
@@ -288,6 +293,9 @@
 					document.querySelector('.save_result').style.display =
 						'none';
 					document.querySelector('.award').style.display = 'block';
+					document
+						.querySelector('.phao_giay')
+						.classList.remove('show');
 				}
 			}
 
@@ -298,13 +306,16 @@
 						audio.loop = true;
 					}
 					document.querySelector('.award').style.display = 'none';
+					document
+						.querySelector('.phao_giay')
+						.classList.remove('show');
 
 					if (prizeData) {
 						init(false, 25, 15);
 
 						let result = '';
 
-						for (const door of doors) {
+						for (const [index, door] of doors?.entries()) {
 							const boxes = door.querySelector('.boxes');
 							const duration = parseInt(
 								boxes.style.transitionDuration,
@@ -318,29 +329,43 @@
 								return;
 							}
 							result += box.textContent;
-						}
 
+							for (const [_idx, box] of boxes
+								?.querySelectorAll('.box')
+								?.entries()) {
+								if (_idx === 0) {
+									box.textContent = randomCode?.[index];
+								}
+							}
+						}
 						setTimeout(() => {
-							// tìm trong LIST_USER PRIZE để lấy ra user có code === result
-							const user = LIST_USER_PRIZE.find(
-								(item) => item?.code === result,
-							);
+							const user = LIST_USER.find((item) => {
+								if (
+									`${item?.code}`.toString() ===
+									`${randomCode}`.toString()
+								) {
+									return item;
+								}
+							});
 							document.querySelector('.award').style.display =
 								'none';
 
 							if (user) {
-								document.querySelector(
-									'.name_text',
-								).innerHTML = `<span class="full_name">Nguyễn Minh Châu</span> -
-								<span class="deparment">INF HO</span>`;
+								// document.querySelector(
+								// 	'.name_text',
+								// ).innerHTML = `<span class="full_name">Nguyễn Minh Châu</span> -
+								// <span class="deparment">INF HO</span>`;
 								document.querySelector(
 									'.email_text',
-								).innerHTML = `Email: <span class="email_user">${
+								).innerHTML = `<span class="email_user" style="font-size: 25px;">${
 									user?.email || 'Không tìm thấy email'
 								}</span>`;
 								document.querySelector(
 									'.save_result',
 								).style.display = 'block';
+								document
+									.querySelector('.phao_giay')
+									.classList.add('show');
 							} else {
 								document.querySelector(
 									'.name_text',
@@ -390,11 +415,19 @@
 				}
 
 				fetchAPI({
-					url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${result}`,
+					url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${randomCode}`,
 					method: 'POST',
 					body: {},
 					onSuccess: (res) => {
 						if (res?.success) {
+							document
+								.querySelector('.modal_overlay.notification')
+								.classList.add('show');
+							const htmlTextNotification =
+								'<p style="text-align: center;">Lưu kết quả thành công!</p>';
+							document.querySelector(
+								'.model_content_text',
+							).innerHTML = htmlTextNotification;
 							audioClaps.play();
 						} else {
 							document
@@ -413,7 +446,6 @@
 						console.log(err);
 					},
 				});
-				console.log(result);
 			}
 
 			function shuffle([...arr]) {

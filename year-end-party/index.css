@@ -22,8 +22,28 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	padding: 120px 0 30px 0;
+	padding: 250px 0 30px 0;
 	box-sizing: border-box;
+}
+
+.phao_giay {
+	width: 100%;
+	background-image: url('./phao_giay.gif');
+	background-repeat: repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	display: none;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+}
+
+.phao_giay.show {
+	display: flex;
 }
 
 .doors {
@@ -31,17 +51,14 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #ffffff9a;
 	width: 450px;
-	height: 300px;
-	padding: 12px;
 	border-radius: 12px;
 }
 
 .door {
 	background: #f3b6348a;
 	width: 110px;
-	height: 120px;
+	height: 110px;
 	overflow: hidden;
 	border-radius: 12px;
 	margin: 5px;
@@ -72,7 +89,7 @@ body {
 
 button {
 	cursor: pointer;
-	font-size: 1.5rem;
+	font-size: 0.7rem;
 	border: none;
 	padding: 10px 15px;
 }
@@ -87,8 +104,11 @@ button {
 	background-color: transparent;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
-	color: #fff;
 	text-align: center;
+	/* color: #fff; */
+	background-color: #ffffff9a;
+	border-radius: 8px;
+	text-transform: uppercase;
 }
 
 button::after {
@@ -103,7 +123,7 @@ button::after {
 	height: 90%;
 	padding: var(--border-width);
 	border-radius: var(--border-radius);
-	background-image: conic-gradient(
+	/* background-image: conic-gradient(
 		#488cfb,
 		#29dbbc,
 		#ddf505,
@@ -111,7 +131,7 @@ button::after {
 		#e440bb,
 		#655adc,
 		#488cfb
-	);
+	); */
 
 	mask-image: var(--m-i), var(--m-i);
 	mask-origin: var(--m-o);
