@@ -53,9 +53,9 @@
 
 			let prize = null;
 			let prizeData = null;
-			let audio = new Audio('./spin_audio.mp3');
+			let audio = new Audio('./ring_audio.mp3');
 			let audioRing = new Audio('./ring_audio.mp3');
-			let audioClaps = new Audio('./claps_audio.mp3');
+			let audioClaps = new Audio('./Win.mp3');
 			const LIST_USER = res.payload?.map((item, index) => {
 				if (
 					item?.status === 'CHECKED_IN' &&
@@ -284,6 +284,7 @@
 
 			function handleReset() {
 				if (prizeData) {
+					
 					prize = null;
 					prizeData = null;
 					document.querySelector('.name_prize').innerHTML = '';
@@ -296,6 +297,7 @@
 					document
 						.querySelector('.phao_giay')
 						.classList.remove('show');
+					audioClaps.pause();
 				}
 			}
 
@@ -355,9 +357,10 @@
 								// 	'.name_text',
 								// ).innerHTML = `<span class="full_name">Nguyễn Minh Châu</span> -
 								// <span class="deparment">INF HO</span>`;
+								audioClaps.play();
 								document.querySelector(
 									'.email_text',
-								).innerHTML = `<span class="email_user" style="font-size: 25px;">${
+								).innerHTML = `<span class="email_user" style="font-size: 30px;">${
 									user?.email || 'Không tìm thấy email'
 								}</span>`;
 								document.querySelector(
@@ -420,15 +423,15 @@
 					body: {},
 					onSuccess: (res) => {
 						if (res?.success) {
-							document
-								.querySelector('.modal_overlay.notification')
-								.classList.add('show');
-							const htmlTextNotification =
-								'<p style="text-align: center;">Lưu kết quả thành công!</p>';
-							document.querySelector(
-								'.model_content_text',
-							).innerHTML = htmlTextNotification;
-							audioClaps.play();
+							// document
+							// 	.querySelector('.modal_overlay.notification')
+							// 	.classList.add('show');
+							// const htmlTextNotification =
+							// 	'<p style="text-align: center;">Lưu kết quả thành công!</p>';
+							// document.querySelector(
+							// 	'.model_content_text',
+							// ).innerHTML = htmlTextNotification;
+							// audioClaps.play();
 						} else {
 							document
 								.querySelector('.modal_overlay.notification')
@@ -492,7 +495,7 @@
 					document.querySelector('#reseter').style.display = 'block';
 					document.querySelector(
 						'.name_prize',
-					).innerHTML = `Phần thưởng ${prizeData.prizeName} sẽ thuộc về`;
+					).innerHTML = `${prizeData.prizeName}`;
 				}
 				closeModalPrize();
 			}

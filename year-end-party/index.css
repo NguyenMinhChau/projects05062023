@@ -22,7 +22,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	padding: 250px 0 30px 0;
+	padding: 270px 0 30px 0;
 	box-sizing: border-box;
 }
 
@@ -51,18 +51,18 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 450px;
+	width: 400px;
 	border-radius: 12px;
 }
 
 .door {
 	background: #f3b6348a;
-	width: 110px;
-	height: 110px;
+	width: 100px;
+	height: 100px;
 	overflow: hidden;
-	border-radius: 12px;
+	border-radius: 50%;
 	margin: 5px;
-	border: 1px solid #e11c23;
+	border: 10px solid #e11c23;
 }
 
 .boxes {
@@ -83,13 +83,13 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 10px;
 	gap: 15px;
 }
 
 button {
 	cursor: pointer;
-	font-size: 0.7rem;
+	font-size: 0.9rem;
 	border: none;
 	padding: 10px 15px;
 }
@@ -223,24 +223,28 @@ button:hover::after {
 	display: none;
 	justify-content: center;
 	align-items: center;
+	background-color: transparent;
 }
 
 .modal_container_notification {
-	width: 300px;
+	min-width: 200px;
 	background-color: #fff;
-	border-radius: 24px;
-	padding: 12px;
+	opacity: 0.9;
+	border-radius: 12px;
+	padding: 5px;
 	box-sizing: border-box;
-	position: relative;
+	position: absolute;
+	bottom: 24px;
+	left: 12px;
 	animation: fadeInModal 0.3s linear;
 }
 
 .close_modal_notifi {
-	font-size: 1rem;
+	font-size: 0.7rem;
 	cursor: pointer;
 	background-color: #f3b5349a;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -249,7 +253,7 @@ button:hover::after {
 }
 
 .model_content_text {
-	margin: 20px 0;
+	margin: 0;
 }
 
 .modal_overlay.prize.show,
@@ -268,6 +272,7 @@ button:hover::after {
 	right: 0;
 	min-width: 500px;
 	background-color: #fff;
+	opacity: 0.8;
 	border-top-left-radius: 12px;
 	padding-bottom: 12px;
 }
