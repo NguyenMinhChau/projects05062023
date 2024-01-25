@@ -54,6 +54,7 @@
 			let prize = null;
 			let codeGetAPI = null;
 			let prizeData = null;
+			let isSubmitPrize = false;
 			let audio = new Audio('./ring_audio.mp3');
 			let audioRing = new Audio('./ring_audio.mp3');
 			let audioClaps = new Audio('./Win.mp3');
@@ -245,6 +246,7 @@
 									url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
 									onSuccess: (res) => {
 										if (res?.success) {
+											isSubmitPrize = false;
 											prizeData = {
 												prizeName:
 													e.target.dataset.prizeName,
@@ -258,6 +260,9 @@
 												res?.payload?.code ||
 												randomCode;
 										} else {
+											isSubmitPrize = false;
+											prize = null;
+											prizeData = null;
 											document.querySelector(
 												'.action_submit_prize',
 											).style.display = 'none';
@@ -277,6 +282,9 @@
 										}
 									},
 									onError: (err) => {
+										isSubmitPrize = false;
+										prize = null;
+										prizeData = null;
 										console.log(err);
 									},
 								});
@@ -414,7 +422,7 @@
 						.querySelector('.phao_giay')
 						.classList.remove('show');
 
-					if (prizeData) {
+					if (prizeData && isSubmitPrize) {
 						init(false, 25, 15);
 
 						let result = '';
@@ -602,7 +610,9 @@
 						'.name_prize',
 					).innerHTML = `${prizeData.prizeName}`;
 					closeModalPrize();
+					isSubmitPrize = true;
 				} else {
+					isSubmitPrize = false;
 					document
 						.querySelector('.modal_overlay.notification')
 						.classList.add('show');
