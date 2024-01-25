@@ -318,7 +318,7 @@ button:hover::after {
 }
 
 .table {
-	max-height: 65vh;
+	max-height: 75vh;
 	display: block;
 }
 
@@ -354,4 +354,8 @@ input[type='radio'] {
 		opacity: 1;
 		transform: scale(1);
 	}
+}
+
+::-webkit-scrollbar {
+	display: none;
 }
