@@ -52,6 +52,7 @@
 			}
 
 			let prize = null;
+			let codeGetAPI = null;
 			let prizeData = null;
 			let audio = new Audio('./ring_audio.mp3');
 			let audioRing = new Audio('./ring_audio.mp3');
@@ -128,6 +129,18 @@
 					e.stopPropagation();
 					closeModalNotification();
 				});
+			document
+				.querySelector('.modal_overlay.prize')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeModalPrize();
+				});
+			document
+				.querySelector('.modal_overlay.user')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeModalUser();
+				});
 
 			document
 				.querySelector('.modal_container_notification')
@@ -137,12 +150,52 @@
 						.querySelector('.modal_overlay.notification')
 						.classList.add('show');
 				});
+			document
+				.querySelector('.modal_container.prize')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					// document
+					// 	.querySelector('.modal_overlay.prize')
+					// 	.classList.add('show');
+					var elements = document.querySelector(
+						'.modal_container.prize',
+					).children;
+					for (var i = 0; i < elements.length; i++) {
+						if (
+							!elements[i].classList.contains(
+								'action_submit_prize',
+							)
+						) {
+							elements[i].classList.add('show');
+						}
+					}
+				});
+			document
+				.querySelector('.modal_container.user')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					document
+						.querySelector('.modal_overlay.user')
+						.classList.add('show');
+				});
 
 			document
 				.querySelector('.close_modal_notifi')
 				.addEventListener('click', (e) => {
 					e.stopPropagation();
 					closeModalNotification();
+				});
+			document
+				.querySelector('.close_modal.prize')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeModalPrize();
+				});
+			document
+				.querySelector('.close_modal.user')
+				.addEventListener('click', (e) => {
+					e.stopPropagation();
+					closeModalUser();
 				});
 
 			// GET LIST PRIZE
@@ -159,7 +212,6 @@
 												<td style="padding: 12px">
 													${prizeName}
 												</td>
-												<td style="padding: 12px">${prizeCode}</td>
 												<td style="padding: 12px">
 													<input
 														type="radio"
@@ -192,6 +244,33 @@
 									prizeCode: e.target.dataset.prizeCode,
 								};
 								prize = e.target.value;
+								fetchAPI({
+									method: 'GET',
+									url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
+									onSuccess: (res) => {
+										if (res?.success) {
+											codeGetAPI =
+												res?.payload?.code ||
+												randomCode;
+										} else {
+											document
+												.querySelector(
+													'.modal_overlay.notification',
+												)
+												.classList.add('show');
+											const htmlTextNotification = `<p style="text-align: center;">${
+												res?.errors?.[0]?.message ||
+												res?.errors?.message
+											}</p>`;
+											document.querySelector(
+												'.model_content_text',
+											).innerHTML = htmlTextNotification;
+										}
+									},
+									onError: (err) => {
+										console.log(err);
+									},
+								});
 							},
 						);
 					});
@@ -284,7 +363,6 @@
 
 			function handleReset() {
 				if (prizeData) {
-					
 					prize = null;
 					prizeData = null;
 					document.querySelector('.name_prize').innerHTML = '';
@@ -302,6 +380,7 @@
 			}
 
 			async function spin() {
+				console.log({ codeGetAPI });
 				if (LIST_NUMBER_ONE?.length > 0) {
 					if (audio.paused) {
 						audio.play();
@@ -336,7 +415,7 @@
 								?.querySelectorAll('.box')
 								?.entries()) {
 								if (_idx === 0) {
-									box.textContent = randomCode?.[index];
+									box.textContent = codeGetAPI?.[index];
 								}
 							}
 						}
@@ -344,7 +423,7 @@
 							const user = LIST_USER.find((item) => {
 								if (
 									`${item?.code}`.toString() ===
-									`${randomCode}`.toString()
+									`${codeGetAPI}`.toString()
 								) {
 									return item;
 								}
@@ -418,7 +497,7 @@
 				}
 
 				fetchAPI({
-					url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${randomCode}`,
+					url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${codeGetAPI}`,
 					method: 'POST',
 					body: {},
 					onSuccess: (res) => {
@@ -496,8 +575,16 @@
 					document.querySelector(
 						'.name_prize',
 					).innerHTML = `${prizeData.prizeName}`;
+					closeModalPrize();
+				} else {
+					document
+						.querySelector('.modal_overlay.notification')
+						.classList.add('show');
+					const htmlTextNotification =
+						'<p style="text-align: center;">Vui lòng chọn phần thưởng trước khi xác nhận phần thưởng. Xin cảm ơn!</p>';
+					document.querySelector('.model_content_text').innerHTML =
+						htmlTextNotification;
 				}
-				closeModalPrize();
 			}
 
 			init();
