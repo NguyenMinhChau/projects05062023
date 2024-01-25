@@ -239,20 +239,28 @@
 						inputRadioElement.addEventListener(
 							'change',
 							function (e) {
-								prizeData = {
-									prizeName: e.target.dataset.prizeName,
-									prizeCode: e.target.dataset.prizeCode,
-								};
 								prize = e.target.value;
 								fetchAPI({
 									method: 'GET',
 									url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
 									onSuccess: (res) => {
 										if (res?.success) {
+											prizeData = {
+												prizeName:
+													e.target.dataset.prizeName,
+												prizeCode:
+													e.target.dataset.prizeCode,
+											};
+											document.querySelector(
+												'.action_submit_prize',
+											).style.display = 'block';
 											codeGetAPI =
 												res?.payload?.code ||
 												randomCode;
 										} else {
+											document.querySelector(
+												'.action_submit_prize',
+											).style.display = 'none';
 											document
 												.querySelector(
 													'.modal_overlay.notification',
@@ -260,7 +268,8 @@
 												.classList.add('show');
 											const htmlTextNotification = `<p style="text-align: center;">${
 												res?.errors?.[0]?.message ||
-												res?.errors?.message
+												res?.errors?.message ||
+												'Vui lòng thử lại sau'
 											}</p>`;
 											document.querySelector(
 												'.model_content_text',
@@ -280,13 +289,27 @@
 			// RENDER TABDLE USER
 			const htmlTableBodyUser = LIST_USER_PRIZE?.filter((x) => x)
 				.map((item, _idx) => {
-					const { email, code, status, timeCheckIn } = { ...item };
+					const {
+						fullName,
+						email,
+						phongBan,
+						code,
+						prize,
+						status,
+						timeCheckIn,
+					} = { ...item };
+					const { prizeName } = { ...prize };
 					return `
 									<tr style="text-align: center">
 												<td style="padding: 12px">${_idx + 1}</td>
+												<td style="padding: 12px">${fullName}</td>
 												<td style="padding: 12px">${email}</td>
+												<td style="padding: 12px">${phongBan}</td>
 												<td style="padding: 12px">
 													${code}
+												</td>
+												<td style="padding: 12px">
+													${prizeName}
 												</td>
 											</tr>
 								`;
@@ -380,7 +403,7 @@
 			}
 
 			async function spin() {
-				console.log({ codeGetAPI });
+				// console.log({ codeGetAPI });
 				if (LIST_NUMBER_ONE?.length > 0) {
 					if (audio.paused) {
 						audio.play();
@@ -439,8 +462,10 @@
 								audioClaps.play();
 								document.querySelector(
 									'.email_text',
-								).innerHTML = `<span class="email_user" style="font-size: 30px;">${
-									user?.email || 'Không tìm thấy email'
+								).innerHTML = `<span class="email_user" style="font-size: 22px;">${
+									user?.fullName || 'N/A'
+								}</span> - <span class="department" style="font-size: 22px;">${
+									user?.phongBan || 'N/A'
 								}</span>`;
 								document.querySelector(
 									'.save_result',
@@ -502,22 +527,23 @@
 					body: {},
 					onSuccess: (res) => {
 						if (res?.success) {
-							// document
-							// 	.querySelector('.modal_overlay.notification')
-							// 	.classList.add('show');
-							// const htmlTextNotification =
-							// 	'<p style="text-align: center;">Lưu kết quả thành công!</p>';
-							// document.querySelector(
-							// 	'.model_content_text',
-							// ).innerHTML = htmlTextNotification;
-							// audioClaps.play();
+							document
+								.querySelector('.modal_overlay.notification')
+								.classList.add('show');
+							const htmlTextNotification =
+								'<p style="text-align: center;">Lưu kết quả thành công!</p>';
+							document.querySelector(
+								'.model_content_text',
+							).innerHTML = htmlTextNotification;
+							audioClaps.play();
 						} else {
 							document
 								.querySelector('.modal_overlay.notification')
 								.classList.add('show');
 							const htmlTextNotification = `<p style="text-align: center;">${
 								res?.errors?.[0]?.message ||
-								res?.errors?.message
+								res?.errors?.message ||
+								'Vui lòng thử lại sau'
 							}</p>`;
 							document.querySelector(
 								'.model_content_text',
