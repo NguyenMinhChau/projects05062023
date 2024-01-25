@@ -294,7 +294,7 @@
 				},
 			});
 
-			// RENDER TABDLE USER
+			// RENDER TABLE USER
 			const htmlTableBodyUser = LIST_USER_PRIZE?.filter((x) => x)
 				.map((item, _idx) => {
 					const {
@@ -306,10 +306,10 @@
 						status,
 						timeCheckIn,
 					} = { ...item };
-					const { prizeName } = { ...prize };
+					const { prizeName, block } = { ...prize };
 					return `
 									<tr style="text-align: center">
-												<td style="padding: 12px">${_idx + 1}</td>
+												<td style="padding: 12px">${block || '-'}</td>
 												<td style="padding: 12px">${fullName}</td>
 												<td style="padding: 12px">${email}</td>
 												<td style="padding: 12px">${phongBan}</td>
@@ -332,11 +332,11 @@
 
 			function init(firstInit = true, groups = 1, duration = 1) {
 				for (const door of doors) {
-					if (firstInit) {
-						door.dataset.spinned = '0';
-					} else if (door.dataset.spinned === '1') {
-						return;
-					}
+					// if (firstInit) {
+					// 	door.dataset.spinned = '0';
+					// } else if (door.dataset.spinned === '1') {
+					// 	return;
+					// }
 
 					const boxes = door.querySelector('.boxes');
 					const boxesClone = boxes.cloneNode(false);
@@ -412,12 +412,13 @@
 
 			async function spin() {
 				// console.log({ codeGetAPI });
+				document.querySelector('.email_text').innerHTML = '';
 				if (LIST_NUMBER_ONE?.length > 0) {
 					if (audio.paused) {
 						audio.play();
 						audio.loop = true;
 					}
-					document.querySelector('.award').style.display = 'none';
+					// document.querySelector('.award').style.display = 'none';
 					document
 						.querySelector('.phao_giay')
 						.classList.remove('show');
@@ -459,8 +460,8 @@
 									return item;
 								}
 							});
-							document.querySelector('.award').style.display =
-								'none';
+							// document.querySelector('.award').style.display =
+							// 	'none';
 
 							if (user) {
 								// document.querySelector(
@@ -470,9 +471,9 @@
 								audioClaps.play();
 								document.querySelector(
 									'.email_text',
-								).innerHTML = `<span class="email_user" style="font-size: 22px;">${
+								).innerHTML = `<span class="email_user" style="font-size: 25px;">${
 									user?.fullName || 'N/A'
-								}</span> - <span class="department" style="font-size: 22px;">${
+								}</span> - <span class="department" style="font-size: 25px;">${
 									user?.phongBan || 'N/A'
 								}</span>`;
 								document.querySelector(
@@ -543,7 +544,6 @@
 							document.querySelector(
 								'.model_content_text',
 							).innerHTML = htmlTextNotification;
-							audioClaps.play();
 						} else {
 							document
 								.querySelector('.modal_overlay.notification')
@@ -562,6 +562,8 @@
 						console.log(err);
 					},
 				});
+				updateUserPrize();
+				updateUserPrize();
 			}
 
 			function shuffle([...arr]) {
@@ -605,7 +607,7 @@
 
 			function submitPrize() {
 				if (prizeData) {
-					document.querySelector('#reseter').style.display = 'block';
+					// document.querySelector('#reseter').style.display = 'block';
 					document.querySelector(
 						'.name_prize',
 					).innerHTML = `${prizeData.prizeName}`;
@@ -626,3 +628,54 @@
 			init();
 		});
 })();
+
+const updateUserPrize = () => {
+	return fetch(
+		'http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/get-users',
+		{ method: 'GET' },
+	)
+		.then((res) => {
+			return res.json();
+		})
+		.then((res) => {
+			const LIST_USER_PRIZE = res.payload?.map((item, index) => {
+				if (item?.status === 'PRIZED') {
+					return item;
+				}
+			});
+			const htmlTableBodyUser = LIST_USER_PRIZE?.filter((x) => x)
+				.map((item, _idx) => {
+					const {
+						fullName,
+						email,
+						phongBan,
+						code,
+						prize,
+						status,
+						timeCheckIn,
+					} = { ...item };
+					const { prizeName, block } = { ...prize };
+					return `
+									<tr style="text-align: center">
+												<td style="padding: 12px">${block || '-'}</td>
+												<td style="padding: 12px">${fullName}</td>
+												<td style="padding: 12px">${email}</td>
+												<td style="padding: 12px">${phongBan}</td>
+												<td style="padding: 12px">
+													${code}
+												</td>
+												<td style="padding: 12px">
+													${prizeName}
+												</td>
+											</tr>
+								`;
+				})
+				.join('');
+			document.querySelector('.table tbody.user').innerHTML =
+				LIST_USER_PRIZE?.filter((x) => x)?.length > 0
+					? htmlTableBodyUser
+					: `<tr style="text-align: center">
+                                                <td style="padding: 12px" colspan="3">Không có dữ liệu</td>
+                                            </tr>`;
+		});
+};
