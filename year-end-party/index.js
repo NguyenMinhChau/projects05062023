@@ -246,7 +246,6 @@
 									url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
 									onSuccess: (res) => {
 										if (res?.success) {
-											isSubmitPrize = false;
 											prizeData = {
 												prizeName:
 													e.target.dataset.prizeName,
@@ -256,9 +255,9 @@
 											document.querySelector(
 												'.action_submit_prize',
 											).style.display = 'block';
-											codeGetAPI =
-												res?.payload?.code ||
-												randomCode;
+											// codeGetAPI =
+											// 	res?.payload?.code ||
+											// 	randomCode;
 										} else {
 											isSubmitPrize = false;
 											prize = null;
@@ -413,6 +412,69 @@
 			async function spin() {
 				// console.log({ codeGetAPI });
 				document.querySelector('.email_text').innerHTML = '';
+				document.querySelector('.save_result').style.display = 'none';
+
+				// reCall API random CODE
+				if (prizeData) {
+					fetchAPI({
+						method: 'GET',
+						url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
+						onSuccess: (res) => {
+							if (res?.success) {
+								isSubmitPrize = true;
+								document.querySelector(
+									'.action_submit_prize',
+								).style.display = 'block';
+								codeGetAPI = res?.payload?.code || randomCode;
+							} else {
+								isSubmitPrize = false;
+								prize = null;
+								prizeData = null;
+								document
+									.querySelector('.modal_overlay.prize')
+									.classList.add('show');
+								document
+									.querySelector(
+										'.modal_overlay.notification',
+									)
+									.classList.add('show');
+								const htmlTextNotification = `<p style="text-align: center;">${
+									res?.errors?.[0]?.message ||
+									res?.errors?.message ||
+									'Vui lòng thử lại sau'
+								}</p>`;
+								document.querySelector(
+									'.model_content_text',
+								).innerHTML = htmlTextNotification;
+								document.querySelector(
+									'.name_prize',
+								).innerHTML = '';
+								for (const [index, door] of doors?.entries()) {
+									const boxes = door.querySelector('.boxes');
+
+									for (const [_idx, box] of boxes
+										?.querySelectorAll('.box')
+										?.entries()) {
+										if (_idx === 0) {
+											box.textContent = '❓';
+										}
+									}
+								}
+							}
+						},
+						onError: (err) => {
+							isSubmitPrize = false;
+							prize = null;
+							prizeData = null;
+							console.log(err);
+						},
+					});
+				}
+
+				if (isSubmitPrize) {
+					document.querySelector('#spinner').style.display = 'none';
+				}
+
 				if (LIST_NUMBER_ONE?.length > 0) {
 					if (audio.paused) {
 						audio.play();
@@ -422,7 +484,6 @@
 					document
 						.querySelector('.phao_giay')
 						.classList.remove('show');
-
 					if (prizeData && isSubmitPrize) {
 						init(false, 25, 15);
 
@@ -462,6 +523,8 @@
 							});
 							// document.querySelector('.award').style.display =
 							// 	'none';
+							document.querySelector('#spinner').style.display =
+								'block';
 
 							if (user) {
 								// document.querySelector(
@@ -482,6 +545,9 @@
 								document
 									.querySelector('.phao_giay')
 									.classList.add('show');
+								document.querySelector(
+									'.save_result',
+								).style.display = 'block';
 							} else {
 								document.querySelector(
 									'.name_text',
@@ -495,13 +561,6 @@
 							}
 						}, 13000);
 					} else {
-						// document
-						// 	.querySelector('.modal_overlay.notification')
-						// 	.classList.add('show');
-						// const htmlTextNotification =
-						// 	'<p style="text-align: center;">Vui lòng chọn phần thưởng trước khi quay thưởng. Xin cảm ơn!</p>';
-						// document.querySelector('.model_content_text').innerHTML =
-						// 	htmlTextNotification;
 						document
 							.querySelector('.modal_overlay.prize')
 							.classList.add('show');
@@ -544,6 +603,10 @@
 							document.querySelector(
 								'.model_content_text',
 							).innerHTML = htmlTextNotification;
+							document.querySelector(
+								'.save_result',
+							).style.display = 'none';
+							isSubmitPrize = false;
 						} else {
 							document
 								.querySelector('.modal_overlay.notification')
@@ -556,6 +619,9 @@
 							document.querySelector(
 								'.model_content_text',
 							).innerHTML = htmlTextNotification;
+							document.querySelector(
+								'.save_result',
+							).style.display = 'block';
 						}
 					},
 					onError: (err) => {
