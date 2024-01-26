@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>ICDP Mobile</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>1.52.246.101</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng Apple Music trong khi bạn đang sử dụng ứng dụng.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Cho phép ICDP Mobile truy cập lịch của bạn</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Cho phép ICDP sử dụng Camera của bạn để chụp ảnh máy đo thiết bị</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Cho phép ICDP Mobile truy cập tất cả liên hệ của bạn</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng FaceID</string>
+	<key>NSLinksUsageDescription</key>
+	<string>Chúng tôi cần quyền truy cập vào các liên kết để mở các trang web và hiển thị nội dung bên ngoài trong ứng dụng.</string>
+	<key>NSLocalNotificationUsageDescription</key>
+	<string>Cho phép ICDP Mobile truy cập thông báo để gửi thông báo đến bạn.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng vị trí của bạn? Vị trí của bạn cho phép chúng tôi để xác thực vị trí thực tế của bạn trong các tool bảo trì.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng vị trí của bạn? Vị trí của bạn cho phép chúng tôi để xác thực vị trí thực tế của bạn trong các tool bảo trì.</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>YOUR-PURPOSE-KEY</key>
+		<string>Cho phép ICDP Mobile sử dụng vị trí của bạn? Vị trí của bạn cho phép chúng tôi để xác thực vị trí thực tế của bạn trong các tool bảo trì.</string>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng vị trí của bạn? Vị trí của bạn cho phép chúng tôi để xác thực vị trí thực tế của bạn trong các tool bảo trì.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng FaceID để xác thực</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng thư viện ảnh của bạn để lưu ảnh vào thiết bị</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Cho phép ICDP Mobile sử dụng thư viện ảnh của bạn để lưu ảnh vào thiết bị</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen.storyboard</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIFileSharingEnabled</key>
+    <true/>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+    <key>UISupportsDocumentBrowser</key>
+    <true/>
+</dict>
+</plist>

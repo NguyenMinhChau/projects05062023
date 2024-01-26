@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "328739758129",
+    "project_id": "icdp-app-401908",
+    "storage_bucket": "icdp-app-401908.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328739758129:android:2608a2c0815099d0fe3510",
+        "android_client_info": {
+          "package_name": "com.icdpapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKCbWeRHZDhVnWPdh_AI9rhTY03W8RBgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
