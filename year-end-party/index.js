@@ -1,3 +1,5 @@
+const host_be_localhost = '1.52.246.101:4000';
+// const host_be_localhost = 'localhost:4000';
 (function () {
 	//! Call API get data info
 	const fetchAPI = async ({
@@ -20,7 +22,7 @@
 			});
 	};
 	fetch(
-		'http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/get-users',
+		`http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/get-users`,
 		{ method: 'GET' },
 	)
 		.then((res) => {
@@ -72,6 +74,8 @@
 				if (item?.status === 'PRIZED') {
 					return item;
 				}
+			}).sort((a,b) => {
+				return (a?.prize?.block - b?.prize?.block) || `${a?.prize?.prizeName}`.localeCompare(`${b?.prize?.prizeName}`)
 			});
 
 			const randomCode = LIST_CODE?.filter((x) => x)?.[
@@ -201,15 +205,15 @@
 
 			// GET LIST PRIZE
 			fetchAPI({
-				url: 'http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/get-prizes',
+				url: `http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/get-prizes`,
 				method: 'GET',
 				onSuccess: (res) => {
 					const htmlTableBody = res.payload
 						.map((item, _idx) => {
-							const { prizeName, prizeCode, _id } = { ...item };
+							const { prizeName, prizeCode, _id, block } = { ...item };
 							return `
 									<tr style="text-align: center">
-												<td style="padding: 12px">${_idx + 1}</td>
+												<td style="padding: 12px">${block}</td>
 												<td style="padding: 12px">
 													${prizeName}
 												</td>
@@ -243,7 +247,7 @@
 								prize = e.target.value;
 								fetchAPI({
 									method: 'GET',
-									url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
+									url: `http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
 									onSuccess: (res) => {
 										if (res?.success) {
 											prizeData = {
@@ -292,6 +296,7 @@
 					});
 				},
 			});
+			
 
 			// RENDER TABLE USER
 			const htmlTableBodyUser = LIST_USER_PRIZE?.filter((x) => x)
@@ -326,7 +331,7 @@
 				LIST_USER_PRIZE?.filter((x) => x)?.length > 0
 					? htmlTableBodyUser
 					: `<tr style="text-align: center">
-                                                <td style="padding: 12px" colspan="3">Không có dữ liệu</td>
+                                                <td style="padding: 12px" colspan="6">Không có dữ liệu</td>
                                             </tr>`;
 
 			function init(firstInit = true, groups = 1, duration = 1) {
@@ -418,7 +423,7 @@
 				if (prizeData) {
 					fetchAPI({
 						method: 'GET',
-						url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
+						url: `http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/random-code-by-prize?prizeId=${prize}`,
 						onSuccess: (res) => {
 							if (res?.success) {
 								isSubmitPrize = true;
@@ -590,7 +595,7 @@
 				}
 
 				fetchAPI({
-					url: `http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${codeGetAPI}`,
+					url: `http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/set-prize?prizeId=${prize}&code=${codeGetAPI}`,
 					method: 'POST',
 					body: {},
 					onSuccess: (res) => {
@@ -642,6 +647,7 @@
 			}
 
 			function openAward() {
+				isSubmitPrize = false;
 				document
 					.querySelector('.modal_overlay.prize')
 					.classList.add('show');
@@ -697,7 +703,7 @@
 
 const updateUserPrize = () => {
 	return fetch(
-		'http://1.52.246.101:4000/v1/icdp-backend-mobile/ct-tat-nien/get-users',
+		`http://${host_be_localhost}/v1/icdp-backend-mobile/ct-tat-nien/get-users`,
 		{ method: 'GET' },
 	)
 		.then((res) => {
@@ -708,7 +714,9 @@ const updateUserPrize = () => {
 				if (item?.status === 'PRIZED') {
 					return item;
 				}
-			});
+			}).sort((a,b) => {
+				return (a?.prize?.block - b?.prize?.block) || `${a?.prize?.prizeName}`.localeCompare(`${b?.prize?.prizeName}`)
+			});;
 			const htmlTableBodyUser = LIST_USER_PRIZE?.filter((x) => x)
 				.map((item, _idx) => {
 					const {
@@ -741,7 +749,7 @@ const updateUserPrize = () => {
 				LIST_USER_PRIZE?.filter((x) => x)?.length > 0
 					? htmlTableBodyUser
 					: `<tr style="text-align: center">
-                                                <td style="padding: 12px" colspan="3">Không có dữ liệu</td>
+                                                <td style="padding: 12px" colspan="6">Không có dữ liệu</td>
                                             </tr>`;
 		});
 };
